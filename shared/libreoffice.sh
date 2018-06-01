@@ -1,7 +1,7 @@
 #!/bin/sh
 
-if [ ! -d "/Applications/LibreOffice.app" ]; then
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        brew cask install --appdir="$MAC_APPS" libreoffice
-    fi
+if [[ "$OSTYPE" == "darwin"* ]] && [ ! -d "/Applications/LibreOffice.app" ]; then
+    brew cask install --appdir="$MAC_APPS" libreoffice
+elif [[ "$OSTYPE" == "msys"* ]]; then
+    choco install libreoffice -y
 fi

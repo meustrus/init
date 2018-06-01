@@ -1,7 +1,7 @@
 #!/bin/sh
 
-if [ ! -d "/Applications/Google Chrome.app" ]; then
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        brew cask install --appdir="$MAC_APPS" google-chrome
-    fi
+if [[ "$OSTYPE" == "darwin"* ]] && [ ! -d "/Applications/Google Chrome.app" ]; then
+    brew cask install --appdir="$MAC_APPS" google-chrome
+elif [[ "$OSTYPE" == "msys"* ]]; then
+    choco install GoogleChrome -y
 fi

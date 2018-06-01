@@ -1,7 +1,7 @@
 #!/bin/sh
 
-if [ ! -d "/Applications/Sourcetree.app" ]; then
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        brew cask install --appdir="$MAC_APPS" sourcetree
-    fi
+if [[ "$OSTYPE" == "darwin"* ]] && [ ! -d "/Applications/Sourcetree.app" ]; then
+    brew cask install --appdir="$MAC_APPS" sourcetree
+elif [[ "$OSTYPE" == "msys"* ]]; then
+    choco install sourcetree -y
 fi

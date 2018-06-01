@@ -1,2 +1,5 @@
-call choco install git
-sh %~dp0/user.sh
+@ECHO OFF
+SET INIT_REPO=%~dp0
+call %INIT_REPO%\win\choco.bat
+call %INIT_REPO%\win\git.bat
+sh %INIT_REPO%\user.sh

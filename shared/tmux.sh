@@ -1,7 +1,11 @@
 #!/bin/sh
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    brew install tmux
+if [ ! -x "$(command -v tmux)" ]; then
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        brew install tmux
+    # elif [[ "$OSTYPE" == "msys"* ]]; then
+    #     choco install tmux -y
+    fi
 fi
 
 mkdir -p ~/bench/ext

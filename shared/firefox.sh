@@ -1,7 +1,7 @@
 #!/bin/sh
 
-if [ ! -d "/Applications/Firefox.app" ]; then
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        brew cask install --appdir="$MAC_APPS" firefox
-    fi
+if [[ "$OSTYPE" == "darwin"* ]] && [ ! -d "/Applications/Firefox.app" ]; then
+    brew cask install --appdir="$MAC_APPS" firefox
+elif [[ "$OSTYPE" == "msys"* ]]; then
+    choco install firefox -y
 fi

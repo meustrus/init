@@ -1,7 +1,7 @@
 #!/bin/sh
 
-if [ ! -d "/Applications/Dropbox.app" ]; then
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        brew cask install --appdir="$MAC_APPS" dropbox
-    fi
+if [[ "$OSTYPE" == "darwin"* ]] && [ ! -d "/Applications/Dropbox.app" ]; then
+    brew cask install --appdir="$MAC_APPS" dropbox
+elif [[ "$OSTYPE" == "msys"* ]]; then
+    choco install dropbox -y
 fi

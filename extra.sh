@@ -4,11 +4,11 @@ INIT_REPO="${INIT_REPO:-$(dirname $0)}"
 
 BASHRC="$(cd "$INIT_REPO"; pwd)/shared/home/.bashrc"
 
-if ! grep -xq "$BASHRC" ~/.zshrc ; then
+if ! [ -f ~/.zshrc ]  || grep -xq "$BASHRC" ~/.zshrc ; then
     echo >> ~/.zshrc
     echo source "$BASHRC" >> ~/.zshrc
 fi
-if ! grep -xq "$BASHRC" ~/.bashrc ; then
+if ! [ -f ~/.bashrc ] || grep -xq "$BASHRC" ~/.bashrc ; then
     echo >> ~/.bashrc
     echo source "$BASHRC" >> ~/.bashrc
 fi
@@ -30,4 +30,6 @@ source "$INIT_REPO/shared/libreoffice.sh"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     source "$INIT_REPO/mac/extra.sh"
+elif [[ "$OSTYPE" == "msys"* ]]; then
+    source "$INIT_REPO/win/extra.sh"    
 fi

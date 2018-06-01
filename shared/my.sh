@@ -8,7 +8,7 @@ if [ -z "${MY_NAME}" ]; then
 fi
 
 [ ! -n "${MY_EMAIL}" ] && MY_EMAIL="$(git config user.email)"
-if [ -z "${MY_EMAIL}"]; then
+if [ -z "${MY_EMAIL}" ]; then
     read -p "Enter your \`git config user.email\`: " MY_EMAIL
     git config --global user.email "$MY_EMAIL"
     echo "Your \`git config user.email\` is now $MY_EMAIL"
