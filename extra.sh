@@ -33,6 +33,7 @@ source "$INIT_REPO/shared/chrome.sh"
 source "$INIT_REPO/shared/firefox.sh"
 source "$INIT_REPO/shared/vlc.sh"
 source "$INIT_REPO/shared/vscode.sh"
+source "$INIT_REPO/shared/sourcetree.sh"
 source "$INIT_REPO/shared/dropbox.sh"
 source "$INIT_REPO/shared/libreoffice.sh"
 
