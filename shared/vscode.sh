@@ -1,6 +1,6 @@
 #!/bin/sh
 
-INIT_REPO="${INIT_REPO:-$(dirname $0)/..}"
+INIT_REPO=${INIT_REPO:-$(cd "$(dirname "$0")/.." && pwd)}
 
 finalizeVSCode() {
     ln -s -f "$INIT_REPO/shared/vscode/settings.json" "$1/settings.json"

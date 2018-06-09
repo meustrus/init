@@ -1,8 +1,8 @@
 #!/bin/sh
 
-INIT_REPO="${INIT_REPO:-$(dirname $0)}"
+INIT_REPO=${INIT_REPO:-$(cd "$(dirname "$0")" && pwd)}
 
-BASHRC="$(cd "$INIT_REPO"; pwd)/shared/home/.bashrc"
+BASHRC="$INIT_REPO/shared/home/.bashrc"
 
 if ! [ -f ~/.zshrc ]  || grep -xq "$BASHRC" ~/.zshrc ; then
     echo >> ~/.zshrc

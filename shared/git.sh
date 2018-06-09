@@ -1,6 +1,6 @@
 #!/bin/sh
 
-INIT_REPO="${INIT_REPO:-$(dirname $0)/..}"
+INIT_REPO=${INIT_REPO:-$(cd "$(dirname "$0")/.." && pwd)}
 
 git config --global pull.rebase true
 git config --global core.editor "code --wait --new-window"
