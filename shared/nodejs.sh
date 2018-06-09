@@ -7,9 +7,17 @@ if [ -x "$(command -v nvm)" ]; then
         choco install nvm -y
     fi
     mkdir ~/.nvm
+
+    echo >> ~/.bash_profile
     echo \# NVM >> ~/.bash_profile
     echo export NVM_DIR=~/.nvm >> ~/.bash_profile
     echo source \$(brew --prefix nvm)/nvm.sh >> ~/.bash_profile
+
+    echo >> ~/.zprofile
+    echo \# NVM >> ~/.zprofile
+    echo export NVM_DIR=~/.nvm >> ~/.zprofile
+    echo source \$(brew --prefix nvm)/nvm.sh >> ~/.zprofile
+
     source ~/.bash_profile
 fi
 
