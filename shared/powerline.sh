@@ -1,3 +1,3 @@
 #!/bin/sh
 
-pip install powerline-status
+pip install --quiet --upgrade powerline-status

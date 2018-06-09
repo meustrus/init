@@ -13,9 +13,7 @@ finalizeVSCode() {
 }
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    if [ ! -d "/Applications/Visual Studio Code.app" ]; then
-        brew cask install --appdir="$MAC_APPS" visual-studio-code
-    fi
+    brew cask list visual-studio-code >/dev/null 2>&1 || brew cask install --appdir="$MAC_APPS" visual-studio-code
     finalizeVSCode "~/Library/Application Support/Code/User/"
 elif [[ "$OSTYPE" == "msys"* ]]; then
     choco install vscode -y

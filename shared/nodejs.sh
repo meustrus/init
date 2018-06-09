@@ -2,7 +2,7 @@
 
 if [ -x "$(command -v nvm)" ]; then
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        brew install nvm
+        brew list nvm >/dev/null 2>&1 || brew install nvm
     elif [[ "$OSTYPE" == "msys"* ]]; then
         choco install nvm -y
     fi
