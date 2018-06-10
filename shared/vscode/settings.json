@@ -1,6 +1,7 @@
 {
     "editor.acceptSuggestionOnCommitCharacter": false,
     "editor.acceptSuggestionOnEnter": "off",
+    "editor.autoClosingBrackets": false,
     "editor.autoIndent": true,
     "editor.dragAndDrop": false,
     "editor.fontFamily": "Source Code Pro, Consolas, 'Courier New', monospace",
