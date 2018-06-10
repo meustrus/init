@@ -19,6 +19,7 @@
     "editor.wordBasedSuggestions": false,
     "extensions.ignoreRecommendations": true,
     "java.errors.incompleteClasspath.severity": "ignore",
+    "java.import.gradle.enabled": false,
     "java.import.maven.enabled": false,
     "vsicons.dontShowNewVersionMessage": true,
     "workbench.startupEditor": "none",
