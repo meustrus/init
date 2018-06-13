@@ -24,5 +24,6 @@
     "java.import.maven.enabled": false,
     "vsicons.dontShowNewVersionMessage": true,
     "workbench.startupEditor": "none",
-    "window.zoomLevel": 1
+    "window.zoomLevel": 1,
+    "explorer.confirmDragAndDrop": false
 }
