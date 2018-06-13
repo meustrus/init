@@ -6,4 +6,4 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     source "$INIT_REPO/mac/user.sh"
 fi
 
-source "$INIT_REPO/extra.sh"
+source "$INIT_REPO/shared/extra.sh"
