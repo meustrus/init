@@ -20,8 +20,8 @@ source "$INIT_REPO/shared/gui/vscode.sh"
 source "$INIT_REPO/shared/gui/sourcetree.sh"
 source "$INIT_REPO/shared/gui/libreoffice.sh"
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if printf '%s' "$OSTYPE" | grep -q darwin 2>/dev/null; then
     source "$INIT_REPO/mac/extra.sh"
-elif [[ "$OSTYPE" == "msys"* ]]; then
+elif printf '%s' "$OSTYPE" | grep -q msys 2>/dev/null; then
     source "$INIT_REPO/win/extra.sh"
 fi

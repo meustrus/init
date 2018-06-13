@@ -20,7 +20,7 @@ git config --global color.diff-highlight.newHighlight "33 bold 19"
 
 git config --global core.excludesfile "$INIT_REPO/shared/home/.gitignore-global"
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if printf '%s' "$OSTYPE" | grep -q darwin 2>/dev/null; then
     brew list diff-so-fancy >/dev/null 2>&1 || brew install diff-so-fancy
     git config --global pager.diff "diff-so-fancy | less --tabs=4 -RFX"
     git config --global pager.show "diff-so-fancy | less --tabs=4 -RFX"

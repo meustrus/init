@@ -8,7 +8,7 @@ if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
     ssh-keygen -o -a 100 -t ed25519 -C "$(git config user.email)"
 fi
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if printf '%s' "$OSTYPE" | grep -q darwin 2>/dev/null; then
     pbcopy < "$HOME/.ssh/id_ed25519.pub"
 
     echo
