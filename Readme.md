@@ -33,6 +33,7 @@ After initialization, your system should have the following tools available, whe
 The following environment variables will affect the installation:
 
 - INIT_REPO=[path to init repository]; Default: `$(dirname "$0")` - Controls where the scripts in this repository are located. May be required if invoked in some unusual situations.
+- INIT_FORUSER=[ALL|CURRENT]; Default: ALL - Controls whether to install things for the entire system or just for the current user. Note that user-specific components are always installed only for the current user.
 
 ## Supported Systems
 
