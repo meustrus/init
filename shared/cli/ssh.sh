@@ -11,16 +11,18 @@ if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} ssh-keygen -o -a 100 -t ed25519 -C "$INIT_GITEMAIL"
 fi
 
-if printf '%s' "$OSTYPE" | grep -q darwin 2>/dev/null; then
-    pbcopy < "$HOME/.ssh/id_ed25519.pub"
+sshcopy() {
+    if printf '%s' "$OSTYPE" | grep -q darwin 2>/dev/null; then
+        pbcopy < "$HOME/.ssh/$1.pub"
+        printf "\n\nCopied public key to clipboard.\nAdd public key to %s now.\n" "$2"
+        shift ; shift ; $*
+        read -p "Press any key to continue..." -n 1 -s
+        printf "\n\n"
+    else
+        printf "Skipping SSHCOPY to %s because this script has no implementation for OS '%s'." "$2" "$OSTYPE"
+    fi
+}
 
-    echo
-    echo "Copied public key to clipboard."
-    echo "Add public key to Github now."
-
-    open https://github.com/settings/keys
-
-    read -p "Press any key to continue..." -n 1 -s
-    echo
-    echo
+if printf '%s' "$INIT_SSHCOPY" | grep -q GITHUB 2>/dev/null; then
+    sshcopy id_ed25519 GitHub open https://github.com/settings/keys
 fi

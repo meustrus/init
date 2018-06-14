@@ -36,6 +36,15 @@ The following environment variables will affect the installation:
 - INIT_FORUSER=[ALL|CURRENT|ROOT]; Default: ALL - Controls whether to install things for the entire system or just for the current user. Note that user-specific components are always installed only for the current user. Note: To install only for the root user, you *must* specify `INIT_FORUSER=ROOT` and run as root.
 - INIT_GITNAME="name"; Default: `$(git config user.name)` if exists, otherwise `$(id -un)` - Controls the configured username for Git.
 - INIT_GITEMAIL="address@domain"; Default: `$(git config user.email)` if exists, otherwise `$(read -p)` - Controls the configured email address for Git and SSH keys.
+- INIT_SSHCOPY=[GITHUB]; Default: GITHUB - Wait for you to copy your public key to certain accounts; set to empty to not even bother.
+
+## Unattended Installation
+
+In order to run unattended, ensure the following:
+
+- Run the script as sudo/administrator - this may not be necessary, but it is supported and will spare you entering your password for a few steps
+- Set the INIT_USEREMAIL environment variable
+- Unset or empty the INIT_SSHCOPY environment variable
 
 ## Supported Systems
 
