@@ -2,6 +2,7 @@
 
 INIT_REPO=${INIT_REPO:-$(cd "$(dirname "$0")" && pwd)}
 INIT_FORUSER=${INIT_FORUSER:-ALL}
+INIT_GUI=${INIT_GUI:-ON}
 INIT_SSHCOPY=${INIT_SSHCOPY:-GITHUB}
 
 if [ "x$INIT_FORUSER" = "xROOT" ]; then
