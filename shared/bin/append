@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ "$#" -ne 2 ]; then
+    printf "Usage: append \"line to append\" \"file to append to\"\n"
+    exit 2
+fi
+
+if ! [ -f "$2" ] || ! grep -x -F "$1" "$2" > /dev/null 2>&1 ; then
+    ${SUDO_USER:+sudo -u "$SUDO_USER"} touch "$2"
+    ${SUDO_USER:+sudo -u "$SUDO_USER"} sh -c "printf \"\\n\\n%s\\n\" '$1' >> \"$2\""
+fi

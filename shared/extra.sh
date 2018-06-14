@@ -8,7 +8,7 @@ source "$INIT_REPO/shared/cli/my.sh"
 source "$INIT_REPO/shared/cli/ssh.sh"
 source "$INIT_REPO/shared/lang/python.sh"
 
-pip install --quiet --upgrade powerline-status
+${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} pip install --quiet --upgrade powerline-status
 
 source "$INIT_REPO/shared/cli/tmux.sh"
 source "$INIT_REPO/shared/lang/java.sh"

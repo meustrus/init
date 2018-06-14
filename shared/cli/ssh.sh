@@ -1,11 +1,11 @@
 #!/bin/sh
 
 if [ ! -f "$HOME/.ssh/id_rsa" ]; then
-    ssh-keygen -t rsa -b 4096 -C "$(git config user.email)"
+    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} ssh-keygen -t rsa -b 4096 -C "$(git config user.email)"
 fi
 
 if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
-    ssh-keygen -o -a 100 -t ed25519 -C "$(git config user.email)"
+    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} ssh-keygen -o -a 100 -t ed25519 -C "$(git config user.email)"
 fi
 
 if printf '%s' "$OSTYPE" | grep -q darwin 2>/dev/null; then

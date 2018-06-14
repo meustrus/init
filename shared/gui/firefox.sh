@@ -1,7 +1,9 @@
 #!/bin/sh
 
+INIT_REPO=${INIT_REPO:-$(cd "$(dirname "$0")/../.." && pwd)}
+
 if printf '%s' "$OSTYPE" | grep -q darwin 2>/dev/null; then
-    brew cask list firefox >/dev/null 2>&1 || brew cask install --appdir="$MAC_APPS" firefox
+    sh "$INIT_REPO/mac/bin/brew-cask-install.sh" firefox
 elif printf '%s' "$OSTYPE" | grep -q msys 2>/dev/null; then
     choco install firefox -y
 fi

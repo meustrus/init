@@ -1,7 +1,10 @@
 #!/bin/sh
 
-brew list wget >/dev/null 2>&1 || brew install wget
-brew cask list caffeine >/dev/null 2>&1 || brew cask install --appdir="$MAC_APPS" caffeine
-brew cask list flycut >/dev/null 2>&1 || brew cask install --appdir="$MAC_APPS" flycut
+INIT_REPO=${INIT_REPO:-$(cd "$(dirname "$0")/.." && pwd)}
+
+sh "$INIT_REPO/mac/bin/brew-install.sh" gawk
+sh "$INIT_REPO/mac/bin/brew-install.sh" wget
+sh "$INIT_REPO/mac/bin/brew-cask-install.sh" caffeine
+sh "$INIT_REPO/mac/bin/brew-cask-install.sh" flycut
 
 # Terminal > Preferences... > (Profile) > Advanced, "Declare terminal as:" xterm-256color

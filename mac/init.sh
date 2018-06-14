@@ -3,10 +3,8 @@
 INIT_REPO=${INIT_REPO:-$(cd "$(dirname "$0")/.." && pwd)}
 source "$INIT_REPO/shared/vars.sh"
 
-MAC_APPS=${MAC_APPS:-$([ "$INIT_FORUSER" == "ALL" ] && printf '/Applications' || printf '~/Applications')}
-
 if [ "x$INIT_FORUSER" = "xALL" ] && ! [ -x "$(command -v brew)" ]; then
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    ${SUDO_USER:+sudo -u "$SUDO_USER"} /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 if ! [ -x "$(command -v brew)" ]; then
@@ -15,19 +13,15 @@ if ! [ -x "$(command -v brew)" ]; then
         export INIT_FORUSER=CURRENT
     fi
 
-    mkdir ~/homebrew
-    curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C ~/homebrew
+    mkdir "$HOME/homebrew"
+    curl -L https://github.com/Homebrew/brew/tarball/master | ${SUDO_USER:+sudo -u "$SUDO_USER"} tar xz --strip 1 -C "$HOME/homebrew"
 
-    echo >> ~/.bash_profile
-    echo "# Homebrew" >> ~/.bash_profile
-    echo "export PATH=\"~/homebrew/bin:~/homebrew/sbin:\$PATH\"" >> ~/.bash_profile
+    export PATH="$HOME/homebrew/bin:$HOME/homebrew/sbin:$PATH"
 
-    echo >> ~/.zprofile
-    echo "# Homebrew" >> ~/.zprofile
-    echo "export PATH=\"~/homebrew/bin:~/homebrew/sbin:\$PATH\"" >> ~/.zprofile
-    
-    source ~/.bash_profile
+    sh "$INIT_REPO/shared/bin/append" "# Homebrew\nexport PATH=\"$HOME/homebrew/bin:$HOME/homebrew/sbin:\$PATH\"" "$HOME/.profile"
+    sh "$INIT_REPO/shared/bin/append" "# Homebrew\nexport PATH=\"$HOME/homebrew/bin:$HOME/homebrew/sbin:\$PATH\"" "$HOME/.bash_profile"
+    sh "$INIT_REPO/shared/bin/append" "# Homebrew\nexport PATH=\"$HOME/homebrew/bin:$HOME/homebrew/sbin:\$PATH\"" "$HOME/.zprofile"
 fi
 
-brew update
-brew tap caskroom/cask
+${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} brew update
+${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} brew tap caskroom/cask
