@@ -1,6 +1,17 @@
 #!/bin/sh
 
 INIT_REPO=${INIT_REPO:-$(cd "$(dirname "$0")/../.." && pwd)}
+source "$INIT_REPO/shared/vars.sh"
+
+if [ "$INIT_GITNAME" != "$(${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config user.name)" ]; then
+    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global user.name "$INIT_GITNAME"
+    echo "Your \`git config user.name\` is now '$INIT_GITNAME'"
+fi
+
+if [ "$INIT_GITEMAIL" != "$(${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config user.email)" ]; then
+    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global user.email "$INIT_GITEMAIL"
+    echo "Your \`git config user.email\` is now '$INIT_GITEMAIL'"
+fi
 
 ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global pull.rebase true
 ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global core.editor "code --wait --new-window"
