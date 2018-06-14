@@ -56,3 +56,7 @@ In order to run unattended, ensure the following:
 
 - Windows 7, 10
 - OS X 10.11+
+
+## Contributing
+
+To pull local changes to certain copied files back into this project, run `update.sh`.

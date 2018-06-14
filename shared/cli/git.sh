@@ -29,7 +29,8 @@ ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global color.di
 ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global color.diff-highlight.newNormal "33 bold"
 ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global color.diff-highlight.newHighlight "33 bold 19"
 
-${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global core.excludesfile "$INIT_REPO/shared/home/.gitignore-global"
+${SUDO_USER:+sudo -u "$SUDO_USER"} cp -f "$INIT_REPO/shared/config/.gitignore-global" "$BENCH/.gitignore-global"
+${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global core.excludesfile "$BENCH/.gitignore-global"
 
 if printf '%s' "$OSTYPE" | grep -q darwin 2>/dev/null; then
     sh "$INIT_REPO/mac/bin/brew-install.sh" diff-so-fancy
