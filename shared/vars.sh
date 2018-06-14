@@ -28,3 +28,4 @@ if [ -x "$(command -v git)" ]; then
 fi
 
 HOME=$(eval cd "~${SUDO_USER:-$USER}" && pwd)
+BENCH=${BENCH:-$HOME/bench}

@@ -13,14 +13,14 @@ if ! [ -x "$(command -v brew)" ]; then
         export INIT_FORUSER=CURRENT
     fi
 
-    mkdir "$HOME/homebrew"
-    curl -L https://github.com/Homebrew/brew/tarball/master | ${SUDO_USER:+sudo -u "$SUDO_USER"} tar xz --strip 1 -C "$HOME/homebrew"
+    mkdir -p "$BENCH/homebrew"
+    curl -L https://github.com/Homebrew/brew/tarball/master | ${SUDO_USER:+sudo -u "$SUDO_USER"} tar xz --strip 1 -C "$BENCH/homebrew"
 
-    export PATH="$HOME/homebrew/bin:$HOME/homebrew/sbin:$PATH"
+    export PATH="$BENCH/homebrew/bin:$BENCH/homebrew/sbin:$PATH"
 
-    sh "$INIT_REPO/shared/bin/append" "# Homebrew\nexport PATH=\"$HOME/homebrew/bin:$HOME/homebrew/sbin:\$PATH\"" "$HOME/.profile"
-    sh "$INIT_REPO/shared/bin/append" "# Homebrew\nexport PATH=\"$HOME/homebrew/bin:$HOME/homebrew/sbin:\$PATH\"" "$HOME/.bash_profile"
-    sh "$INIT_REPO/shared/bin/append" "# Homebrew\nexport PATH=\"$HOME/homebrew/bin:$HOME/homebrew/sbin:\$PATH\"" "$HOME/.zprofile"
+    sh "$INIT_REPO/shared/bin/append" "# Homebrew\nexport PATH=\"$BENCH/homebrew/bin:$BENCH/homebrew/sbin:\$PATH\"" "$HOME/.profile"
+    sh "$INIT_REPO/shared/bin/append" "# Homebrew\nexport PATH=\"$BENCH/homebrew/bin:$BENCH/homebrew/sbin:\$PATH\"" "$HOME/.bash_profile"
+    sh "$INIT_REPO/shared/bin/append" "# Homebrew\nexport PATH=\"$BENCH/homebrew/bin:$BENCH/homebrew/sbin:\$PATH\"" "$HOME/.zprofile"
 fi
 
 ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} brew update

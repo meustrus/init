@@ -2,6 +2,7 @@
 
 INIT_REPO=${INIT_REPO:-$(cd "$(dirname "$0")/.." && pwd)}
 
+source "$INIT_REPO/shared/bench.sh"
 source "$INIT_REPO/shared/cli/shell.sh"
 source "$INIT_REPO/shared/cli/git.sh"
 source "$INIT_REPO/shared/cli/ssh.sh"

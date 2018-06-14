@@ -38,6 +38,11 @@ The following environment variables will affect the installation:
 - INIT_GITEMAIL="address@domain"; Default: `$(git config user.email)` if exists, otherwise `$(read -p)` - Controls the configured email address for Git and SSH keys.
 - INIT_SSHCOPY=[GITHUB]; Default: GITHUB - Wait for you to copy your public key to certain accounts; set to empty to not even bother.
 
+The following environment variables will be used for the installation and their current value will be saved for future shells:
+
+- BENCH="path"; Default: `$HOME/bench` - This script creates and adds things into this directory to avoid cluttering `$HOME`.
+- HOME="path"; Default: `~$USER` - The installing user's "home" directory; persisted for consistency in environments (like Windows) that don't already track this.
+
 ## Unattended Installation
 
 In order to run unattended, ensure the following:
