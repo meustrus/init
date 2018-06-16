@@ -7,7 +7,7 @@ copyIfExists() {
     [ -f "$1" ] && ${SUDO_USER:+sudo -u "$SUDO_USER"} cp -f "$1" "$2"
 }
 
-copyIfExists "$BENCH/.initrc" "$INIT_REPO/shared/config/.initrc"
+copyIfExists "$BENCH/shellrc.d/initrc.sh" "$INIT_REPO/shared/config/initrc.sh"
 copyIfExists "$BENCH/.gitignore-global" "$INIT_REPO/shared/config/.gitignore-global"
 
 updateVSCode() {
