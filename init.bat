@@ -9,3 +9,5 @@ IF NOT DEFINED INIT_REPO (
 call %INIT_REPO%\win\choco.bat
 call %INIT_REPO%\win\git.bat
 sh %INIT_REPO%\init.sh
+
+ECHO INIT finished. Restart your computer to finish the installation.

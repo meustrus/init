@@ -7,11 +7,9 @@ source "$INIT_REPO/shared/bench.sh"
 source "$INIT_REPO/shared/cli/shell.sh"
 source "$INIT_REPO/shared/cli/git.sh"
 source "$INIT_REPO/shared/cli/ssh.sh"
-source "$INIT_REPO/shared/lang/python.sh"
-
-${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} pip install --quiet --upgrade powerline-status
-
 source "$INIT_REPO/shared/cli/tmux.sh"
+
+source "$INIT_REPO/shared/lang/python.sh"
 source "$INIT_REPO/shared/lang/java.sh"
 source "$INIT_REPO/shared/lang/nodejs.sh"
 
