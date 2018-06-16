@@ -14,7 +14,6 @@ if [ "$INIT_GITEMAIL" != "$(${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} 
 fi
 
 ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global pull.rebase true
-${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global core.editor "code --wait --new-window"
 ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global mergetool.keepBackup false
 ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global push.default simple
 ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global color.ui true
