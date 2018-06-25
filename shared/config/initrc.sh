@@ -26,7 +26,7 @@ if test -n "$COLORS" && test "$COLORS" -ge 8; then
 fi
 
 ## Prompt
-PS1='\n${CEnv}\s ${debian_chroot:+($debian_chroot) }${CGood}\u${CSide}@${CInfo}\h${CReset} : ${CHelp}\w${CReset} $(withtimeout 0.5 gss || printf "${CErr}[???]")${CReset}\n\$ '
+PS1='\n${CEnv}\s ${debian_chroot:+($debian_chroot) }${CGood}\u${CSide}@${CInfo}\h${CReset} : ${CHelp}\w${CReset} `withtimeout 0.5 gss || printf "${CErr}[???]"`${CReset}\n\$ '
 
 
 ## Navigation
