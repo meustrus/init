@@ -58,6 +58,7 @@ withtimeout() {
 }
 
 alias npm-unlink="npm rm --global"
+alias find-symlinks="find -L . -xtype l -ls"
 
 
 ## Git
