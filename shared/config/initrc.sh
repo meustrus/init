@@ -143,7 +143,7 @@ EOF
 
     local info=$branch
     [ "$ahead" -ne "0" ] && info="$info+$ahead"
-    [ ! -z "$remote" ] && info="$info ${gone:+$CErr!}=> $remote$color"
+    [ ! -z "$remote" ] && info="$info ${gone:+$CErr!}-> $remote$color"
     [ "$behind" -ne "0" ] && info="$info+${behind# }"
 
     local extra=
@@ -153,5 +153,5 @@ EOF
     [ "$deleted" -ne "0" ] && extra="$extra $CWarn-$deleted$color"
     [ "$conflicts" -ne "0" ] && extra="$extra ${CErr}X$conflicts$color"
 
-    printf "${color}[$info${extra:+ |$extra }]$CReset\n"
+    printf "${color}[ $info${extra:+ |$extra} ]$CReset\n"
 }
