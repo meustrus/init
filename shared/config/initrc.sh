@@ -48,12 +48,20 @@ withtimeout() {
         WAIT="$1"
         shift
 
-        eval "$@" &
+        ( $@ ) &
         CMD_PID=$!
 
-        ( sleep $WAIT ; kill $CMD_PID >/dev/null 2>&1 ) &
+        (
+            sleep $WAIT >/dev/null 2>&1 &
+            wait $!
+            kill $CMD_PID >/dev/null 2>&1
+        ) &
+        SLEEP_PID=$!
 
         wait $CMD_PID 2>/dev/null
+        RESULT=$?
+        kill $SLEEP_PID >/dev/null 2>&1
+        return $RESULT
     )
 }
 
