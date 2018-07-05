@@ -73,8 +73,8 @@ alias find-symlinks="find -L . -xtype l -ls"
 
 GIT_LOG_FORMAT="%C(bold cyan)%h%C(reset) %C(white)%s%C(cyan) - %an%n         %C(bold yellow)%d%C(reset) %C(green)%aD %C(bold)(%ar)%C(reset)"
 
-gam() { git commit --amend --no-edit ; git status ; }
-gas() { git add --no-ignore-removal ; git status ; }
+gam() { git commit --amend --no-edit $* ; git status ; }
+gas() { git add --no-ignore-removal $* ; git status ; }
 gd () { git diff --break-rewrites --color $* ; }
 gds() { git diff --break-rewrites --color --staged $* ; }
 gdx() { git diff --break-rewrites --color --name-only --diff-filter=U $* ; }
@@ -86,9 +86,9 @@ glo() { git fsck --connectivity-only | grep '^dangling commit' | cut -d ' ' -f 3
 gr () { git rebase $* ; git status ; }
 gra() { git rebase --abort ; git status ; }
 grc() { git rebase --continue ; git status ; }
-gri() { git rebase --interactive ; git status ; }
+gri() { git rebase --interactive $* ; git status ; }
 grt() { git rev-parse --show-toplevel ; }
-gst() { git status ; }
+gst() { git status $* ; }
 gun() { git reset --soft HEAD~ ; }
 
 gss() {
