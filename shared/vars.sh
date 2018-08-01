@@ -21,11 +21,11 @@ elif [ $(id -u) = 0 ] && ( [ -z "$SUDO_USER" ] || ! id "$SUDO_USER" >/dev/null 2
 fi
 
 if [ -x "$(command -v git)" ]; then
-    INIT_GITNAME=${INIT_GITNAME:-$(git config user.name)}
+    INIT_GITNAME=${INIT_GITNAME:-$(git config --global user.name)}
     INIT_GITNAME=${INIT_GITNAME:-$(id -un)}
 
-    INIT_GITEMAIL=${INIT_GITEMAIL:-$(git config user.email)}
-    [ -n "${INIT_GITEMAIL}" ] || read -p "Enter your new \`git config user.email\`: " INIT_GITEMAIL
+    INIT_GITEMAIL=${INIT_GITEMAIL:-$(git config --global user.email)}
+    [ -n "${INIT_GITEMAIL}" ] || read -p "Enter your new \`git config --global user.email\`: " INIT_GITEMAIL
 fi
 
 HOME=$(eval cd "~${SUDO_USER:-$USER}" && pwd)
