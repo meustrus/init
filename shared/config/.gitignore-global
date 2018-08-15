@@ -56,3 +56,9 @@ tags
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+pc.stdout.log
+
+# Ensime
+.ensime
+.ensime_cache/
+ensime-langserver.log
