@@ -92,6 +92,19 @@ gst() { git status $* ; }
 gun() { git reset --soft HEAD~ ; }
 
 gss() {
+    if [ "$#" -gt 0 ]; then
+        for dir in "$@"; do
+            if [ -d "$dir" ]; then
+                pushd "$dir" >/dev/null
+                printf "%s %s\n" "$dir" "$(gss)"
+                popd >/dev/null
+            else
+                printf "'%s' is not a directory\n" "$dir"
+            fi
+        done
+        return 0
+    fi
+
     local gitstatus
     gitstatus=$(git status --porcelain --branch 2>/dev/null)
     [ "$?" -ne 0 ] && return 0
