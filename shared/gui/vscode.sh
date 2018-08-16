@@ -10,7 +10,7 @@ finalizeVSCode() {
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global diff.tool code
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global merge.tool code
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global difftool.code.cmd "code --wait --new-window --diff \$LOCAL \$REMOTE"
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global mergetool.code.cmd "code --wait --new-window -- \$MERGED"
+    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global mergetool.code.cmd "code --wait --new-window \$MERGED"
 }
 
 if printf '%s' "$OSTYPE" | grep -q darwin 2>/dev/null; then
