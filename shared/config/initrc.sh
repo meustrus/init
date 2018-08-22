@@ -29,12 +29,17 @@ fi
 PS1='\n${CEnv}\s ${debian_chroot:+($debian_chroot) }${CGood}\u${CSide}@${CInfo}\h${CReset} : ${CHelp}\w${CReset} `withtimeout 0.5 gss || printf "${CErr}[???]"`${CReset}\n\$ '
 
 
+## Setup
+echoAlias() { alias $1="echoAndRun '$2'" ; }
+echoAndRun() { local cmd=$1 ; shift ; printf '%s\n' "$cmd" ; eval $cmd ; }
+
+
 ## Navigation
-alias ls="ls -F -A"
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
+alias ls="printf 'ls -F -A \$*\n' ; ls -F -A"
+echoAlias .. "cd .."
+echoAlias ... "cd ../.."
+echoAlias .... "cd ../../.."
+echoAlias ..... "cd ../../../.."
 
 
 ## Utility
@@ -65,31 +70,31 @@ withtimeout() {
     )
 }
 
-alias npm-unlink="npm rm --global"
-alias find-symlinks="find -L . -xtype l -ls"
+echoAlias npm-unlink "npm rm --global"
+echoAlias find-symlinks "find -L . -xtype l -ls"
 
 
 ## Git
 
 GIT_LOG_FORMAT="%C(bold cyan)%h%C(reset) %C(white)%s%C(cyan) - %an%n         %C(bold yellow)%d%C(reset) %C(green)%aD %C(bold)(%ar)%C(reset)"
 
-gam() { git commit --amend --no-edit $* ; git status ; }
-gas() { git add --no-ignore-removal $* ; git status ; }
-gd () { git diff --break-rewrites --color $* ; }
-gds() { git diff --break-rewrites --color --staged $* ; }
-gdx() { git diff --break-rewrites --color --name-only --diff-filter=U $* ; }
-gf () { git fetch --all --prune --tags $* ; git status ; }
-gff() { git merge --ff-only $* ; git status ; }
-gl () { git log --all --graph --decorate --date=relative --format=format:"$GIT_LOG_FORMAT" $* ; }
-gla() { git log --all --graph --decorate --date=relative --format=format:"$GIT_LOG_FORMAT" --author-date-order $* ; }
-glo() { git fsck --connectivity-only | grep '^dangling commit' | cut -d ' ' -f 3 | xargs -n1 git log -1 --date=relative --format=format:"$GIT_LOG_FORMAT" ; }
-gr () { git rebase $* ; git status ; }
-gra() { git rebase --abort ; git status ; }
-grc() { git rebase --continue ; git status ; }
-gri() { git rebase --interactive $* ; git status ; }
-grt() { git rev-parse --show-toplevel ; }
-gst() { git status $* ; }
-gun() { git reset --soft HEAD~ ; }
+echoAlias gam 'git commit --amend --no-edit $* ; git status'
+echoAlias gas 'git add --no-ignore-removal $* ; git status'
+echoAlias gd  'git diff --break-rewrites --color $*'
+echoAlias gds 'git diff --break-rewrites --color --staged $*'
+echoAlias gdx 'git diff --break-rewrites --color --name-only --diff-filter=U $*'
+echoAlias gf  'git fetch --all --prune --tags $* ; git status'
+echoAlias gff 'git merge --ff-only $* ; git status'
+echoAlias gl  'git log --all --graph --decorate --date=relative --format=format:"$GIT_LOG_FORMAT" $*'
+echoAlias gla 'git log --all --graph --decorate --date=relative --format=format:"$GIT_LOG_FORMAT" --author-date-order $*'
+echoAlias glo 'git fsck --connectivity-only | grep "^dangling commit" | cut -d " " -f 3 | xargs -n1 git log -1 --date=relative --format=format:"$GIT_LOG_FORMAT"'
+echoAlias gr  'git rebase $* ; git status'
+echoAlias gra 'git rebase --abort ; git status'
+echoAlias grc 'git rebase --continue ; git status'
+echoAlias gri 'git rebase --interactive $* ; git status'
+echoAlias grt 'git rev-parse --show-toplevel'
+echoAlias gst 'git status $*'
+echoAlias gun 'git reset --soft HEAD~'
 
 gss() {
     if [ "$#" -gt 0 ]; then
