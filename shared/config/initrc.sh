@@ -72,6 +72,7 @@ withtimeout() {
 
 echoAlias npm-unlink "npm rm --global"
 echoAlias find-symlinks "find -L . -xtype l -ls"
+echoAlias reload "source ~/.bashrc"
 
 
 ## Git
