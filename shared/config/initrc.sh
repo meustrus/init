@@ -81,6 +81,8 @@ GIT_LOG_FORMAT="%C(bold cyan)%h%C(reset) %C(white)%s%C(cyan) - %an%n         %C(
 
 echoAlias gam 'git commit --amend --no-edit $* ; git status'
 echoAlias gas 'git add --no-ignore-removal $* ; git status'
+echoAlias gbg 'git branch -v | awk "/^[ \t]*[^ \t*]+[ \t]+[^ \t]+[ \t]+\[gone\]/ {print \$1}"'
+echoAlias gbp 'git branch -v | awk "/^[ \t]*[^ \t*]+[ \t]+[^ \t]+[ \t]+\[gone\]/ {print \$1}" | xargs git branch -d'
 echoAlias gd  'git diff --break-rewrites --color $*'
 echoAlias gds 'git diff --break-rewrites --color --staged $*'
 echoAlias gdx 'git diff --break-rewrites --color --name-only --diff-filter=U $*'
