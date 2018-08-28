@@ -77,8 +77,6 @@ echoAlias reload "source ~/.bashrc"
 
 ## Git
 
-GIT_LOG_FORMAT="%C(bold cyan)%h%C(reset) %C(white)%s%C(cyan) - %an%n         %C(bold yellow)%d%C(reset) %C(green)%aD %C(bold)(%ar)%C(reset)"
-
 echoAlias gam 'git commit --amend --no-edit $* ; git status'
 echoAlias gas 'git add --no-ignore-removal $* ; git status'
 echoAlias gbg 'git branch -v | awk "/^[ \t]*[^ \t*]+[ \t]+[^ \t]+[ \t]+\[gone\]/ {print \$1}"'
@@ -88,9 +86,9 @@ echoAlias gds 'git diff --break-rewrites --color --staged $*'
 echoAlias gdx 'git diff --break-rewrites --color --name-only --diff-filter=U $*'
 echoAlias gf  'git fetch --all --prune --tags $* ; git status'
 echoAlias gff 'git merge --ff-only $* ; git status'
-echoAlias gl  'git log --all --graph --decorate --date=relative --format=format:"$GIT_LOG_FORMAT" $*'
-echoAlias gla 'git log --all --graph --decorate --date=relative --format=format:"$GIT_LOG_FORMAT" --author-date-order $*'
-echoAlias glo 'git fsck --connectivity-only | grep "^dangling commit" | cut -d " " -f 3 | xargs -n1 git log -1 --date=relative --format=format:"$GIT_LOG_FORMAT"'
+echoAlias gl  'git log --all --graph --decorate --date=relative $*'
+echoAlias gla 'git log --all --graph --decorate --date=relative --author-date-order $*'
+echoAlias glo 'git fsck --connectivity-only | grep "^dangling commit" | cut -d " " -f 3 | xargs -n1 git log -1 --date=relative'
 echoAlias gr  'git rebase $* ; git status'
 echoAlias gra 'git rebase --abort ; git status'
 echoAlias grc 'git rebase --continue ; git status'
