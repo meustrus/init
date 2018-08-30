@@ -3,7 +3,7 @@
 source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
 export NVM_DIR=${NVM_DIR:-$BENCH/lib/.nvm}
-${SUDO_USER:+sudo -u "$SUDO_USER"} mkdir -p "$NVM_DIR"
+${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} mkdir -p "$NVM_DIR"
 
 if printf '%s' "$OSTYPE" | grep -q darwin 2>/dev/null; then
     sh "$INIT_REPO/mac/bin/brew-install.sh" nvm

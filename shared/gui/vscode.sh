@@ -3,8 +3,8 @@
 source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
 finalizeVSCode() {
-    ${SUDO_USER:+sudo -u "$SUDO_USER"} cp -f "$INIT_REPO/shared/config/vscode-settings.json" "$1/settings.json"
-    ${SUDO_USER:+sudo -u "$SUDO_USER"} cp -f "$INIT_REPO/shared/config/vscode-keybindings.json" "$1/keybindings.json"
+    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} cp -f "$INIT_REPO/shared/config/vscode-settings.json" "$1/settings.json"
+    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} cp -f "$INIT_REPO/shared/config/vscode-keybindings.json" "$1/keybindings.json"
 
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global core.editor "code --wait --new-window"
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global diff.tool code

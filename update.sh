@@ -3,7 +3,7 @@
 source "${INIT_REPO:-$(dirname "$0")}/vars.sh"
 
 copyIfExists() {
-    [ -f "$1" ] && ${SUDO_USER:+sudo -u "$SUDO_USER"} cp -f "$1" "$2"
+    [ -f "$1" ] && ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} cp -f "$1" "$2"
 }
 
 copyIfExists "$BENCH/shellrc.d/initrc.sh" "$INIT_REPO/shared/config/initrc.sh"
