@@ -11,3 +11,8 @@ append "$loadrc" "$HOME/.bash_profile"
 append "$loadrc" "$HOME/.bashrc"
 append "$loadrc" "$HOME/.zprofile"
 append "$loadrc" "$HOME/.zshrc"
+
+if printf '%s' "$OSTYPE" | grep -q darwin 2>/dev/null; then
+    brew-install gawk
+    brew-install wget
+fi
