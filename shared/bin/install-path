@@ -18,9 +18,9 @@ if printf '%s' "$OSTYPE" | grep -q msys 2>/dev/null; then
     [ "$INIT_FORUSER" = ALL ] && RegKey="HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment"
 
     RegPath=$(reg query "$RegKey" //v Path 2>/dev/null | tail -2 | head -1 | tr -s ' ' | cut -d " " -f 4-)
-    reg add "$RegKey" //v Path //t REG_EXPAND_SZ //d "$RegPath;$("$INIT_REPO/shared/bin/winpath" "$NewPaths")/"
+    reg add "$RegKey" //v Path //t REG_EXPAND_SZ //d "$RegPath;$(winpath "$NewPaths")/"
 else
-    sh "$INIT_REPO/shared/bin/append" "export PATH=\"$NewPaths:\$PATH\"" "$HOME/.profile"
-    sh "$INIT_REPO/shared/bin/append" "export PATH=\"$NewPaths:\$PATH\"" "$HOME/.bash_profile"
-    sh "$INIT_REPO/shared/bin/append" "export PATH=\"$NewPaths:\$PATH\"" "$HOME/.zprofile"
+    append "export PATH=\"$NewPaths:\$PATH\"" "$HOME/.profile"
+    append "export PATH=\"$NewPaths:\$PATH\"" "$HOME/.bash_profile"
+    append "export PATH=\"$NewPaths:\$PATH\"" "$HOME/.zprofile"
 fi

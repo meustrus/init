@@ -32,7 +32,7 @@ ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} cp -f "$INIT_REPO/shared/con
 ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global core.excludesfile "$BENCH/.gitignore-global"
 
 if printf '%s' "$OSTYPE" | grep -q darwin 2>/dev/null; then
-    sh "$INIT_REPO/mac/bin/brew-install.sh" diff-so-fancy
+    brew-install diff-so-fancy
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global pager.diff "diff-so-fancy | less --tabs=4 -RFX"
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global pager.show "diff-so-fancy | less --tabs=4 -RFX"
 fi

@@ -41,3 +41,16 @@ fi
 
 HOME=$(eval cd "~${SUDO_USER:-$USER}" && pwd) export HOME
 BENCH=${BENCH:-$HOME/bench} export BENCH
+
+case "$PATH" in
+    *"$INIT_REPO/shared/bin/"*) ;;
+    *)
+        if printf '%s' "$OSTYPE" | grep -q darwin 2>/dev/null; then
+            PATH="$INIT_REPO/mac/bin/:$INIT_REPO/shared/bin/:$PATH" export PATH
+        elif printf '%s' "$OSTYPE" | grep -q msys 2>/dev/null; then
+            PATH="$INIT_REPO/win/bin/:$INIT_REPO/shared/bin/:$PATH" export PATH
+        else
+            PATH="$INIT_REPO/shared/bin/:$PATH" export PATH
+        fi
+        ;;
+esac

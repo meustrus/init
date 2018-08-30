@@ -29,7 +29,7 @@ finalizeVSCode() {
 }
 
 if printf '%s' "$OSTYPE" | grep -q darwin 2>/dev/null; then
-    sh "$INIT_REPO/mac/bin/brew-cask-install.sh" visual-studio-code
+    brew-cask-install visual-studio-code
     finalizeVSCode "$HOME/Library/Application Support/Code/User"
 elif printf '%s' "$OSTYPE" | grep -q msys 2>/dev/null; then
     choco install vscode -y

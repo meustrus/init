@@ -15,7 +15,7 @@ if ! [ -x "$(command -v brew)" ]; then
     mkdir -p "$BENCH/homebrew"
     curl -L https://github.com/Homebrew/brew/tarball/master | ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} tar xz --strip 1 -C "$BENCH/homebrew"
 
-    sh "$INIT_REPO/shared/bin/install-path" "$BENCH/homebrew/bin" "$BENCH/homebrew/sbin"
+    install-path "$BENCH/homebrew/bin" "$BENCH/homebrew/sbin"
 fi
 
 ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} brew update

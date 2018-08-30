@@ -3,7 +3,7 @@
 source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
 if printf '%s' "$OSTYPE" | grep -q darwin 2>/dev/null; then
-    sh "$INIT_REPO/mac/bin/brew-install.sh" python@2
+    brew-install python@2
 elif printf '%s' "$OSTYPE" | grep -q msys 2>/dev/null; then
     choco install python2 -y
 fi

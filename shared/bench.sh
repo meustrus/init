@@ -8,4 +8,4 @@ ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} mkdir -p "$BENCH/lib"
 ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} mkdir -p "$BENCH/repo"
 ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} mkdir -p "$BENCH/usr"
 
-"$INIT_REPO/shared/bin/install-path" "$BENCH/bin"
+install-path "$BENCH/bin"

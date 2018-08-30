@@ -3,7 +3,7 @@
 source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
 if printf '%s' "$OSTYPE" | grep -q darwin 2>/dev/null; then
-    sh "$INIT_REPO/mac/bin/brew-cask-install.sh" google-chrome
+    brew-cask-install google-chrome
 elif printf '%s' "$OSTYPE" | grep -q msys 2>/dev/null; then
     choco install GoogleChrome -y
 fi
