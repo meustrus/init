@@ -5,12 +5,12 @@ source "$INIT_REPO/shared/vars.sh"
 
 if [ "$INIT_GITNAME" != "$(${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global user.name)" ]; then
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global user.name "$INIT_GITNAME"
-    echo "Your \`git config user.name\` is now '$INIT_GITNAME'"
+    printf 'Your `git config --global user.name` is now "%s"\n' "$INIT_GITNAME"
 fi
 
 if [ "$INIT_GITEMAIL" != "$(${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global user.email)" ]; then
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global user.email "$INIT_GITEMAIL"
-    echo "Your \`git config user.email\` is now '$INIT_GITEMAIL'"
+    printf 'Your `git config --global user.email` is now "%s"\n' "$INIT_GITEMAIL"
 fi
 
 ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global format.pretty "%C(green)%h %C(white)%s%n%C(bold yellow)%d%C(reset) %C(magenta)%aD %C(bold cyan)(%ar)%C(bold green) - %an%C(reset)"

@@ -12,4 +12,4 @@ if [ ! ${RESULT:2:1} = '/' ]; then
     exit 1
 fi
 
-echo "${RESULT:1:1}:\\$(printf '%s' "${RESULT:3}" | tr '/' '\\')"
+printf '%s:\%s\n' "${RESULT:1:1}" "$(printf '%s' "${RESULT:3}" | sed 's@/@\\@g')"
