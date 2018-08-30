@@ -18,12 +18,12 @@
     "editor.suggestOnTriggerCharacters": false,
     "editor.tabCompletion": true,
     "editor.wordBasedSuggestions": false,
+    "explorer.confirmDragAndDrop": false,
     "extensions.ignoreRecommendations": true,
     "java.errors.incompleteClasspath.severity": "ignore",
     "java.import.gradle.enabled": false,
     "java.import.maven.enabled": false,
     "vsicons.dontShowNewVersionMessage": true,
     "workbench.startupEditor": "none",
-    "window.zoomLevel": 1,
-    "explorer.confirmDragAndDrop": false
+    "window.zoomLevel": 1
 }
