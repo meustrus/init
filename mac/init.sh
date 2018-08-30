@@ -1,7 +1,6 @@
 #!/bin/sh
 
-INIT_REPO=${INIT_REPO:-$(cd "$(dirname "$0")/.." && pwd)}
-source "$INIT_REPO/shared/vars.sh"
+source "${INIT_REPO:-$(dirname "$0")/..}/vars.sh"
 
 if [ "x$INIT_FORUSER" = "xALL" ] && ! [ -x "$(command -v brew)" ]; then
     ${SUDO_USER:+sudo -u "$SUDO_USER"} /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"

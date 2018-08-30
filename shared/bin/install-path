@@ -1,7 +1,6 @@
 #!/bin/sh
 
-INIT_REPO=${INIT_REPO:-$(cd "$(dirname "$0")/../.." && pwd)}
-source "$INIT_REPO/shared/vars.sh"
+source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
 PathDelim=$(( printf '%s' "$OSTYPE" | grep -q msys 2>/dev/null ) && printf ':' || printf ';')
 NewPaths=

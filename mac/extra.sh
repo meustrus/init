@@ -1,6 +1,6 @@
 #!/bin/sh
 
-INIT_REPO=${INIT_REPO:-$(cd "$(dirname "$0")/.." && pwd)}
+source "${INIT_REPO:-$(dirname "$0")/..}/vars.sh"
 
 sh "$INIT_REPO/mac/bin/brew-install.sh" gawk
 sh "$INIT_REPO/mac/bin/brew-install.sh" wget

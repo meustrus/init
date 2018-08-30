@@ -1,7 +1,6 @@
 #!/bin/sh
 
-INIT_REPO=${INIT_REPO:-$(cd "$(dirname "$0")/../.." && pwd)}
-source "$INIT_REPO/shared/vars.sh"
+source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
 export NVM_DIR=${NVM_DIR:-$BENCH/lib/.nvm}
 ${SUDO_USER:+sudo -u "$SUDO_USER"} mkdir -p "$NVM_DIR"

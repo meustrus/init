@@ -1,7 +1,6 @@
 #!/bin/sh
 
-INIT_REPO=${INIT_REPO:-$(cd "$(dirname "$0")/.." && pwd)}
-source "$INIT_REPO/shared/vars.sh"
+source "${INIT_REPO:-$(dirname "$0")/..}/vars.sh"
 
 ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} mkdir -p "$BENCH/bin"
 ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} mkdir -p "$BENCH/ext"

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-INIT_REPO=${INIT_REPO:-$(cd "$(dirname "$0")/.." && pwd)}
+source "${INIT_REPO:-$(dirname "$0")/..}/vars.sh"
 
 if [ "x$INIT_GUI" = "xON" ]; then
     choco install cmder -y

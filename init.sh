@@ -1,6 +1,6 @@
 #!/bin/sh
 
-INIT_REPO=${INIT_REPO:-$(cd "$(dirname "$0")" && pwd)}
+source "${INIT_REPO:-$(dirname "$0")}/vars.sh"
 
 if printf '%s' "$OSTYPE" | grep -q darwin 2>/dev/null; then
     source "$INIT_REPO/mac/init.sh"

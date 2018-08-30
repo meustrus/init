@@ -1,6 +1,6 @@
 #!/bin/sh
 
-INIT_REPO=${INIT_REPO:-$(cd "$(dirname "$0")/../.." && pwd)}
+source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
 finalizeVSCode() {
     ${SUDO_USER:+sudo -u "$SUDO_USER"} cp -f "$INIT_REPO/shared/config/vscode-settings.json" "$1/settings.json"

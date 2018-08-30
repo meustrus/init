@@ -1,7 +1,6 @@
 #!/bin/sh
 
-INIT_REPO=${INIT_REPO:-$(cd "$(dirname "$0")/../.." && pwd)}
-source "$INIT_REPO/shared/vars.sh"
+source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
 PREFIX=${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"}
 ARGS=$([ "$INIT_FORUSER" != "ALL" ] && printf '--appdir="%s"' "$HOME/Applications")
