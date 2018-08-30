@@ -3,25 +3,25 @@
 ## Color Codes
 COLORS=$(tput colors 2>/dev/null)
 if test -n "$COLORS" && test "$COLORS" -ge 8; then
-    export CReset=$'\033[0m'
+    CReset=$'\033[0m' export CReset
 
-    export CGood="$CReset"$'\033[1m\033[36m'            # Bold Cyan
-    export CInfo="$CReset"$'\033[35m'                   # Magenta
-    export CWarn="$CReset"$'\033[1m\033[33m'            # Bold Yellow
-    export CErr="$CReset"$'\033[1m\033[31m'             # Bold Red
-    export CEnv="$CReset"$'\033[37m'                    # White
-    export CSide="$CReset"$'\033[34m'                   # Blue
-    export CHelp="$CReset"$'\033[32m'                   # Green
+    CGood="$CReset"$'\033[1m\033[36m'           export CGood # Bold Cyan
+    CInfo="$CReset"$'\033[35m'                  export CInfo # Magenta
+    CWarn="$CReset"$'\033[1m\033[33m'           export CWarn # Bold Yellow
+    CErr="$CReset"$'\033[1m\033[31m'            export CErr  # Bold Red
+    CEnv="$CReset"$'\033[37m'                   export CEnv  # White
+    CSide="$CReset"$'\033[34m'                  export CSide # Blue
+    CHelp="$CReset"$'\033[32m'                  export CHelp # Green
 
     if test "$COLORS" -ge 16; then
-        export CInfo="$CReset"$'\033[38;5;13m'          # Light Magenta
-        export CSide="$CReset"$'\033[38;5;8m'           # Dark Grey
+        CInfo="$CReset"$'\033[38;5;13m'         export CInfo # Light Magenta
+        CSide="$CReset"$'\033[38;5;8m'          export CSide # Dark Grey
     fi
 
     if test "$COLORS" -ge 256; then
-        export CWarn="$CReset"$'\033[1m\033[38;5;202m'  # Bold Orange
-        export CEnv="$CReset"$'\033[38;5;27m'           # Blue
-        export CSide="$CReset"$'\033[38;5;28m'          # Dark Green
+        CWarn="$CReset"$'\033[1m\033[38;5;202m' export CWarn # Bold Orange
+        CEnv="$CReset"$'\033[38;5;27m'          export CEnv  # Blue
+        CSide="$CReset"$'\033[38;5;28m'         export CSide # Dark Green
     fi
 fi
 
@@ -45,7 +45,7 @@ echoAlias ..... "cd ../../../.."
 ## Utility
 withtimeout() {
     if [ "$#" -lt 2 ]; then
-        printf "Usage: withtimeout #seconds cmd [args...]\n"
+        printf "Usage: withtimeout #seconds cmd [args...]\n" 1>&2
         exit 1
     fi
 
@@ -90,9 +90,9 @@ echoAlias gl  'git log --all --graph --decorate --date=relative $*'
 echoAlias gla 'git log --all --graph --decorate --date=relative --author-date-order $*'
 echoAlias glo 'git fsck --connectivity-only | grep "^dangling commit" | cut -d " " -f 3 | xargs -n1 git log -1 --date=relative'
 echoAlias gr  'git rebase $* ; git status'
-echoAlias gra 'git rebase --abort ; git status'
-echoAlias grc 'git rebase --continue ; git status'
-echoAlias gri 'git rebase --interactive $* ; git status'
+echoAlias gra 'git rebase --abort'
+echoAlias grc 'git rebase --continue'
+echoAlias gri 'git rebase --interactive $*'
 echoAlias grt 'git rev-parse --show-toplevel'
 echoAlias gst 'git status $*'
 echoAlias gun 'git reset --soft HEAD~'
