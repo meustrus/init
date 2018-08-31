@@ -21,6 +21,7 @@ After initialization, your system should have the following tools available, whe
 - Java [INIT_LANG_JAVA]
 - NodeJS via NVM [INIT_LANG_NODEJS]
 - Ruby via RBENV [INIT_LANG_RUBY]
+- Scala [INIT_LANG_SCALA]
 
 ### GUI applications [INIT_GUI]
 
