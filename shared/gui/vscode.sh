@@ -3,6 +3,7 @@
 source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
 if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
+    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} mkdir -p "$APPDATA/Code/User/"
     copy-impl "etc/vscode-settings.json" "$APPDATA/Code/User/settings.json"
     copy-impl "etc/vscode-keybindings.json" "$APPDATA/Code/User/keybindings.json"
 
