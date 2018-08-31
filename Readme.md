@@ -37,7 +37,7 @@ The following environment variables will affect the installation:
 - INIT_GITNAME="name"; Default: `$(git config --global user.name)` if exists, otherwise `$(id -un)` - Controls the configured username for Git.
 - INIT_GITEMAIL="address@domain"; Default: `$(git config --global user.email)` if exists, otherwise `$(read -p)` - Controls the configured email address for Git and SSH keys.
 - INIT_GUI=[ON|OFF]; Default: ON - Controls whether to install things that are only useful in a GUI environment.
-- INIT_SSHCOPY=[GITHUB]; Default: GITHUB - Wait for you to copy your public key to certain accounts; set to empty to not even bother.
+- INIT_SSHCOPY=[GITHUB|OFF]; Default: GITHUB - Wait for you to copy your public key to certain accounts; set to OFF to not even bother.
 
 The following environment variables will be used for the installation and their current value will be saved for future shells:
 
@@ -48,9 +48,9 @@ The following environment variables will be used for the installation and their 
 
 In order to run unattended, ensure the following:
 
-- Run the script as sudo/administrator - this may not be necessary, but it is supported and will spare you entering your password for a few steps
+- Run the script as sudo/administrator - this may not be necessary, but it is supported and should spare you entering your password
 - Set the INIT_USEREMAIL environment variable
-- Unset or empty the INIT_SSHCOPY environment variable
+- Set the INIT_SSHCOPY environment variable to OFF
 
 ## Supported Systems
 
