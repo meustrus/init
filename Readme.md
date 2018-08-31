@@ -20,6 +20,7 @@ After initialization, your system should have the following tools available, whe
 - Python 2 [INIT_LANG_PYTHON]
 - Java [INIT_LANG_JAVA]
 - NodeJS via NVM [INIT_LANG_NODEJS]
+- Ruby via RBENV [INIT_LANG_RUBY]
 
 ### GUI applications [INIT_GUI]
 
@@ -52,6 +53,7 @@ The following environment variables will be used for the installation and their 
 - BENCH="path"; Default: `$HOME/bench` - This script creates and adds things into this directory to avoid cluttering `$HOME`.
 - HOME="path"; Default: `~$USER` - The installing user's "home" directory; persisted for consistency in environments (like Windows) that don't already track this.
 - NVM_DIR="path"; Default: `$BENCH/lib/nvm` - The NVM (NodeJS version manager) location.
+- RBENV_DIR="path"; Default: `$BENCH/lib/rbenv` - The RBENV (Ruby version switcher) location.
 
 See the `alias` directory for example installation profiles.
 

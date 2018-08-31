@@ -12,6 +12,7 @@ source source-impl "cli/tmux.sh"
 source source-impl "lang/python.sh"
 source source-impl "lang/java.sh"
 source source-impl "lang/nodejs.sh"
+source source-impl "lang/ruby.sh"
 
 source source-impl "gui/multiclipboard.sh"
 source source-impl "gui/chrome.sh"
