@@ -2,24 +2,37 @@
 
 source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
-PathDelim=$(( printf '%s' "$OSTYPE" | grep -q msys 2>/dev/null ) && printf ':' || printf ';')
 NewPaths=
 
-while IFS=': ' read -r NewPath || [ -n "$NewPath" ]; do
-    NewPath=$(cd "$(dirname "$NewPath")" && pwd)/$(basename "$NewPath")
-    export PATH="$NewPath:$PATH"
-    NewPaths=${NewPaths:+$NewPaths$PathDelim}$NewPath
-done << EOF
-$*
-EOF
-
 if printf '%s' "$OSTYPE" | grep -q msys 2>/dev/null; then
+    for NewPath in "$@"; do
+        if [ -n "$NewPath" ]; then
+            mkdir -p "$NewPath"
+            NewPath=$(cd "$(dirname "$NewPath")" && pwd)/$(basename "$NewPath")
+            PATH="$NewPath:$PATH" export PATH
+            NewPaths=${NewPaths:+$NewPaths;}`winpath "$NewPath"`
+        else
+            printf 'ERROR: Tried to install-path with an empty argument\n'
+        fi
+    done
+
     RegKey='HKEY_CURRENT_USER\\Environment'
     [ "$INIT_FORUSER" = ALL ] && RegKey="HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment"
 
     RegPath=$(reg query "$RegKey" //v Path 2>/dev/null | tail -2 | head -1 | tr -s ' ' | cut -d " " -f 4-)
-    reg add "$RegKey" //v Path //t REG_EXPAND_SZ //d "$RegPath;$(winpath "$NewPaths")/"
+    reg add "$RegKey" //v Path //t REG_EXPAND_SZ //d "$NewPaths;$RegPath" //f >/dev/null
 else
+    for NewPath in "$@"; do
+        if [ -n "$NewPath" ]; then
+            mkdir -p "$NewPath"
+            NewPath=$(cd "$(dirname "$NewPath")" && pwd)/$(basename "$NewPath")
+            PATH="$NewPath:$PATH" export PATH
+            NewPaths=${NewPaths:+$NewPaths:}$NewPath
+        else
+            printf 'ERROR: Tried to install-path with an empty argument\n'
+        fi
+    done
+
     append "export PATH=\"$NewPaths:\$PATH\"" "$HOME/.profile"
     append "export PATH=\"$NewPaths:\$PATH\"" "$HOME/.bash_profile"
     append "export PATH=\"$NewPaths:\$PATH\"" "$HOME/.zprofile"
