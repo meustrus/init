@@ -1,0 +1,22 @@
+#!/bin/sh
+
+source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
+
+NewPaths=
+
+for NewPath in "$@"; do
+    if [ -n "$NewPath" ]; then
+        mkdir -p "$NewPath"
+        NewPath=$(cd "$(dirname "$NewPath")" && pwd)/$(basename "$NewPath")
+        PATH="$NewPath:$PATH" export PATH
+        NewPaths=${NewPaths:+$NewPaths;}`winpath "$NewPath"`
+    else
+        printf 'ERROR: Tried to install-path with an empty argument\n'
+    fi
+done
+
+RegKey='HKEY_CURRENT_USER\\Environment'
+[ "$INIT_FORUSER" = ALL ] && RegKey="HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment"
+
+RegPath=$(reg query "$RegKey" //v Path 2>/dev/null | tail -2 | head -1 | tr -s ' ' | cut -d " " -f 4-)
+reg add "$RegKey" //v Path //t REG_EXPAND_SZ //d "$NewPaths;$RegPath" //f >/dev/null

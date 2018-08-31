@@ -2,9 +2,9 @@
 
 source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
-finalizeVSCode() {
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} cp -f "$INIT_REPO/shared/etc/vscode-settings.json" "$1/settings.json"
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} cp -f "$INIT_REPO/shared/etc/vscode-keybindings.json" "$1/keybindings.json"
+if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
+    copy-impl "etc/vscode-settings.json" "$APPDATA/Code/User/settings.json"
+    copy-impl "etc/vscode-keybindings.json" "$APPDATA/Code/User/keybindings.json"
 
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global core.editor "code --wait --new-window"
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global diff.tool code
@@ -26,12 +26,8 @@ finalizeVSCode() {
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension  robertohuertasm.vscode-icons
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension          vscjava.vscode-java-pack
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension   DotJoshJohnson.xml
-}
-
-if printf '%s' "$OSTYPE" | grep -q darwin 2>/dev/null; then
-    brew-cask-install visual-studio-code
-    finalizeVSCode "$HOME/Library/Application Support/Code/User"
-elif printf '%s' "$OSTYPE" | grep -q msys 2>/dev/null; then
-    choco install vscode -y
-    finalizeVSCode "$APPDATA/Code/User/"
+elif [ -x "$(command -v code)" ]
+    printf 'ERROR: $APPDATA is not a valid directory, but Visual Studio Code init requires it\n' 1>&2
+else
+    printf 'ERROR: `code` is not on $PATH, but Visual Studio Code init requires it\n' 1>&2
 fi

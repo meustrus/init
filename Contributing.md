@@ -1,5 +1,20 @@
 # Contributing
 
+The main thing to understand about the structure of this project is the `get-impl-path` script.
+
+Basically, when you call into `init.sh`, it uses `get-impl-path` to find the appropriate implementation for your system. `get-impl-path` will check the OS, and if there is a version of the specific init script for that OS, that script will be executed. Otherwise, the `shared` version will be executed.
+
+Several scripts exist on `$PATH` (after the standard file header) to simplify using `get-impl-path`:
+
+    # Execute the "bin/script" script with args "arg1" and "arg2"
+    script "arg1" "arg2"
+    # Source the "cli/script.sh" script
+    source source-impl "cli/script.sh"
+    # Copy the "etc/resource" file to "$BENCH/resource"
+    copy-impl "etc/resource" "$BENCH/resource"
+
+Usually the OS-specific version of a script will execute the `shared` version. **Other than the standard header, this is the only time a script should reference another file directly**; otherwise, use an `impl` script.
+
 ## Standard file header
 
 Every `sh` script should start with a *variation* of following standard header:

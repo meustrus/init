@@ -2,10 +2,8 @@
 
 source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
-if printf '%s' "$OSTYPE" | grep -q darwin 2>/dev/null; then
-    brew-install python@2
-elif printf '%s' "$OSTYPE" | grep -q msys 2>/dev/null; then
-    choco install python2 -y
+if [ -x "$(command -v pip)" ]; then
+    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} pip install --quiet --upgrade pip setuptools
+else
+    printf 'ERROR: Python not installed!\n' 1>&2
 fi
-
-${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} pip install --quiet --upgrade pip setuptools

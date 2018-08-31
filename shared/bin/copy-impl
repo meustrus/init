@@ -1,0 +1,3 @@
+#!/bin/sh
+
+IMPL=`get-impl-path "$1"` && ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} cp -f "$IMPL" "$2"

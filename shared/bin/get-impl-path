@@ -1,0 +1,56 @@
+#!/bin/sh
+
+source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
+
+IMPL=$1
+
+SUB=`dirname "$IMPL"`
+SUB_VAR_NAME=
+if [ "$SUB" == "cli" ]; then
+    SUB_VAR_NAME=INIT_CLI
+elif [ "$SUB" == "gui" ]; then
+    SUB_VAR_NAME=INIT_GUI
+elif [ "$SUB" == "lang" ]; then
+    SUB_VAR_NAME=INIT_LANG
+fi
+
+IMPL_BASE=`basename "$IMPL"`
+IMPL_VAR_NAME=${SUB_VAR_NAME}_`printf '%s' "$IMPL_BASE" | cut -f 1 -d '.' | awk '{print toupper($0)}'`
+
+if [ "$SUB_VAR_NAME" == "" ] || (
+    ( [ "${!SUB_VAR_NAME}" != "OFF" ] && [ "${!IMPL_VAR_NAME}" != "OFF" ] ) && (
+        [ "$INIT_ALL" == "ON" ] || [ "${!SUB_VAR_NAME}" == "ON" ] || [ "${!IMPL_VAR_NAME}" == "ON" ]
+    )
+   ); then
+
+    implpath() {
+        local path="$INIT_REPO/$1/$2"
+        if [ -f "$path" ]; then
+            local dir="`dirname "$path" 2>/dev/null`"
+            if cd "$dir" 2>/dev/null; then
+                if ! [ "$dir" == "`pwd`" ]; then
+                    printf 'ERROR: Tricky impl path "%s"\n' "$1/$2" 1>&2
+                    return 1
+                fi
+                printf '%s\n' "$dir/`basename "$2"`"
+                return 0
+            fi
+        fi
+        return 1
+    }
+
+    if ( printf '%s' "$OSTYPE" | grep -q darwin 2>/dev/null ) && IMPL_PATH=`implpath mac "$IMPL"` ; then
+        printf '%s\n' "$IMPL_PATH"
+        exit 0
+    elif ( printf '%s' "$OSTYPE" | grep -q msys 2>/dev/null ) && IMPL_PATH=`implpath win "$IMPL"`; then
+        printf '%s\n' "$IMPL_PATH"
+        exit 0
+    elif IMPL_PATH=`implpath shared "$IMPL"`; then
+        printf '%s\n' "$IMPL_PATH"
+        exit 0
+    else
+        printf 'ERROR: Could not find implementation for "%s"\n' "$IMPL" 1>&2
+    fi
+fi
+
+exit 1

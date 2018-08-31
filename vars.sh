@@ -11,7 +11,6 @@ while ! [ -f "$INIT_REPO/vars.sh" ]; do
 done
 
 INIT_FORUSER=${INIT_FORUSER:-ALL} export INIT_FORUSER
-INIT_GUI=${INIT_GUI:-ON} export INIT_GUI
 INIT_SSHCOPY=${INIT_SSHCOPY:-GITHUB} export INIT_SSHCOPY
 
 if [ "$INIT_FORUSER" = "ROOT" ]; then

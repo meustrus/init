@@ -28,11 +28,5 @@ ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global color.di
 ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global color.diff-highlight.newNormal "33 bold"
 ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global color.diff-highlight.newHighlight "33 bold 19"
 
-${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} cp -f "$INIT_REPO/shared/etc/.gitignore-global" "$BENCH/.gitignore-global"
+copy-impl "etc/.gitignore-global" "$BENCH/.gitignore-global"
 ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global core.excludesfile "$BENCH/.gitignore-global"
-
-if printf '%s' "$OSTYPE" | grep -q darwin 2>/dev/null; then
-    brew-install diff-so-fancy
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global pager.diff "diff-so-fancy | less --tabs=4 -RFX"
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global pager.show "diff-so-fancy | less --tabs=4 -RFX"
-fi

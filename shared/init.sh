@@ -2,21 +2,21 @@
 
 source "${INIT_REPO:-$(dirname "$0")/..}/vars.sh"
 
-source "$INIT_REPO/shared/bench.sh"
-source "$INIT_REPO/shared/cli/shell.sh"
-source "$INIT_REPO/shared/cli/git.sh"
-source "$INIT_REPO/shared/cli/ssh.sh"
-source "$INIT_REPO/shared/cli/tmux.sh"
+source source-impl "bench.sh"
 
-source "$INIT_REPO/shared/lang/python.sh"
-source "$INIT_REPO/shared/lang/java.sh"
-source "$INIT_REPO/shared/lang/nodejs.sh"
+source source-impl "cli/shell.sh"
+source source-impl "cli/git.sh"
+source source-impl "cli/ssh.sh"
+source source-impl "cli/tmux.sh"
 
-if [ "x$INIT_GUI" = "xON" ]; then
-    source "$INIT_REPO/shared/gui/chrome.sh"
-    source "$INIT_REPO/shared/gui/firefox.sh"
-    source "$INIT_REPO/shared/gui/vlc.sh"
-    source "$INIT_REPO/shared/gui/vscode.sh"
-    source "$INIT_REPO/shared/gui/sourcetree.sh"
-    source "$INIT_REPO/shared/gui/libreoffice.sh"
-fi
+source source-impl "lang/python.sh"
+source source-impl "lang/java.sh"
+source source-impl "lang/nodejs.sh"
+
+source source-impl "gui/multiclipboard.sh"
+source source-impl "gui/chrome.sh"
+source source-impl "gui/firefox.sh"
+source source-impl "gui/vlc.sh"
+source source-impl "gui/vscode.sh"
+source source-impl "gui/sourcetree.sh"
+source source-impl "gui/libreoffice.sh"
