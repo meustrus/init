@@ -1,6 +1,12 @@
 # Contributing
 
-The main thing to understand about the structure of this project is the `get-impl-path` script.
+## Getting started
+
+Clone the repository. Run tests with `./test run`.
+
+## get-impl-path
+
+With few exceptions, every init script must be enabled with environment variables (like in `alias/*`) and can be overriden with OS-specific implementations. This behavior is ultimately handled by the `get-impl-path` script.
 
 Basically, when you call into `init.sh`, it uses `get-impl-path` to find the appropriate implementation for your system. `get-impl-path` will check the OS, and if there is a version of the specific init script for that OS, that script will be executed. Otherwise, the `shared` version will be executed.
 
@@ -12,8 +18,8 @@ Several scripts exist on `$PATH` (after the standard file header) to simplify us
     source source-impl "cli/script.sh"
     # Copy the "etc/resource" file to "$BENCH/resource"
     copy-impl "etc/resource" "$BENCH/resource"
-
-Usually the OS-specific version of a script will execute the `shared` version with `source-shared "cli/script.sh"`.
+    # Call the shared implementation (used from OS-specific implementations)
+    source source-shared cli/myself.sh
 
 ## Standard file header
 
@@ -34,3 +40,13 @@ The standard header above is for scripts in the root of the repository. Finding 
     source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
 Be sure to use the correct variation for the nesting level of your script.
+
+## Magic directory names
+
+The following directories have special significance:
+
+- `shared`: Default implementations of everything
+- `mac`: Specific implementations used when `$OSTYPE` contains `darwin`
+- `win`: Specific implementations used when `$OSTYPE` contains `msys`
+- `*/bin`: Included in `$PATH`, depending on parent directory and `$OSTYPE`
+- `test.d/lib`: Ignored when running tests with `./test run`
