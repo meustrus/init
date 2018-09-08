@@ -14,6 +14,7 @@ if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global mergetool.code.cmd "code --wait --new-window \$MERGED"
 
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension    formulahendry.auto-close-tag
+    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension        jetmartin.bats
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension       aaron-bond.better-comments
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension        ms-vscode.csharp
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension     donjayamanne.githistory

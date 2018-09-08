@@ -1,0 +1,119 @@
+#!/usr/bin/env bash
+
+TEST_SRC=${TEST_SRC:-$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)} export TEST_SRC
+TEST_ROOT=${TEST_ROOT:-$TEST_SRC/test.d} export TEST_ROOT
+
+TEST_SUBCOMMAND=$1
+shift
+
+if [ "$TEST_SUBCOMMAND" == "init" ]; then
+    mkdir -p "$TEST_ROOT/lib"
+    pushd "$TEST_ROOT/lib" > /dev/null
+    git submodule add https://github.com/bats-core/bats-core.git bats
+    git submodule add https://github.com/capitalone/bash_shell_mock.git bash_shell_mock
+    git submodule add https://github.com/ztombol/bats-support bats-support
+    git submodule add https://github.com/ztombol/bats-assert bats-assert
+    popd > /dev/null
+fi
+
+IFS=$'\n'; git submodule update --init --recursive $(find "$TEST_ROOT"/lib -type d -maxdepth 1)
+
+if [ "$TEST_SUBCOMMAND" == "init" ]; then
+    if [ -f "$TEST_ROOT/lib/setup.bats" ]; then
+        printf 'Error: Could not create lib/setup.bats because it already exists\n' 1>&2
+    else
+        cat > "$TEST_ROOT/lib/setup.bats" << EOF
+#!/usr/bin/env bats
+
+. "\$TEST_ROOT/lib/bash_shell_mock/bin/shellmock"
+skipIfNot "\$BATS_TEST_DESCRIPTION"
+shellmock_clean
+
+export OSTYPE=test
+
+export HOME=\$TEST_ROOT/lib/temp/home
+mkdir -p "\$HOME"
+
+export BENCH=\$TEST_ROOT/lib/temp/bench
+mkdir -p "\$BENCH"
+
+if [ "\${BATS_TEST_NUMBER}" = 1 ]; then
+    printf '# %s\n' "\${BATS_TEST_FILENAME#\`pwd\`/}" >&3
+fi
+EOF
+    fi
+
+    if [ -f "$TEST_ROOT/lib/teardown.bats" ]; then
+        printf 'Error: Could not create lib/teardown.bats because it already exists\n' 1>&2
+    else
+        cat > "$TEST_ROOT/lib/teardown.bats" << EOF
+#!/usr/bin/env bats
+
+[ -z "\$TEST_FUNCTION" ] && shellmock_clean
+rm -rf "\$TEST_ROOT/lib/temp"
+EOF
+    fi
+elif [ "$TEST_SUBCOMMAND" == "new" ] && [ -n "$1" ]; then
+    TEST_NEW_FILES=()
+    TEST_EXISTING_FILES=()
+    TEST_INVALID_FILES=()
+    for TEST_NEW_FILE in "$@"; do
+        if ! [[ $TEST_NEW_FILE =~ ^"${TEST_ROOT#`pwd`/}".+\.bats$ ]]; then
+            TEST_INVALID_FILES+=($TEST_NEW_FILE)
+        elif [ -f "$TEST_NEW_FILE" ]; then
+            TEST_EXISTING_FILES+=($TEST_NEW_FILE)
+        else
+            TEST_NEW_FILES+=($TEST_NEW_FILE)
+            mkdir -p `dirname "$TEST_NEW_FILE"`
+            cat > "$TEST_NEW_FILE" << EOF
+#!/usr/bin/env bats
+# $arg
+
+load "\$TEST_ROOT/lib/bats-support/load.bash"
+load "\$TEST_ROOT/lib/bats-assert/load.bash"
+
+setup() {
+  . "\$TEST_ROOT/lib/setup.bats"
+}
+teardown() {
+  . "\$TEST_ROOT/lib/teardown.bats"
+}
+
+EOF
+        fi
+    done
+
+    if [ ${#TEST_NEW_FILES[@]} -ne 0 ]; then
+        printf 'Successfully created new test files:\n'
+        printf '  %s\n' ${TEST_NEW_FILES[*]}
+    fi
+
+    if [ ${#TEST_EXISTING_FILES[@]} -ne 0 ]; then
+        printf 'Error: Could not create the following test files because they already exist:\n' 1>&2
+        printf '  %s\n' ${TEST_EXISTING_FILES[*]} 1>&2
+    fi
+
+    if [ ${#TEST_INVALID_FILES[@]} -ne 0 ]; then
+        printf 'Error: Could not create the following test files because they must be in $TEST_ROOT and end in ".bats":\n' 1>&2
+        printf '  %s\n' ${TEST_INVALID_FILES[*]} 1>&2
+    fi
+
+    if [ ${#TEST_EXISTING_FILES[@]} -ne 0 ] || [ ${#TEST_INVALID_FILES[@]} -ne 0 ]; then
+        exit 1
+    fi
+elif [ "$TEST_SUBCOMMAND" == "run" ]; then
+    if [ -n "$1" ]; then
+        IFS=$'\n' "$TEST_ROOT/lib/bats/bin/bats" "$@"
+    else
+        IFS=$'\n' "$TEST_ROOT/lib/bats/bin/bats" $(find "$TEST_ROOT" -type d -name "lib" -prune -type f -o -type f -name '*.bats')
+    fi
+else
+    printf 'Unknown command "%s". Available commands:\n' "$0 $*" 1>&2
+    printf '  init\n' 1>&2
+    printf '    Sets up submodules used by tests, if not already set up in git\n' 1>&2
+    printf '  test new $filename\n' 1>&2
+    printf '    Create a boilerplace test file called $filename (where $filename is in the\n' 1>&2
+    printf '    $TEST_ROOT directory and ends with the .bats file extension)\n' 1>&2
+    printf '  run\n' 1>&2
+    printf '    Runs all tests\n' 1>&2
+fi

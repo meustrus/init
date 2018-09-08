@@ -1,0 +1,12 @@
+[submodule "test.d/lib/bats"]
+	path = test.d/lib/bats
+	url = https://github.com/bats-core/bats-core.git
+[submodule "test.d/lib/bash_shell_mock"]
+	path = test.d/lib/bash_shell_mock
+	url = https://github.com/capitalone/bash_shell_mock.git
+[submodule "test.d/lib/bats-support"]
+	path = test.d/lib/bats-support
+	url = https://github.com/ztombol/bats-support
+[submodule "test.d/lib/bats-assert"]
+	path = test.d/lib/bats-assert
+	url = https://github.com/ztombol/bats-assert
