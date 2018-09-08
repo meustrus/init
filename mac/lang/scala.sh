@@ -5,4 +5,4 @@ source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 brew-install scala
 brew-install sbt
 
-source "$INIT_REPO/shared/lang/scala.sh"
+source source-shared "lang/scala.sh"

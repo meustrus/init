@@ -2,6 +2,5 @@
 
 source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
-brew-install tmux
-
-source source-shared "cli/tmux.sh"
+IMPL_NAME=$1
+source "$INIT_REPO/shared/$IMPL_NAME"

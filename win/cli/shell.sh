@@ -4,7 +4,7 @@ source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
 setx HOME "$HOME"
 
-source "$INIT_REPO/shared/cli/shell.sh"
+source source-shared "cli/shell.sh"
 
 copy-impl "etc/initrc.bat" "$BENCH/shellrc.d/initrc.bat"
 

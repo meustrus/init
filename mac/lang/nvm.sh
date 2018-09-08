@@ -2,7 +2,7 @@
 
 source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
-source "$INIT_REPO/shared/lang/nvm.sh"
+source source-shared "lang/nvm.sh"
 
 brew-install nvm
 

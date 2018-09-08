@@ -13,9 +13,11 @@ Several scripts exist on `$PATH` (after the standard file header) to simplify us
     # Copy the "etc/resource" file to "$BENCH/resource"
     copy-impl "etc/resource" "$BENCH/resource"
 
-Usually the OS-specific version of a script will execute the `shared` version. **Other than the standard header, this is the only time a script should reference another file directly**; otherwise, use an `impl` script.
+Usually the OS-specific version of a script will execute the `shared` version with `source-shared "cli/script.sh"`.
 
 ## Standard file header
+
+**The standard file header is the *only* time a script should reference another file directly**
 
 Every `sh` script should start with a *variation* of following standard header:
 
