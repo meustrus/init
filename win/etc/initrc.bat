@@ -58,6 +58,6 @@ DOSKEY grc=git rebase --continue
 DOSKEY gri=git rebase --interactive $*
 DOSKEY grt=git rev-parse --show-toplevel
 DOSKEY gst=git status $*
-DOSKEY gun=git reset --soft HEAD~
+DOSKEY gun=printf "To redo this commit, run: git reset --soft " ^& git rev-parse HEAD ^& git reset --soft HEAD~
 
 DOSKEY gss=bash -c 'source ~/.bashrc ; gss'

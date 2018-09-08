@@ -97,7 +97,7 @@ echoAlias grc 'git rebase --continue'
 echoAlias gri 'git rebase --interactive $*'
 echoAlias grt 'git rev-parse --show-toplevel'
 echoAlias gst 'git status $*'
-echoAlias gun 'git reset --soft HEAD~'
+echoAlias gun 'printf "To redo this commit, run: git reset --soft " ; git rev-parse HEAD ; git reset --soft HEAD~'
 
 gss() {
     if [ "$#" -gt 0 ]; then
