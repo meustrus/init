@@ -128,7 +128,7 @@ gss() {
     while IFS='' read -r line || [ -n "$line" ]; do
         case "${line:0:2}" in
             \#\#)
-                declare $(printf "${line:3}" | gawk '{
+                declare $(printf '%s' "${line:3}" | gawk '{
                     match($0, /(No commits yet|Initial commit) on (.+)|no branch|([^. ]+)(\.\.\.([^ ]+))? *(\[(ahead ([0-9]+))?[, ]*(behind ([0-9]+))?[, ]*(gone)?\])?/, arr);
                     if (arr[2]) print "branch="arr[2]
                     if (arr[3]) print "branch="arr[3]
@@ -172,5 +172,5 @@ EOF
     [ "$deleted" -ne "0" ] && extra="$extra $CWarn-$deleted$color"
     [ "$conflicts" -ne "0" ] && extra="$extra ${CErr}X$conflicts$color"
 
-    printf "${color}[ $info${extra:+ |$extra} ]$CReset\n"
+    printf '%s\n' "${color}[ $info${extra:+ |$extra} ]$CReset"
 }
