@@ -38,7 +38,9 @@ if [ -x "$(command -v git)" ]; then
     export INIT_GITEMAIL
 fi
 
-HOME=$(eval cd "~${SUDO_USER:-$USER}" && pwd) export HOME
+if [ -z "$HOME" ] || [ -n "$SUDO_USER" ]; then
+    HOME=$(eval cd "~${SUDO_USER:-$USER}" && pwd) export HOME
+fi
 BENCH=${BENCH:-$HOME/bench} export BENCH
 
 case "$PATH" in
