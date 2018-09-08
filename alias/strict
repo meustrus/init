@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# to be run from the init repo: `source alias/strict.sh`
+# to be run from the init repo: `source alias/strict`
 
 INIT_CLI_SHELL=ON export INIT_CLI_SHELL
 INIT_CLI_GIT=ON export INIT_CLI_GIT
