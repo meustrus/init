@@ -27,7 +27,7 @@ if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension  robertohuertasm.vscode-icons
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension          vscjava.vscode-java-pack
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension   DotJoshJohnson.xml
-elif [ -x "$(command -v code)" ]
+elif [ -x "$(command -v code)" ]; then
     printf 'ERROR: $APPDATA is not a valid directory, but Visual Studio Code init requires it\n' 1>&2
 else
     printf 'ERROR: `code` is not on $PATH, but Visual Studio Code init requires it\n' 1>&2
