@@ -25,6 +25,7 @@
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.cursorStyle": "line",
     "vsicons.dontShowNewVersionMessage": true,
+    "workbench.iconTheme": "vscode-icons",
     "workbench.startupEditor": "none",
     "window.zoomLevel": 1
 }
