@@ -7,20 +7,19 @@ if test -n "$COLORS" && test "$COLORS" -ge 8; then
     CReset="$CEsc[0m" export CReset
 
     CGood="$CReset$CEsc[1m$CEsc[36m"    export CGood # Bright Cyan
-    CInfo="$CReset$CEsc[37m"            export CInfo # White
+    CInfo="$CReset$CEsc[34m"            export CInfo # Blue
     CWarn="$CReset$CEsc[1m$CEsc[33m"    export CWarn # Bright Yellow
     CErr="$CReset$CEsc[1m$CEsc[31m"     export CErr  # Bright Red
-    CEnv="$CReset$CEsc[35m"             export CEnv  # Magenta
-    CSide="$CReset$CEsc[34m"            export CSide # Blue
+    CEnv="$CReset$CEsc[1m$CEsc[35m"     export CEnv  # Bright Magenta
+    CSide="$CReset$CEsc[1m$CEsc[30m"    export CSide # Bright Black (Gray)
     CHelp="$CReset$CEsc[32m"            export CHelp # Green
 
     if test "$COLORS" -ge 256; then
         CGood="$CReset$CEsc[38;5;87m"   export CGood # Light Cyan
-        CInfo="$CReset$CEsc[34m"        export CInfo # Blue
+        CInfo="$CReset$CEsc[38;5;28m"   export CInfo # Dark Green
         CWarn="$CReset$CEsc[38;5;11m"   export CWarn # Light Yellow
         CErr="$CReset$CEsc[38;5;202m"   export CErr  # Orange
         CEnv="$CReset$CEsc[38;5;13m"    export CEnv  # Light Magenta
-        CSide="$CReset$CEsc[38;5;28m"   export CSide # Dark Green
     fi
 fi
 cprint() {
@@ -29,11 +28,11 @@ cprint() {
 }
 
 ## Prompt
-PROMPT_COMMAND='PS1="\\n\\[$CInfo\\]\\s ${debian_chroot:+($debian_chroot) }\
-\\[$CGood\\]\\u\\[$CSide\\]@\\[$CEnv\\]\\h\\[$CReset\\]\
- : \\[$CHelp\\]\\w\\[$CReset\\]\
- `bracket-colors withtimeout 0.5 gss || printf \"\\[%s\\][???]\" \"$CErr\"`\\[$CReset\\]\
-\\n\\[$CSide\\]\\\$\\[$CReset\\] "'
+PROMPT_COMMAND="PS1=\"\\\\n\\\\[$CInfo\\\\]\\\\s \${debian_chroot:+(\$debian_chroot) }\
+\\\\[$CGood\\\\]\\\\u\\\\[$CSide\\\\]@\\\\[$CEnv\\\\]\\\\h\\\\[$CReset\\\\]\
+ \\\\[$CSide\\\\]:\\\\[$CReset\\\\] \\\\[$CHelp\\\\]\\\\w\\\\[$CReset\\\\]\
+ \`bracket-colors withtimeout 0.5 gss || printf \\\"\\\\[%s\\\\][???]\\\" \\\"$CErr\\\"\`\\\\[$CReset\\\\]\
+\\\\n\\\\[$CSide\\\\]\\\\\$\\\\[$CReset\\\\] \""
 
 
 ## Setup
