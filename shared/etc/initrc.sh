@@ -33,22 +33,26 @@ PS1='\n${CEnv}\s ${debian_chroot:+($debian_chroot) }${CGood}\u${CSide}@${CInfo}\
 
 ## Setup
 echoAlias() { alias $1="echoAndRun '$2'" ; }
-echoAndRun() { local cmd=$1 ; shift ; printf '%s\n' "$cmd" ; eval $cmd ; }
+echoAndRun() { local cmd=$1 ; shift ; printf '%s\n' "$cmd" 1>&2 ; eval $cmd ; }
 
 
 ## Navigation
-alias ls="printf 'ls -F -A \$*\n' ; ls -F -A"
-echoAlias .. "cd .."
-echoAlias ... "cd ../.."
-echoAlias .... "cd ../../.."
-echoAlias ..... "cd ../../../.."
+alias ls="printf 'ls -F -A \$*\n' 1>&2 ; ls -F -A"
+echoAlias cdb 'cd "$BENCH"'
+echoAlias .. 'cd ..'
+echoAlias ... 'cd ../..'
+echoAlias .... 'cd ../../..'
+echoAlias ..... 'cd ../../../..'
+echoAlias ...... 'cd ../../../../..'
+echoAlias ....... 'cd ../../../../../..'
+echoAlias ........ 'cd ../../../../../../..'
 
 
 ## Utility
 withtimeout() {
     if [ "$#" -lt 2 ]; then
         printf "Usage: withtimeout #seconds cmd [args...]\n" 1>&2
-        exit 1
+        return 1
     fi
 
     (
@@ -72,9 +76,11 @@ withtimeout() {
     )
 }
 
-echoAlias npm-unlink "npm rm --global"
-echoAlias find-symlinks "find -L . -xtype l -ls"
-echoAlias reload "source ~/.bashrc"
+echoAlias npm-unlink 'npm rm --global'
+echoAlias find-symlinks 'find -L . -xtype l -ls'
+echoAlias reload 'source ~/.bashrc'
+echoAlias strip-colors "sed 's/\x1B\[[0-9;]\+[A-Za-z]//g' "
+echoAlias escape-colors "sed 's/\x1B/\\\\033/g'"
 
 
 ## Git
@@ -97,7 +103,7 @@ echoAlias grc 'git rebase --continue'
 echoAlias gri 'git rebase --interactive $*'
 echoAlias grt 'git rev-parse --show-toplevel'
 echoAlias gst 'git status $*'
-echoAlias gun 'printf "To redo this commit, run: git reset --soft " ; git rev-parse HEAD ; git reset --soft HEAD~'
+echoAlias gun 'printf "To redo this commit, run: git reset --soft " ; git rev-parse HEAD ; git reset --soft "HEAD~$1"'
 
 gss() {
     if [ "$#" -gt 0 ]; then
