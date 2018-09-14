@@ -6,19 +6,19 @@ if test -n "$COLORS" && test "$COLORS" -ge 8; then
     CReset=$'\033[0m' export CReset
 
     CGood="$CReset"$'\033[1m\033[36m'       export CGood # Bright Cyan
-    CInfo="$CReset"$'\033[35m'              export CInfo # Magenta
+    CInfo="$CReset"$'\033[37m'              export CInfo # White
     CWarn="$CReset"$'\033[1m\033[33m'       export CWarn # Bright Yellow
     CErr="$CReset"$'\033[1m\033[31m'        export CErr  # Bright Red
-    CEnv="$CReset"$'\033[37m'               export CEnv  # White
+    CEnv="$CReset"$'\033[35m'               export CEnv  # Magenta
     CSide="$CReset"$'\033[34m'              export CSide # Blue
     CHelp="$CReset"$'\033[32m'              export CHelp # Green
 
     if test "$COLORS" -ge 256; then
         CGood="$CReset"$'\033[38;5;87m'     export CGood # Light Cyan
-        CInfo="$CReset"$'\033[38;5;13m'     export CInfo # Light Magenta
+        CInfo="$CReset"$'\033[34m'          export CInfo # Blue
         CWarn="$CReset"$'\033[38;5;11m'     export CWarn # Light Yellow
         CErr="$CReset"$'\033[38;5;202m'     export CErr  # Orange
-        CEnv="$CReset"$'\033[34m'           export CEnv  # Blue
+        CEnv="$CReset"$'\033[38;5;13m'      export CEnv  # Light Magenta
         CSide="$CReset"$'\033[38;5;28m'     export CSide # Dark Green
     fi
 fi
@@ -28,7 +28,7 @@ cprint() {
 }
 
 ## Prompt
-PS1='\n${CEnv}\s ${debian_chroot:+($debian_chroot) }${CGood}\u${CSide}@${CInfo}\h${CReset} : ${CHelp}\w${CReset} `withtimeout 0.5 gss || printf "${CErr}[???]"`${CReset}\n\$ '
+PS1='\n${CInfo}\s ${debian_chroot:+($debian_chroot) }${CGood}\u${CSide}@${CEnv}\h${CReset} : ${CHelp}\w${CReset} `withtimeout 0.5 gss || printf "${CErr}[???]"`${CReset}\n\$ '
 
 
 ## Setup
