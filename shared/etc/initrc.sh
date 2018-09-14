@@ -29,7 +29,11 @@ cprint() {
 }
 
 ## Prompt
-PS1='\n${CInfo}\s ${debian_chroot:+($debian_chroot) }${CGood}\u${CSide}@${CEnv}\h${CReset} : ${CHelp}\w${CReset} `withtimeout 0.5 gss || printf "${CErr}[???]"`${CReset}\n\$ '
+PROMPT_COMMAND='PS1="\\n\\[$CInfo\\]\\s ${debian_chroot:+($debian_chroot) }\
+\\[$CGood\\]\\u\\[$CSide\\]@\\[$CEnv\\]\\h\\[$CReset\\]\
+ : \\[$CHelp\\]\\w\\[$CReset\\]\
+ `bracket-colors withtimeout 0.5 gss || printf \"\\[%s\\][???]\" \"$CErr\"`\\[$CReset\\]\
+\\n\\[$CSide\\]\\\$\\[$CReset\\] "'
 
 
 ## Setup
@@ -50,6 +54,35 @@ echoAlias ........ 'cd ../../../../../../..'
 
 
 ## Utility
+bracket-colors() {
+    if [ "$#" -lt 1 ]; then
+        printf 'Usage: bracket-colors cmd [args...]\n' 1>&2
+        return 1
+    fi
+
+    local input
+    input=`$*`
+    local status=$?
+    if [ -n "$input" ]; then
+        local bracketstate=out
+        while IFS='' read -r -n1 -d '' char; do
+            if [ "$char" == "$CEsc" ]; then
+                [ "$bracketstate" == "out" ] && printf '\[' || true
+                bracketstate=in
+            elif [ "$bracketstate" == "end" ]; then
+                printf '\]'
+                bracketstate=out
+            elif [ "$bracketstate" == "in" ] && [ "$char" == "m" ]; then
+                bracketstate=end
+            fi
+            printf '%s' "$char"
+        done << EOF
+$input
+EOF
+        [ "$bracketstate" == "end" ] && printf '\\]' || true
+    fi
+    return $status
+}
 withtimeout() {
     if [ "$#" -lt 2 ]; then
         printf "Usage: withtimeout #seconds cmd [args...]\n" 1>&2
