@@ -1,7 +1,8 @@
 {
+    "breadcrumbs.enabled": true,
     "editor.acceptSuggestionOnCommitCharacter": false,
     "editor.acceptSuggestionOnEnter": "off",
-    "editor.autoClosingBrackets": false,
+    "editor.autoClosingBrackets": "never",
     "editor.autoIndent": true,
     "editor.dragAndDrop": false,
     "editor.fontFamily": "Source Code Pro, Consolas, 'Courier New', monospace",
@@ -25,6 +26,7 @@
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.cursorStyle": "line",
     "vsicons.dontShowNewVersionMessage": true,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.iconTheme": "vscode-icons",
     "workbench.startupEditor": "none",
     "window.zoomLevel": 1
