@@ -1,25 +1,26 @@
 #!/bin/sh
 
 ## Color Codes
-COLORS=$(tput colors 2>/dev/null)
+COLORS=`tput colors 2>/dev/null`
+CEsc=`printf '\033'`
 if test -n "$COLORS" && test "$COLORS" -ge 8; then
-    CReset=$'\033[0m' export CReset
+    CReset="$CEsc[0m" export CReset
 
-    CGood="$CReset"$'\033[1m\033[36m'       export CGood # Bright Cyan
-    CInfo="$CReset"$'\033[37m'              export CInfo # White
-    CWarn="$CReset"$'\033[1m\033[33m'       export CWarn # Bright Yellow
-    CErr="$CReset"$'\033[1m\033[31m'        export CErr  # Bright Red
-    CEnv="$CReset"$'\033[35m'               export CEnv  # Magenta
-    CSide="$CReset"$'\033[34m'              export CSide # Blue
-    CHelp="$CReset"$'\033[32m'              export CHelp # Green
+    CGood="$CReset$CEsc[1m$CEsc[36m"    export CGood # Bright Cyan
+    CInfo="$CReset$CEsc[37m"            export CInfo # White
+    CWarn="$CReset$CEsc[1m$CEsc[33m"    export CWarn # Bright Yellow
+    CErr="$CReset$CEsc[1m$CEsc[31m"     export CErr  # Bright Red
+    CEnv="$CReset$CEsc[35m"             export CEnv  # Magenta
+    CSide="$CReset$CEsc[34m"            export CSide # Blue
+    CHelp="$CReset$CEsc[32m"            export CHelp # Green
 
     if test "$COLORS" -ge 256; then
-        CGood="$CReset"$'\033[38;5;87m'     export CGood # Light Cyan
-        CInfo="$CReset"$'\033[34m'          export CInfo # Blue
-        CWarn="$CReset"$'\033[38;5;11m'     export CWarn # Light Yellow
-        CErr="$CReset"$'\033[38;5;202m'     export CErr  # Orange
-        CEnv="$CReset"$'\033[38;5;13m'      export CEnv  # Light Magenta
-        CSide="$CReset"$'\033[38;5;28m'     export CSide # Dark Green
+        CGood="$CReset$CEsc[38;5;87m"   export CGood # Light Cyan
+        CInfo="$CReset$CEsc[34m"        export CInfo # Blue
+        CWarn="$CReset$CEsc[38;5;11m"   export CWarn # Light Yellow
+        CErr="$CReset$CEsc[38;5;202m"   export CErr  # Orange
+        CEnv="$CReset$CEsc[38;5;13m"    export CEnv  # Light Magenta
+        CSide="$CReset$CEsc[38;5;28m"   export CSide # Dark Green
     fi
 fi
 cprint() {
@@ -59,7 +60,7 @@ withtimeout() {
         WAIT="$1"
         shift
 
-        ( $@ ) &
+        ( $* ) &
         CMD_PID=$!
 
         (
@@ -106,21 +107,22 @@ echoAlias gst 'git status $*'
 echoAlias gun 'printf "To redo this commit, run: git reset --soft " ; git rev-parse HEAD ; git reset --soft "HEAD~$1"'
 
 gss() {
-    if [ "$#" -gt 0 ]; then
-        for dir in "$@"; do
-            if [ -d "$dir" ]; then
-                pushd "$dir" >/dev/null
-                printf "%s %s\n" "$dir" "$(gss)"
+    if [ -n "$*" ]; then
+        while [ -n "$*" ]; do
+            if [ -d "$1" ]; then
+                pushd "$1" >/dev/null
+                printf "%s %s\n" "$1" "`gss`"
                 popd >/dev/null
             else
-                printf "'%s' is not a directory\n" "$dir"
+                printf "'%s' is not a directory\n" "$1" 1>&2
             fi
+            shift
         done
         return 0
     fi
 
     local gitstatus
-    gitstatus=$(git status --porcelain --branch 2>/dev/null)
+    gitstatus=`git status --porcelain --branch 2>/dev/null`
     [ "$?" -ne 0 ] && return 0
 
     local branch=
@@ -136,7 +138,7 @@ gss() {
     while IFS='' read -r line || [ -n "$line" ]; do
         case "${line:0:2}" in
             \#\#)
-                declare $(printf '%s' "${line:3}" | gawk '{
+                declare `printf '%s' "${line:3}" | gawk '{
                     match($0, /(No commits yet|Initial commit) on (.+)|no branch|([^. ]+)(\.\.\.([^ ]+))? *(\[(ahead ([0-9]+))?[, ]*(behind ([0-9]+))?[, ]*(gone)?\])?/, arr);
                     if (arr[2]) print "branch="arr[2]
                     if (arr[3]) print "branch="arr[3]
@@ -144,7 +146,7 @@ gss() {
                     if (arr[8]) print "ahead="arr[8]
                     if (arr[10]) print "behind="arr[10]
                     if (arr[11]) print "gone="arr[11]
-                }')
+                }'`
                 ;;
             \?\?) ((untracked++)) ;;
             \!\!) ;;
@@ -161,7 +163,7 @@ gss() {
 $gitstatus
 EOF
 
-    [ -z "$branch" ] && branch=$(git describe --tag --exact-match 2>/dev/null || git rev-parse --abbrev-ref HEAD 2>/dev/null || printf "???")
+    [ -z "$branch" ] && branch=`git describe --tag --exact-match 2>/dev/null || git rev-parse --abbrev-ref HEAD 2>/dev/null || printf "???"`
 
     local color=$CGood
     [ "$ahead" -ne "0" ] || [ "$staged" -ne "0" ] && color=$CInfo
