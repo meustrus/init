@@ -38,7 +38,7 @@ PROMPT_COMMAND='PS1="\\n\\[$CInfo\\]\\s ${debian_chroot:+($debian_chroot) }\
 
 ## Setup
 echoAlias() { alias $1="echoAndRun '$2'" ; }
-echoAndRun() { local cmd=$1 ; shift ; printf '%s\n' "$cmd" 1>&2 ; eval $cmd ; }
+echoAndRun() { local cmd=$1 ; shift ; printf '%s\n' "$cmd" 1>&2 ; eval $cmd \< /dev/stdin ; }
 
 
 ## Navigation
