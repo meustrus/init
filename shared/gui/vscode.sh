@@ -18,7 +18,8 @@ if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension        jetmartin.bats
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension       aaron-bond.better-comments
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension        ms-vscode.csharp
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension     donjayamanne.githistory
+    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension          eamodio.gitlens
+    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension         eriklynd.json-tools
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension christian-kohler.npm-intellisense
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension          tootone.org-mode
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension        ms-python.python
