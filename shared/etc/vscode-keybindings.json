@@ -21,5 +21,15 @@
         "key": "ctrl+shift+tab",
         "command": "workbench.action.terminal.focusPrevious",
         "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+alt+g",
+        "command": "workbench.view.extension.gitlens",
+        "when": "!isMac"
+    },
+    {
+        "key": "ctrl+cmd+g",
+        "command": "workbench.view.extension.gitlens",
+        "when": "isMac"
     }
 ]
