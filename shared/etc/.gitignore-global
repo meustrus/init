@@ -58,6 +58,11 @@ tags
 !.vscode/extensions.json
 pc.stdout.log
 
+# Eclipse / Visual Studio Code
+.classpath
+.project
+.settings/
+
 # Ensime
 .ensime
 .ensime_cache/
