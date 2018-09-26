@@ -13,24 +13,26 @@ if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global difftool.code.cmd "code --wait --new-window --diff \$LOCAL \$REMOTE"
     ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global mergetool.code.cmd "code --wait --new-window \$MERGED"
 
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension    formulahendry.auto-close-tag
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension         stayfool.vscode-asciidoc
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension        jetmartin.bats
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension       aaron-bond.better-comments
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension        ms-vscode.csharp
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension          eamodio.gitlens
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension         eriklynd.json-tools
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension christian-kohler.npm-intellisense
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension          tootone.org-mode
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension        ms-python.python
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension      mechatroner.rainbow-csv
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension         rebornix.ruby
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension      itryapitsin.sbt
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension           dragos.scala-lsp
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension      craigthomas.supersharp
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension  robertohuertasm.vscode-icons
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension          vscjava.vscode-java-pack
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code --install-extension   DotJoshJohnson.xml
+    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code \
+        --install-extension    formulahendry.auto-close-tag \
+        --install-extension         stayfool.vscode-asciidoc \
+        --install-extension        jetmartin.bats \
+        --install-extension       aaron-bond.better-comments \
+        --install-extension        ms-vscode.csharp \
+        --install-extension          eamodio.gitlens \
+        --install-extension         eriklynd.json-tools \
+        --install-extension christian-kohler.npm-intellisense \
+        --install-extension          tootone.org-mode \
+        --install-extension        ms-python.python \
+        --install-extension      mechatroner.rainbow-csv \
+        --install-extension         rebornix.ruby \
+        --install-extension      itryapitsin.sbt \
+        --install-extension           dragos.scala-lsp \
+        --install-extension      craigthomas.supersharp \
+        --install-extension  robertohuertasm.vscode-icons \
+        --install-extension          vscjava.vscode-java-pack \
+        --install-extension   DotJoshJohnson.xml \
+        ;
 elif [ -x "$(command -v code)" ]; then
     printf 'ERROR: $APPDATA is not a valid directory, but Visual Studio Code init requires it\n' 1>&2
 else
