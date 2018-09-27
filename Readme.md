@@ -62,7 +62,7 @@ See the `alias` directory for example installation profiles.
 
 In order to run unattended, ensure the following:
 
-- Run the script as sudo/administrator - this may not be necessary, but it is supported and should spare you entering your password
+- Ensure your shell has administrative access by running `sudo -v` (except Windows)
 - Set the INIT_USEREMAIL environment variable
 - Set the INIT_SSHCOPY environment variable to OFF
 

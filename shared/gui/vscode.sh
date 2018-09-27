@@ -3,17 +3,17 @@
 source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
 if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} mkdir -p "$APPDATA/Code/User/"
+    mkdir -p "$APPDATA/Code/User/"
     copy-impl "etc/vscode-settings.json" "$APPDATA/Code/User/settings.json"
     copy-impl "etc/vscode-keybindings.json" "$APPDATA/Code/User/keybindings.json"
 
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global core.editor "code --wait --new-window"
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global diff.tool code
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global merge.tool code
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global difftool.code.cmd "code --wait --new-window --diff \$LOCAL \$REMOTE"
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} git config --global mergetool.code.cmd "code --wait --new-window \$MERGED"
+    git config --global core.editor "code --wait --new-window"
+    git config --global diff.tool code
+    git config --global merge.tool code
+    git config --global difftool.code.cmd "code --wait --new-window --diff \$LOCAL \$REMOTE"
+    git config --global mergetool.code.cmd "code --wait --new-window \$MERGED"
 
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} code \
+    code \
         --install-extension    formulahendry.auto-close-tag \
         --install-extension         stayfool.vscode-asciidoc \
         --install-extension        jetmartin.bats \

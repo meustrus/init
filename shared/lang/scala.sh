@@ -3,8 +3,7 @@
 source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
 if [ -x "$(command -v sbt)" ]; then
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} mkdir -p "$BENCH/lib/ivy2"
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} mkdir -p "$BENCH/lib/sbt"
+    mkdir -p "$BENCH/lib/ivy2" "$BENCH/lib/sbt"
     install-var SBT_OPTS "-Xmx3g -Xms512M -XX:MaxMetaspaceSize=2048M -XX:-UseGCOverheadLimit -Dsbt.ivy.home=\"$BENCH/lib/ivy2/\" -Divy.home=\"$BENCH/lib/ivy2/\" -Dsbt.boot.directory=\"$BENCH/lib/sbt/\""
 
     # credentials += Credentials(Path.userHome / ".sbt" / ".credentials") >> "$HOME/sbt/1.0/plugins/credentials.sbt"

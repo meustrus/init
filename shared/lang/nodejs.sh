@@ -6,7 +6,7 @@ INIT_CLI_NVM=ON source source-impl "lang/nvm.sh"
 
 install-var UV_THREADPOOL_SIZE "$UV_THREADPOOL_SIZE"
 
-${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} nvm install node
-${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} nvm install node --reinstall-packages-from=node
-${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} nvm use node
-${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} npm install -g grunt-cli
+nvm install node
+nvm install node --reinstall-packages-from=node
+nvm use node
+npm install -g grunt-cli

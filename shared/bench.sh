@@ -2,10 +2,5 @@
 
 source "${INIT_REPO:-$(dirname "$0")/..}/vars.sh"
 
-${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} mkdir -p "$BENCH/bin"
-${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} mkdir -p "$BENCH/ext"
-${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} mkdir -p "$BENCH/lib"
-${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} mkdir -p "$BENCH/repo"
-${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} mkdir -p "$BENCH/usr"
-
+mkdir -p "$BENCH/bin" "$BENCH/ext" "$BENCH/lib" "$BENCH/repo" "$BENCH/usr"
 install-path "$BENCH/bin"

@@ -2,6 +2,8 @@
 
 # to be run from the init repo: `source alias/strict`
 
+sudo -v
+
 INIT_CLI_SHELL=ON export INIT_CLI_SHELL
 INIT_CLI_GIT=ON export INIT_CLI_GIT
 INIT_CLI_SSH=ON export INIT_CLI_SSH

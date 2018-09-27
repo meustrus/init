@@ -3,7 +3,7 @@
 source "${INIT_REPO:-$(dirname "$0")/..}/vars.sh"
 
 if [ "$INIT_FORUSER" = "ALL" ] && ! [ -x "$(command -v brew)" ]; then
-    ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 if ! [ -x "$(command -v brew)" ]; then
@@ -13,10 +13,10 @@ if ! [ -x "$(command -v brew)" ]; then
     fi
 
     mkdir -p "$BENCH/homebrew"
-    curl -L https://github.com/Homebrew/brew/tarball/master | ${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} tar xz --strip 1 -C "$BENCH/homebrew"
+    curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C "$BENCH/homebrew"
 
     install-path "$BENCH/homebrew/bin" "$BENCH/homebrew/sbin"
 fi
 
-${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} brew update
-${SUDO_USER:+sudo -u "$SUDO_USER" env "PATH=$PATH"} brew tap caskroom/cask
+brew update
+brew tap caskroom/cask
