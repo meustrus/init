@@ -16,7 +16,7 @@ if [ "$TEST_SUBCOMMAND" == "init" ]; then
     popd > /dev/null
 fi
 
-IFS=$'\n'; git submodule update --init --recursive $(find "$TEST_ROOT"/lib -type d -maxdepth 1)
+IFS=$'\n'; git submodule update --init --recursive $(find "$TEST_ROOT"/lib -maxdepth 1 -type d)
 
 if [ "$TEST_SUBCOMMAND" == "init" ]; then
     if [ -f "$TEST_ROOT/lib/setup.bats" ]; then
@@ -25,21 +25,8 @@ if [ "$TEST_SUBCOMMAND" == "init" ]; then
         cat > "$TEST_ROOT/lib/setup.bats" << EOF
 #!/usr/bin/env bats
 
-. "\$TEST_ROOT/lib/bash_shell_mock/bin/shellmock"
 skipIfNot "\$BATS_TEST_DESCRIPTION"
 shellmock_clean
-
-export OSTYPE=test
-
-export HOME=\$TEST_ROOT/lib/temp/home
-mkdir -p "\$HOME"
-
-export BENCH=\$TEST_ROOT/lib/temp/bench
-mkdir -p "\$BENCH"
-
-if [ "\${BATS_TEST_NUMBER}" = 1 ]; then
-    printf '# %s\n' "\${BATS_TEST_FILENAME#\`pwd\`/}" >&3
-fi
 EOF
     fi
 
@@ -49,7 +36,7 @@ EOF
         cat > "$TEST_ROOT/lib/teardown.bats" << EOF
 #!/usr/bin/env bats
 
-[ -z "\$TEST_FUNCTION" ] && shellmock_clean
+[ -n "\$TEST_FUNCTION" ] || shellmock_clean
 rm -rf "\$TEST_ROOT/lib/temp"
 EOF
     fi
@@ -58,7 +45,8 @@ elif [ "$TEST_SUBCOMMAND" == "new" ] && [ -n "$1" ]; then
     TEST_EXISTING_FILES=()
     TEST_INVALID_FILES=()
     for TEST_NEW_FILE in "$@"; do
-        if ! [[ $TEST_NEW_FILE =~ ^"${TEST_ROOT#`pwd`/}".+\.bats$ ]]; then
+        TEST_NEW_FILE_TARGET=$(expr "$TEST_NEW_FILE" : "^${TEST_ROOT#`pwd`/}/\(.\+\)\.bats\$")
+        if [ -z "$TEST_NEW_FILE_TARGET" ]; then
             TEST_INVALID_FILES+=($TEST_NEW_FILE)
         elif [ -f "$TEST_NEW_FILE" ]; then
             TEST_EXISTING_FILES+=($TEST_NEW_FILE)
@@ -67,10 +55,12 @@ elif [ "$TEST_SUBCOMMAND" == "new" ] && [ -n "$1" ]; then
             mkdir -p `dirname "$TEST_NEW_FILE"`
             cat > "$TEST_NEW_FILE" << EOF
 #!/usr/bin/env bats
-# $arg
+# $TEST_NEW_FILE_TARGET
 
 load "\$TEST_ROOT/lib/bats-support/load.bash"
 load "\$TEST_ROOT/lib/bats-assert/load.bash"
+export PATH="\$TEST_ROOT/lib/bash_shell_mock/bin:\$PATH"
+. shellmock
 
 setup() {
   . "\$TEST_ROOT/lib/setup.bats"
@@ -96,6 +86,7 @@ EOF
     if [ ${#TEST_INVALID_FILES[@]} -ne 0 ]; then
         printf 'Error: Could not create the following test files because they must be in $TEST_ROOT and end in ".bats":\n' 1>&2
         printf '  %s\n' ${TEST_INVALID_FILES[*]} 1>&2
+        printf '  : $TEST_ROOT: %s\n' "${TEST_ROOT#`pwd`/}" 1>&2
     fi
 
     if [ ${#TEST_EXISTING_FILES[@]} -ne 0 ] || [ ${#TEST_INVALID_FILES[@]} -ne 0 ]; then
