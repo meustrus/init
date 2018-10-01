@@ -112,8 +112,8 @@ withtimeout() {
 echoAlias npm-unlink 'npm rm --global'
 echoAlias find-symlinks 'find -L . -xtype l -ls'
 echoAlias reload 'source ~/.bashrc'
-echoAlias strip-colors 'sed "s/\\x1B\\[[0-9\\;]\\+[A-Za-z]//g"'
-echoAlias escape-colors 'sed "s/\\x1B/\\\\033/g"'
+echoAlias strip-colors 'sed "s/\\x1B\\[[0-9\\;]\\+[A-Za-z]//g" $*'
+echoAlias escape-colors 'sed "s/\\x1B/\\\\033/g" $*'
 
 
 ## Git
