@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source "${INIT_REPO:-$(dirname "$0")/..}/vars.sh"
+. "${INIT_REPO:-$(dirname "$0")/..}/vars.sh"
 
 if [ "$INIT_FORUSER" = "ALL" ] && ! [ -x "$(command -v brew)" ]; then
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"

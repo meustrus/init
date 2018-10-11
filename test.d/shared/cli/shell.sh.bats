@@ -22,7 +22,7 @@ teardown() {
     "$(cat "$HOME/bench/shellrc.d/initrc.sh")" \
     "$(cat "$TEST_SRC/shared/etc/initrc.sh")"
 
-  expected_loadrc=$'\n\n'"for filename in \"$HOME/bench\"/shellrc.d/*.sh; do source \"\$filename\"; done"
+  expected_loadrc=$'\n\n'"for filename in \"$HOME/bench\"/shellrc.d/*.sh; do . \"\$filename\"; done"
   assert_equal "$(cat "$HOME/.profile")" "$expected_loadrc"
   assert_equal "$(cat "$HOME/.bash_profile")" "$expected_loadrc"
   assert_equal "$(cat "$HOME/.bashrc")" "$expected_loadrc"
@@ -39,7 +39,7 @@ teardown() {
     "$(cat "$HOME/bench/shellrc.d/initrc.sh")" \
     "$(cat "$TEST_SRC/shared/etc/initrc.sh")"
 
-  expected_loadrc=$'\n\n'"for filename in \"$HOME/bench\"/shellrc.d/*.sh; do source \"\$filename\"; done"
+  expected_loadrc=$'\n\n'"for filename in \"$HOME/bench\"/shellrc.d/*.sh; do . \"\$filename\"; done"
   assert_equal "$(cat "$HOME/.profile")" "$expected_loadrc"
   assert_equal "$(cat "$HOME/.bash_profile")" "$expected_loadrc"
   assert_equal "$(cat "$HOME/.bashrc")" "$expected_loadrc"

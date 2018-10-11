@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
+. "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
 if [ ! -f "$HOME/.ssh/id_rsa" ]; then
     ssh-keygen -t rsa -b 4096 -C "$INIT_GITEMAIL"

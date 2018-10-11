@@ -1,4 +1,4 @@
 #!/bin/sh
 
 IMPL_NAME=$1
-IMPL=`get-impl-path "$IMPL_NAME"` && source "$IMPL"
+IMPL=`get-impl-path "$IMPL_NAME"` && . "$IMPL"

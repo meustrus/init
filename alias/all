@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# to be run from the init repo: `source alias/all`
+# to be run from the init repo: `./alias/all`
 
 sudo -v
 INIT_ALL=ON export INIT_ALL
-source init.sh
+. init.sh

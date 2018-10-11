@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
+. "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
 if [ -x "$(command -v sbt)" ]; then
     mkdir -p "$BENCH/lib/ivy2" "$BENCH/lib/sbt"

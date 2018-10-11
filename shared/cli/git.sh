@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
+. "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
 if [ "$INIT_GITNAME" != "$(git config --global user.name)" ]; then
     git config --global user.name "$INIT_GITNAME"

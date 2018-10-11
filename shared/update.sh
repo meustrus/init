@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source "${INIT_REPO:-$(dirname "$0")}/vars.sh"
+. "${INIT_REPO:-$(dirname "$0")}/vars.sh"
 
 copyIfExists() {
     [ -f "$1" ] && cp -f "$1" "$2"

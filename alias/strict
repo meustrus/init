@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# to be run from the init repo: `source alias/strict`
+# to be run from the init repo: `./alias/strict`
 
 sudo -v
 
@@ -17,4 +17,4 @@ INIT_GUI_CHROME=ON export INIT_GUI_CHROME
 INIT_GUI_FIREFOX=ON export INIT_GUI_FIREFOX
 INIT_GUI_VSCODE=ON export INIT_GUI_VSCODE
 
-source init.sh
+. init.sh

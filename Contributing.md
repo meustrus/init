@@ -15,11 +15,11 @@ Several scripts exist on `$PATH` (after the standard file header) to simplify us
     # Execute the "bin/script" script with args "arg1" and "arg2"
     script "arg1" "arg2"
     # Source the "cli/script.sh" script
-    source source-impl "cli/script.sh"
+    . source-impl "cli/script.sh"
     # Copy the "etc/resource" file to "$BENCH/resource"
     copy-impl "etc/resource" "$BENCH/resource"
     # Call the shared implementation (used from OS-specific implementations)
-    source source-shared cli/myself.sh
+    . source-shared cli/myself.sh
 
 ## Standard file header
 
@@ -29,7 +29,7 @@ Every `sh` script should start with a *variation* of following standard header:
 
     #!/bin/sh
 
-    source "${INIT_REPO:-$(dirname "$0")}/vars.sh"
+    . "${INIT_REPO:-$(dirname "$0")}/vars.sh"
 
 This tries to find the location `$INIT_REPO` based on how it was executed if it was not provided by the environment. Then it loads the environment variables and does any validation and transformation required before those variables can be used.
 
@@ -37,7 +37,7 @@ The standard header above is for scripts in the root of the repository. Finding 
 
     #!/bin/sh
 
-    source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
+    . "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
 Be sure to use the correct variation for the nesting level of your script.
 

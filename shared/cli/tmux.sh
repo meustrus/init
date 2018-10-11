@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
+. "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
 if [ -x "$(command -v tmux)" ]; then
     pushd "$BENCH/lib" >/dev/null 2>&1
