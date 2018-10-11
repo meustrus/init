@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 . "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
@@ -6,4 +6,4 @@ append "$1=\"$2\" export $1" "$HOME/.profile"
 append "$1=\"$2\" export $1" "$HOME/.bash_profile"
 append "$1=\"$2\" export $1" "$HOME/.zshenv"
 
-`$1="$2" export $1`
+export $1="$2"
