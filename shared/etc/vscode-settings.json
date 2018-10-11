@@ -31,5 +31,8 @@
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.iconTheme": "vscode-icons",
     "workbench.startupEditor": "none",
-    "window.zoomLevel": 1
+    "window.zoomLevel": 1,
+    "[scala]": {
+        "editor.tabSize": 2
+    }
 }
