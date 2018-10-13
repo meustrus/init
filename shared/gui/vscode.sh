@@ -13,7 +13,7 @@ if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
     git config --global difftool.code.cmd "code --wait --new-window --diff \$LOCAL \$REMOTE"
     git config --global mergetool.code.cmd "code --wait --new-window \$MERGED"
 
-    code \
+    yes 0 | code \
         --install-extension    formulahendry.auto-close-tag \
         --install-extension         stayfool.vscode-asciidoc \
         --install-extension        jetmartin.bats \
