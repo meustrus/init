@@ -4,8 +4,7 @@
 :: [TODO - ANSICON]
 
 :: Prompt
-:: [TODO]
-REM FOR /F %%A IN (`%WINDIR%\system32\hostname`) DO SET HOSTNAME=%%A
+FOR /F %%A IN ('hostname') DO SET HOSTNAME=%%A
 
 SET ISADMIN=NO
 SET PROMPTCHAR=$$
@@ -16,9 +15,7 @@ IF %errorLevel% == 0 (
 )
 
 :: [TODO - Git]
-:: [TODO - Hostname]
-REM PROMPT "$_cmd$S%USERNAME%@%HOSTNAME%$S$P$_%PROMPTCHAR%"
-PROMPT $_cmd$S%USERNAME%$S$P$_%PROMPTCHAR%$S
+PROMPT $_cmd$S%USERNAME%@%HOSTNAME%$S$P$_%PROMPTCHAR%$S
 
 
 :: Navigation

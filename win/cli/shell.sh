@@ -15,5 +15,5 @@ if [ -z "$AutoRun" ]; then
     reg add "HKEY_CURRENT_USER\\Software\\Microsoft\\Command Processor" //v AutoRun //t REG_SZ //d "$AutoRun"
 fi
 
-loadrc="@FOR %%f IN (\"$BENCH\\shellrc.d\\*.bat\") DO @CALL %%f"
-append "$loadrc" "$AutoRun"
+append "$(printf '@IF "%%AUTORAN%%"=="TRUE" EXIT /B\n@SET AUTORAN=TRUE')" "$AutoRun"
+append "@FOR %%f IN (\"$BENCH\\shellrc.d\\*.bat\") DO @CALL %%f" "$AutoRun"
