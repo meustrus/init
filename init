@@ -2,4 +2,8 @@
 
 . "${INIT_REPO:-$(dirname "$0")}/vars.sh"
 
-. source-impl "init.sh"
+if test -n "$1"; then
+    $*
+else
+    . source-impl "init.sh"
+fi
