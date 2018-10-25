@@ -7,6 +7,7 @@
 . source-impl "cli/shell.sh"
 . source-impl "cli/git.sh"
 . source-impl "cli/ssh.sh"
+. source-impl "cli/spacemacs.sh"
 . source-impl "cli/tmux.sh"
 
 . source-impl "lang/python.sh"
