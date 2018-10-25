@@ -45,6 +45,9 @@ if [ "$SUB_VAR_NAME" == "" ] || (
     elif ( printf '%s' "$OSTYPE" | grep -q msys 2>/dev/null ) && IMPL_PATH=`implpath win "$IMPL"`; then
         printf '%s\n' "$IMPL_PATH"
         exit 0
+    elif [ -f "/etc/debian_version" ] && IMPL_PATH=`implpath deb "$IMPL"`; then
+        printf '%s\n' "$IMPL_PATH"
+        exit 0
     elif IMPL_PATH=`implpath shared "$IMPL"`; then
         printf '%s\n' "$IMPL_PATH"
         exit 0
