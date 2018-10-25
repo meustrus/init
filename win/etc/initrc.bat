@@ -22,20 +22,23 @@ PROMPT $_cmd$S%USERNAME%$S$P$_%PROMPTCHAR%$S
 
 
 :: Navigation
-DOSKEY ls=ls -F -A
-DOSKEY ..=cd ..
-DOSKEY ...=cd ../..
-DOSKEY ....=cd ../../../
-DOSKEY .....=cd ../../../../
+DOSKEY ls=echo ls -F -A %%* 1^>^&2 ^& ls -F -A $*
+DOSKEY cdb=echo cd ^^^"^^%%BENCH^^%%^^^" 1^>^&2 ^& cd ^"%%BENCH%%^"
+DOSKEY ..=echo cd .. ^& cd ..
+DOSKEY ...=echo cd ../.. ^& cd ../..
+DOSKEY ....=echo cd ../../.. ^& cd ../../..
+DOSKEY .....=echo cd ../../../.. ^& cd ../../../..
+DOSKEY ......=echo cd ../../../../.. ^& cd ../../../../..
+DOSKEY .......=echo cd ../../../../../.. ^& cd ../../../../../..
+DOSKEY ........=echo cd ../../../../../../.. ^& cd ../../../../../../..
 
 
 :: Utility
 :: [TODO - withtimeout]
 
-DOSKEY npm-unlink=npm rm --global
-DOSKEY find-symlinks=find -L . -xtype l -ls
-DOSKEY reload=refreshenv ^& call %%BENCH%%\autoexec.bat
-
+DOSKEY npm-unlink=echo npm rm --global 1^>^&2 ^& npm rm --global
+DOSKEY find-symlinks=echo find -L . -xtype l -ls 1^>^&2 ^& find -L . -xtype l -ls
+DOSKEY reload=echo refreshenv ^^^& call ^^^"^^%%BENCH^^%%\autoexec.bat^^^" 1^>^&2 ^& refreshenv ^& call ^"%%BENCH%%\autoexec.bat^"
 
 :: Git
 
