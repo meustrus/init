@@ -20,6 +20,7 @@ if test -n "$COLORS" && test "$COLORS" -ge 8; then
         CWarn="$CReset$CEsc[38;5;11m"   export CWarn # Light Yellow
         CErr="$CReset$CEsc[38;5;202m"   export CErr  # Orange
         CEnv="$CReset$CEsc[38;5;13m"    export CEnv  # Light Magenta
+        CSide="$CReset$CEsc[38;5;244m"  export CSide # Bright Black (Gray)
     fi
 fi
 cprint() {
