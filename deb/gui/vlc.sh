@@ -2,4 +2,4 @@
 
 . "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
-sudo apt install vlc libdvdcss
+apt-install vlc libdvdcss

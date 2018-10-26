@@ -48,6 +48,8 @@ case "$PATH" in
             PATH="$INIT_REPO/mac/bin/:$INIT_REPO/shared/bin/:$PATH" export PATH
         elif printf '%s' "$OSTYPE" | grep -q msys 2>/dev/null; then
             PATH="$INIT_REPO/win/bin/:$INIT_REPO/shared/bin/:$PATH" export PATH
+        elif [ -f "/etc/debian_version" ]; then
+            PATH="$INIT_REPO/deb/bin/:$INIT_REPO/shared/bin/:$PATH" export PATH
         else
             PATH="$INIT_REPO/shared/bin/:$PATH" export PATH
         fi
