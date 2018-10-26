@@ -13,9 +13,8 @@ if ! ( SPACEMACSD_REMOTE=$(git -C "$SPACEMACSD" remote get-url origin 2>/dev/nul
         while test -d "$SPACEMACSD.bak$EMACS_BAK_N"; do
             EMACS_BAK_N=$(expr $EMACS_BAK_N + 1)
         done
-        if test -d "$SPACEMACSD"; then
-            mv "$SPACEMACSD" "$SPACEMACSD.bak$EMACS_BAK_N"
-        fi
+        printf 'Backing up existing spacemacs configuration\n\tin "%s"\n\tto "%s"\n' "$SPACEMACSD" "$SPACEMACSD.bak$EMACS_BAK_N" 1>&2
+        mv "$SPACEMACSD" "$SPACEMACSD.bak$EMACS_BAK_N"
     fi
 
     git clone "$SPACEMACS_REPO" "$SPACEMACSD"
