@@ -1,0 +1,13 @@
+#!/bin/sh
+
+. "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
+
+APP=$1
+
+if test "$INIT_FORUSER" != "ALL"; then
+    APPS_LOCATION="$HOME/Applications"
+else
+    APPS_LOCATION='/Applications'
+fi
+
+ln -s $APP $APPS_LOCATION
