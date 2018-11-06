@@ -4,6 +4,4 @@
 
 . source-shared "cli/shell.sh"
 
-brew-install gawk
-brew-install wget
-brew-install jq
+apt-install jq

@@ -6,6 +6,8 @@ setx HOME "$HOME"
 
 . source-shared "cli/shell.sh"
 
+choco install jq -y
+
 copy-impl "etc/initrc.bat" "$BENCH/shellrc.d/initrc.bat"
 
 AutoRun=$(reg query "HKEY_CURRENT_USER\\Software\\Microsoft\\Command Processor" //v AutoRun 2>/dev/null | tail -2 | head -1 | tr -s ' ' | cut -d " " -f 4-)
