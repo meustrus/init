@@ -4,7 +4,10 @@ powershell -c 'Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Wind
 # may need to restart here?
 
 # different for non-Intel; would need to check arch to support others
-UbuntuZipFile=$(mktemp).zip
-curl -L -o "$UbuntuZipFile" https://aka.ms/wsl-ubuntu-1804
-Expand-Archive "$UbuntuZipFile" "$BENCH/ubuntu1804"
+Debian=$(mktemp).zip
+curl -L -o "$Debian" https://aka.ms/wsl-debian-gnulinux
+unzip -oq "$Debian" -d "$BENCH/debian"
 
+printf '#!/bin/sh\n$BENCH/debian/debian.exe $*\n' > "$BENCH/bin/debian"
+printf '@%%BENCH%%\\debian\\debian.exe %%*\r\n' > "$BENCH/bin/debian.bat"
+chmod a+x "$BENCH/bin/debian"
