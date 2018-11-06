@@ -24,6 +24,7 @@ if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
         --install-extension christian-kohler.npm-intellisense \
         --install-extension          tootone.org-mode \
         --install-extension        ms-python.python \
+        --install-extension             2gua.rainbow-brackets \
         --install-extension      mechatroner.rainbow-csv \
         --install-extension         rebornix.ruby \
         --install-extension      itryapitsin.sbt \
