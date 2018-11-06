@@ -2,5 +2,10 @@
 
 . "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
-choco install vscode -y
-. source-impl "gui/vscode.sh"
+test -x "$(command -v code)" || choco install vscode -y
+. source-shared "gui/vscode.sh"
+
+cat "$APPDATA/Code/User/settings.json" \
+    | jq ".[\"terminal.integrated.shell.windows\"] = \"$(where bash | head -1 | sed -e 's/\\/\\\\/g')\"" \
+    > "$APPDATA/Code/User/settings.json"
+
