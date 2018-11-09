@@ -17,7 +17,7 @@ fi
 IMPL_BASE=`basename "$IMPL"`
 IMPL_VAR_NAME=${SUB_VAR_NAME}_`printf '%s' "$IMPL_BASE" | cut -f 1 -d '.' | awk '{print toupper($0)}'`
 
-if [ "$SUB_VAR_NAME" == "" ] || (
+if [ "$SUB_VAR_NAME" == "" ] || [ "$SUB_VAR_NAME" == "." ] || (
     ( [ "${!SUB_VAR_NAME}" != "OFF" ] && [ "${!IMPL_VAR_NAME}" != "OFF" ] ) && (
         [ "$INIT_ALL" == "ON" ] || [ "${!SUB_VAR_NAME}" == "ON" ] || [ "${!IMPL_VAR_NAME}" == "ON" ]
     )
