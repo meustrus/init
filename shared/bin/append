@@ -7,5 +7,5 @@ fi
 
 if ! [ -f "$2" ] || ! grep -qxF "$1" "$2" 2>/dev/null ; then
     touch "$2"
-    sh -c "printf \"\\n\\n%s\\n\" '$1' >> \"$2\""
+    printf "\n\n%s\n" "$1" >> "$2"
 fi
