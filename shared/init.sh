@@ -21,5 +21,6 @@
 . source-impl "gui/firefox.sh"
 . source-impl "gui/vlc.sh"
 . source-impl "gui/vscode.sh"
+. source-impl "gui/smerge.sh"
 . source-impl "gui/sourcetree.sh"
 . source-impl "gui/libreoffice.sh"
