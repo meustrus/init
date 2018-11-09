@@ -2,8 +2,15 @@
 
 . "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
-append "$1=\"$2\" export $1" "$HOME/.profile"
-append "$1=\"$2\" export $1" "$HOME/.bash_profile"
-append "$1=\"$2\" export $1" "$HOME/.zshenv"
+if ! test -f "$BENCH/.env.sh"; then
+    printf '#!/bin/sh\n\n' > "$BENCH/.env.sh"
+fi
+
+append ". '$BENCH/.env.sh'" "$HOME/.profile"
+append ". '$BENCH/.env.sh'" "$HOME/.bash_profile"
+append ". '$BENCH/.env.sh'" "$HOME/.zshenv"
+
+test -n "$(tail -c1 "$BENCH/.env.sh")" && printf '\n' >> "$BENCH/.env.sh"
+printf '%s\n' "$1=\"$2\" export $1" >> "$BENCH/.env.sh"
 
 export $1="$2"

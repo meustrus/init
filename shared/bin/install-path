@@ -15,6 +15,13 @@ for NewPath in "$@"; do
     fi
 done
 
-append "export PATH=\"$NewPaths:\$PATH\"" "$HOME/.profile"
-append "export PATH=\"$NewPaths:\$PATH\"" "$HOME/.bash_profile"
-append "export PATH=\"$NewPaths:\$PATH\"" "$HOME/.zprofile"
+if ! test -f "$BENCH/.env.sh"; then
+    printf '#!/bin/sh\n\n' > "$BENCH/.env.sh"
+fi
+
+append ". '$BENCH/.env.sh'" "$HOME/.profile"
+append ". '$BENCH/.env.sh'" "$HOME/.bash_profile"
+append ". '$BENCH/.env.sh'" "$HOME/.zshenv"
+
+test -n "$(tail -c1 "$BENCH/.env.sh")" && printf '\n' >> "$BENCH/.env.sh"
+printf 'PATH="%s:$PATH" export PATH\n' "$NewPaths" >> "$BENCH/.env.sh"
