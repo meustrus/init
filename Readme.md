@@ -30,7 +30,7 @@ After initialization, your system should have the following tools available, whe
 - Google Chrome [INIT_GUI_CHROME]
 - Mozilla Firefox [INIT_GUI_FIREFOX]
 - VLC Media Player [INIT_GUI_VLC]
-- SourceTree [INIT_GUI_SOURCETREE]
+- Sublime Merge [INIT_GUI_SMERGE]
 - LibreOffice [INIT_GUI_LIBREOFFICE]
 
 ## Options
