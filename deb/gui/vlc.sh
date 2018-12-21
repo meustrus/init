@@ -9,4 +9,4 @@ if ! test -f /etc/apt/sources.list.d/sublime-text.list; then
     sudo apt update
 fi
 
-apt-install vlc libdvdcss
+apt-install vlc libdvdcss2
