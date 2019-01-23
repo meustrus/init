@@ -11,17 +11,8 @@ for NewPath in "$@"; do
         PATH="$NewPath:$PATH" export PATH
         NewPaths=${NewPaths:+$NewPaths:}$NewPath
     else
-        printf 'ERROR: Tried to install-path with an empty argument\n'
+        printf 'ERROR: Tried to install-path with an empty argument\n' 1>&2
     fi
 done
 
-if ! test -f "$BENCH/.env.sh"; then
-    printf '#!/bin/sh\n\n' > "$BENCH/.env.sh"
-fi
-
-append ". '$BENCH/.env.sh'" "$HOME/.profile"
-append ". '$BENCH/.env.sh'" "$HOME/.bash_profile"
-append ". '$BENCH/.env.sh'" "$HOME/.zshenv"
-
-test -n "$(tail -c1 "$BENCH/.env.sh")" && printf '\n' >> "$BENCH/.env.sh"
-printf 'PATH="%s:$PATH" export PATH\n' "$NewPaths" >> "$BENCH/.env.sh"
+install-env "PATH=\"$NewPaths:\$PATH\" export PATH"

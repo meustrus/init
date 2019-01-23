@@ -1,7 +1,5 @@
 #!/bin/sh
 
 . "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
-
-setx $([ "$INIT_FORUSER" = ALL ] && printf '/M') "$1" "$2"
-
-`$1="$2" export $1`
+setx $(test "$INIT_FORUSER" = ALL && printf '%s' '-M') "$1" "$2"
+eval "$1=\"$2\" export $1"
