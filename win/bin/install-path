@@ -2,21 +2,37 @@
 
 . "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
+test "$INIT_FORUSER" = ALL \
+    && RegKey="HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment" \
+    || RegKey='HKEY_CURRENT_USER\\Environment'
+RegPath=`reg query "$RegKey" //v Path 2>/dev/null | tail -2 | head -1 | tr -s ' ' | cut -d " " -f 4-`
 NewPaths=
+
+path_missing() {
+    (
+        NewWinPath=$1
+        case ";$RegPath;" in
+            "*;$NewWinPath;*") return 0 ;;
+            *) return 1 ;;
+        esac
+    )
+}
 
 for NewPath in "$@"; do
     if [ -n "$NewPath" ]; then
         mkdir -p "$NewPath"
         NewPath=$(cd "$(dirname "$NewPath")" && pwd)/$(basename "$NewPath")
         PATH="$NewPath:$PATH" export PATH
-        NewPaths=${NewPaths:+$NewPaths;}`winpath "$NewPath"`
+
+        NewWinPath=`winpath "$NewPath"`
+        if path_missing "$NewWinPath"; then
+            NewPaths=${NewPaths:+$NewPaths;}$NewWinPath
+        fi
     else
         printf 'ERROR: Tried to install-path with an empty argument\n'
     fi
 done
 
-RegKey='HKEY_CURRENT_USER\\Environment'
-[ "$INIT_FORUSER" = ALL ] && RegKey="HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment"
-
-RegPath=$(reg query "$RegKey" //v Path 2>/dev/null | tail -2 | head -1 | tr -s ' ' | cut -d " " -f 4-)
-reg add "$RegKey" //v Path //t REG_EXPAND_SZ //d "$NewPaths;$RegPath" //f >/dev/null
+if test -n "$NewPaths"; then
+    reg add "$RegKey" //v Path //t REG_EXPAND_SZ //d "$NewPaths;$RegPath" //f >/dev/null
+fi
