@@ -2,13 +2,20 @@
 
 . "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
-RBENV_DIR=${RBENV_DIR:-$BENCH/lib/rbenv}
-git clone https://github.com/rbenv/rbenv.git "$RBENV_DIR"
-install-var RBENV_DIR "$RBENV_DIR"
-install-path "$RBENV_DIR/bin" "$RBENV_DIR/shims"
+RBENV_ROOT=${RBENV_ROOT:-$BENCH/lib/rbenv}
+if ! test -d "$RBENV_ROOT"; then
+    git clone https://github.com/rbenv/rbenv.git "$RBENV_ROOT"
+fi
 
-pushd "$RBENV_DIR" && ( ( src/configure && make -C src ) ; popd )
-"$RBENV_DIR/bin/rbenv" init
+mkdir -p "$RBENV_ROOT/shims" "$RBENV_ROOT/versions"
+. install-var RBENV_ROOT "$RBENV_ROOT"
+. install-path "$RBENV_ROOT/bin"
 
-mkdir -p "$RBENV_DIR/plugins"
-git clone https://github.com/rbenv/ruby-build.git "$RBENV_DIR/plugins/ruby-build"
+install-env 'eval $(rbenv init -)'
+
+pushd "$RBENV_ROOT" && ( ( src/configure && make -C src ) ; popd )
+
+mkdir -p "$RBENV_ROOT/plugins" "$RBENV_ROOT/cache"
+git clone https://github.com/rbenv/ruby-build.git "$RBENV_ROOT/plugins/ruby-build"
+
+chmod -R 755 "$RBENV_ROOT"
