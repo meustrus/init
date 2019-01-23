@@ -10,5 +10,12 @@ append ". '$BENCH/.env.sh'" "$HOME/.profile"
 append ". '$BENCH/.env.sh'" "$HOME/.bash_profile"
 append ". '$BENCH/.env.sh'" "$HOME/.zshenv"
 
+# ensure .env.sh ends in a newline
 test -n "$(tail -c1 "$BENCH/.env.sh")" && printf '\n' >> "$BENCH/.env.sh"
-printf '%s\n' "$@" >> "$BENCH/.env.sh"
+
+while test $# -gt 0; do
+    if ! grep -qxF "$1" "$BENCH/.env.sh" 2>/dev/null ; then
+        printf '%s\n' "$1" >> "$BENCH/.env.sh"
+    fi
+    shift
+done
