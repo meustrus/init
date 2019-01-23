@@ -11,7 +11,7 @@ mkdir -p "$RBENV_ROOT/shims" "$RBENV_ROOT/versions"
 . install-var RBENV_ROOT "$RBENV_ROOT"
 . install-path "$RBENV_ROOT/bin"
 
-install-env 'eval $(rbenv init -)'
+install-env 'eval "`rbenv init -`"'
 
 pushd "$RBENV_ROOT" && ( ( src/configure && make -C src ) ; popd )
 
