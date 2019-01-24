@@ -7,6 +7,6 @@ if ! test -f /etc/apt/sources.list.d/docker.list; then
     sudo apt update
 fi
 
-apt-install docker-ce
+apt-install docker-ce docker-compose
 
 sudo usermod -aG docker "$USER"
