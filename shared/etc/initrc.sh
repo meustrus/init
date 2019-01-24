@@ -144,9 +144,9 @@ gss() {
     if [ -n "$*" ]; then
         while [ -n "$*" ]; do
             if [ -d "$1" ]; then
-                pushd "$1" >/dev/null
+                pushd "$1" >/dev/null 2>&1
                 printf "%s %s\n" "$1" "`gss`"
-                popd >/dev/null
+                popd >/dev/null 2>&1
             else
                 printf "'%s' is not a directory\n" "$1" 1>&2
             fi

@@ -8,12 +8,12 @@ shift
 
 if [ "$TEST_SUBCOMMAND" == "init" ]; then
     mkdir -p "$TEST_ROOT/lib"
-    pushd "$TEST_ROOT/lib" > /dev/null
+    pushd "$TEST_ROOT/lib" >/dev/null 2>&1
     git submodule add https://github.com/bats-core/bats-core.git bats
     git submodule add https://github.com/capitalone/bash_shell_mock.git bash_shell_mock
     git submodule add https://github.com/ztombol/bats-support bats-support
     git submodule add https://github.com/ztombol/bats-assert bats-assert
-    popd > /dev/null
+    popd >/dev/null 2>&1
 fi
 
 IFS=$'\n'; git submodule update --init --recursive $(find "$TEST_ROOT"/lib -maxdepth 1 -type d)
