@@ -3,11 +3,6 @@
 . "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
 . source-shared "lang/nvm.sh"
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 
-brew-install nvm
-
-. $(brew --prefix nvm)/nvm.sh
-
-append "# NVM\n. \$(brew --prefix nvm)/nvm.sh" "$HOME/.profile"
-append "# NVM\n. \$(brew --prefix nvm)/nvm.sh" "$HOME/.bash_profile"
-append "# NVM\n. \$(brew --prefix nvm)/nvm.sh" "$HOME/.zshenv"
+. "$NVM_DIR/nvm.sh"
