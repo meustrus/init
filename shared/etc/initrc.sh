@@ -173,13 +173,13 @@ gss() {
         case "${line:0:2}" in
             \#\#)
                 declare `printf '%s' "${line:3}" | gawk '{
-                    match($0, /(No commits yet|Initial commit) on (.+)|no branch|([^. ]+)(\.\.\.([^ ]+))? *(\[(ahead ([0-9]+))?[, ]*(behind ([0-9]+))?[, ]*(gone)?\])?/, arr);
+                    match($0, /(No commits yet|Initial commit) on (.+)|no branch|((\.?[^. ])+)(\.\.\.([^ ]+))? *(\[(ahead ([0-9]+))?[, ]*(behind ([0-9]+))?[, ]*(gone)?\])?/, arr);
                     if (arr[2]) print "branch="arr[2]
                     if (arr[3]) print "branch="arr[3]
-                    if (arr[5]) print "remote="arr[5]
-                    if (arr[8]) print "ahead="arr[8]
-                    if (arr[10]) print "behind="arr[10]
-                    if (arr[11]) print "gone="arr[11]
+                    if (arr[6]) print "remote="arr[6]
+                    if (arr[9]) print "ahead="arr[9]
+                    if (arr[11]) print "behind="arr[11]
+                    if (arr[12]) print "gone="arr[12]
                 }'`
                 ;;
             \?\?) ((untracked++)) ;;
