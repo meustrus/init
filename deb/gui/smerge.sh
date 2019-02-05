@@ -11,5 +11,5 @@ fi
 
 apt-install libgtk2.0-0 sublime-merge
 
-printf '#!/bin/sh\n\nsublime-merge $*\n' > "$BENCH/bin/smerge"
+printf '#!/bin/sh\n\n/opt/sublime_merge/sublime_merge $*\n' > "$BENCH/bin/smerge"
 chmod a+x "$BENCH/bin/smerge"
