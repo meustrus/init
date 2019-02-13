@@ -54,6 +54,9 @@
     "[json]": {
         "editor.tabSize": 2
     },
+    "[markdown]": {
+        "editor.tabSize": 2
+    },
     "[plaintext]": {
         "editor.wordWrap": "on"
     },
