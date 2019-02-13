@@ -24,7 +24,6 @@
     "extensions.ignoreRecommendations": true,
     "gitlens.defaultDateFormat": "Y-MM-DD HH:mm:ss",
     "gitlens.hovers.enabled": false,
-    "gitlens.gitExplorer.files.layout": "list",
     "gitlens.views.repositories.files.layout": "list",
     "java.configuration.checkProjectSettingsExclusions": false,
     "java.configuration.updateBuildConfiguration": "automatic",
