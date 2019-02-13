@@ -26,19 +26,54 @@
     "gitlens.hovers.enabled": false,
     "gitlens.gitExplorer.files.layout": "list",
     "gitlens.views.repositories.files.layout": "list",
+    "java.configuration.checkProjectSettingsExclusions": false,
     "java.configuration.updateBuildConfiguration": "automatic",
     "java.errors.incompleteClasspath.severity": "ignore",
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.scrollback": 10000,
     "vsicons.dontShowNewVersionMessage": true,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.iconTheme": "vscode-icons",
     "workbench.startupEditor": "none",
     "window.zoomLevel": 1,
-    "[scala]": {
+    "[csharp]": {
+        "editor.tabSize": 4
+    },
+    "[groovy]": {
+        "editor.tabSize": 2
+    },
+    "[html]": {
+        "editor.tabSize": 2
+    },
+    "[java]": {
+        "editor.tabSize": 2
+    },
+    "[javascript]": {
+        "editor.tabSize": 2
+    },
+    "[json]": {
         "editor.tabSize": 2
     },
     "[plaintext]": {
         "editor.wordWrap": "on"
+    },
+    "[python]": {
+        "editor.tabSize": 4
+    },
+    "[ruby]": {
+        "editor.tabSize": 2
+    },
+    "[sbt]": {
+        "editor.tabSize": 2
+    },
+    "[scala]": {
+        "editor.tabSize": 2
+    },
+    "[xml]": {
+        "editor.tabSize": 2
+    },
+    "[yaml]": {
+        "editor.tabSize": 2
     }
 }
