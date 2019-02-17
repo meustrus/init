@@ -23,3 +23,5 @@
 . source-impl "gui/vscode.sh"
 . source-impl "gui/smerge.sh"
 . source-impl "gui/libreoffice.sh"
+
+. source-impl "srv/syncthing.sh"

@@ -12,6 +12,8 @@ elif [ "$SUB" == "gui" ]; then
     SUB_VAR_NAME=INIT_GUI
 elif [ "$SUB" == "lang" ]; then
     SUB_VAR_NAME=INIT_LANG
+elif [ "$SUB" == "srv" ]; then
+    SUB_VAR_NAME=INIT_SRV
 fi
 
 IMPL_BASE=`basename "$IMPL"`
