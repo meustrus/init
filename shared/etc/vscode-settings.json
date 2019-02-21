@@ -25,6 +25,7 @@
     "gitlens.defaultDateFormat": "Y-MM-DD HH:mm:ss",
     "gitlens.hovers.enabled": false,
     "gitlens.views.repositories.files.layout": "list",
+    "java.completion.importOrder": ["", "javax", "java", "#"],
     "java.configuration.checkProjectSettingsExclusions": false,
     "java.configuration.updateBuildConfiguration": "automatic",
     "java.errors.incompleteClasspath.severity": "ignore",
