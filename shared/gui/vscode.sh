@@ -19,6 +19,7 @@ if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
         --install-extension        jetmartin.bats \
         --install-extension       aaron-bond.better-comments \
         --install-extension        ms-vscode.csharp \
+        --install-extension     editorconfig.editorconfig \
         --install-extension          eamodio.gitlens \
         --install-extension         eriklynd.json-tools \
         --install-extension christian-kohler.npm-intellisense \
