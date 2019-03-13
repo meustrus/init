@@ -14,6 +14,7 @@
         "comments": false,
         "strings": false
     },
+    "editor.renderFinalNewline": true,
     "editor.renderWhitespace": "boundary",
     "editor.rulers": [72, 80, 100, 120],
     "editor.suggestOnTriggerCharacters": false,
