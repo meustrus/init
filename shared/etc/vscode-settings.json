@@ -20,6 +20,7 @@
     "editor.suggestOnTriggerCharacters": false,
     "editor.tabCompletion": "on",
     "editor.wordBasedSuggestions": false,
+    "emmet.showExpandedAbbreviation": "never",
     "explorer.confirmDragAndDrop": false,
     "explorer.openEditors.visible": 0,
     "extensions.ignoreRecommendations": true,
