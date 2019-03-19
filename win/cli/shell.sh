@@ -7,6 +7,7 @@ setx HOME "$HOME"
 . source-shared "cli/shell.sh"
 
 choco install jq -y
+choco install curl -y
 
 copy-impl "etc/initrc.bat" "$BENCH/shellrc.d/initrc.bat"
 
