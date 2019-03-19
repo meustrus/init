@@ -6,7 +6,7 @@
     "editor.autoIndent": true,
     "editor.codeLens": false,
     "editor.dragAndDrop": false,
-    "editor.fontFamily": "Source Code Pro, Consolas, 'Courier New', monospace",
+    "editor.fontFamily": "Source Code Pro, Consolas, monospace",
     "editor.formatOnPaste": false,
     "editor.formatOnType": true,
     "editor.quickSuggestions": {
@@ -16,7 +16,12 @@
     },
     "editor.renderFinalNewline": true,
     "editor.renderWhitespace": "boundary",
-    "editor.rulers": [72, 80, 100, 120],
+    "editor.rulers": [
+        72,
+        80,
+        100,
+        120
+    ],
     "editor.suggestOnTriggerCharacters": false,
     "editor.tabCompletion": "on",
     "editor.wordBasedSuggestions": false,
@@ -24,10 +29,12 @@
     "explorer.confirmDragAndDrop": false,
     "explorer.openEditors.visible": 0,
     "extensions.ignoreRecommendations": true,
-    "gitlens.defaultDateFormat": "Y-MM-DD HH:mm:ss",
-    "gitlens.hovers.enabled": false,
-    "gitlens.views.repositories.files.layout": "list",
-    "java.completion.importOrder": ["", "javax", "java", "#"],
+    "java.completion.importOrder": [
+        "",
+        "javax",
+        "java",
+        "#"
+    ],
     "java.configuration.checkProjectSettingsExclusions": false,
     "java.configuration.updateBuildConfiguration": "automatic",
     "java.errors.incompleteClasspath.severity": "ignore",
@@ -49,7 +56,7 @@
         "editor.tabSize": 2
     },
     "[java]": {
-        "editor.tabSize": 2
+        "editor.tabSize": 4
     },
     "[javascript]": {
         "editor.tabSize": 2
