@@ -14,27 +14,27 @@ if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
     git config --global mergetool.code.cmd "code --wait --new-window \$MERGED"
 
     yes 0 | code \
-        --install-extension    formulahendry.auto-close-tag \
-        --install-extension        jetmartin.bats \
-        --install-extension       aaron-bond.better-comments \
-        --install-extension        marlon407.code-groovy \
-        --install-extension        ms-vscode.csharp \
-        --install-extension      alexkrechik.cucumberautocomplete \
-        --install-extension     editorconfig.editorconfig \
-        --install-extension         eriklynd.json-tools \
-        --install-extension christian-kohler.npm-intellisense \
-        --install-extension        ms-python.python \
-        --install-extension             2gua.rainbow-brackets \
-        --install-extension      mechatroner.rainbow-csv \
-        --install-extension         rebornix.ruby \
-        --install-extension      itryapitsin.sbt \
-        --install-extension        scalameta.metals \
-        --install-extension      craigthomas.supersharp \
-        --install-extension         stayfool.vscode-asciidoc \
-        --install-extension  robertohuertasm.vscode-icons \
-        --install-extension          vscjava.vscode-java-pack \
-        --install-extension        ms-vscode.wordcount \
-        --install-extension   DotJoshJohnson.xml \
+        --install-extension     formulahendry.auto-close-tag \
+        --install-extension         jetmartin.bats \
+        --install-extension        aaron-bond.better-comments \
+        --install-extension         marlon407.code-groovy \
+        --install-extension         ms-vscode.csharp \
+        --install-extension       alexkrechik.cucumberautocomplete \
+        --install-extension      editorconfig.editorconfig \
+        --install-extension          eriklynd.json-tools \
+        --install-extension  christian-kohler.npm-intellisense \
+        --install-extension         ms-python.python \
+        --install-extension              2gua.rainbow-brackets \
+        --install-extension       mechatroner.rainbow-csv \
+        --install-extension          rebornix.ruby \
+        --install-extension       itryapitsin.sbt \
+        --install-extension         scalameta.metals \
+        --install-extension       craigthomas.supersharp \
+        --install-extension          stayfool.vscode-asciidoc \
+        --install-extension vscode-icons-team.vscode-icons \
+        --install-extension           vscjava.vscode-java-pack \
+        --install-extension         ms-vscode.wordcount \
+        --install-extension    DotJoshJohnson.xml \
         ;
 elif [ -x "$(command -v code)" ]; then
     printf 'ERROR: $APPDATA is not a valid directory, but Visual Studio Code init requires it\n' 1>&2
