@@ -20,5 +20,6 @@ fi
 
 brew update
 brew tap caskroom/cask
+brew tap caskroom/versions
 
 sudo launchctl config user path "/usr/local/bin:$PATH"
