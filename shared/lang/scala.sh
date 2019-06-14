@@ -4,7 +4,7 @@
 
 if [ -x "$(command -v sbt)" ]; then
     mkdir -p "$BENCH/lib/ivy2" "$BENCH/lib/sbt"
-    install-var SBT_OPTS "-Xmx3g -Xms512M -XX:MaxMetaspaceSize=2048M -XX:-UseGCOverheadLimit -Dsbt.ivy.home=\"$BENCH/lib/ivy2/\" -Divy.home=\"$BENCH/lib/ivy2/\" -Dsbt.boot.directory=\"$BENCH/lib/sbt/\""
+    . install-var SBT_OPTS "-Xmx3g -Xms512M -XX:MaxMetaspaceSize=2048M -XX:-UseGCOverheadLimit -Dsbt.ivy.home=\"$BENCH/lib/ivy2/\" -Divy.home=\"$BENCH/lib/ivy2/\" -Dsbt.boot.directory=\"$BENCH/lib/sbt/\""
 
     # credentials += Credentials(Path.userHome / ".sbt" / ".credentials") >> "$HOME/sbt/1.0/plugins/credentials.sbt"
     # echo addSbtPlugin("io.get-coursier" % "sbt-coursier" % "1.0.3") >> "$HOME/sbt/1.0/plugins/plugins.sbt"
