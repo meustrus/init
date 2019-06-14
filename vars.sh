@@ -1,6 +1,6 @@
 #!/bin/sh
 
-INIT_REPO=${INIT_REPO:-$(cd "$(dirname "$0")" && pwd)} export INIT_REPO
+INIT_REPO=$(cd "${INIT_REPO:-$(dirname "$0")}" && pwd) export INIT_REPO
 
 while ! [ -f "$INIT_REPO/vars.sh" ]; do
     if [ "$INIT_REPO" == "/" ]; then
