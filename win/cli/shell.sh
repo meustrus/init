@@ -6,6 +6,10 @@ setx HOME "$HOME"
 
 . source-shared "cli/shell.sh"
 
+# ensure that msys is in *front* of Windows programs in $PATH, but only for Bash consoles (cmd should be unaffected)
+install-env "PATH=\"/usr/bin:\$PATH\" export PATH"
+PATH="/usr/bin:$PATH" export PATH
+
 choco install jq -y
 choco install curl -y
 
