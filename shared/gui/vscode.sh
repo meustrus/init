@@ -14,7 +14,6 @@ if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
     git config --global mergetool.code.cmd "code --wait --new-window \$MERGED"
 
     yes 0 | code \
-        --install-extension     formulahendry.auto-close-tag \
         --install-extension         jetmartin.bats \
         --install-extension        aaron-bond.better-comments \
         --install-extension         marlon407.code-groovy \
