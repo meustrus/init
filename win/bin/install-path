@@ -12,8 +12,8 @@ path_missing() {
     (
         NewWinPath=$1
         case ";$RegPath;" in
-            "*;$NewWinPath;*") return 0 ;;
-            *) return 1 ;;
+            *";$NewWinPath;"*) return 1 ;;
+            *)  return 0 ;;
         esac
     )
 }
