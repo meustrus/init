@@ -32,7 +32,7 @@ cprint() {
 PROMPT_COMMAND="PS1=\"\\\\n\\\\[$CInfo\\\\]\\\\s \${debian_chroot:+(\$debian_chroot) }\
 \\\\[$CGood\\\\]\\\\u\\\\[$CSide\\\\]@\\\\[$CEnv\\\\]\\\\h\\\\[$CReset\\\\]\
  \\\\[$CSide\\\\]:\\\\[$CReset\\\\] \\\\[$CHelp\\\\]\\\\w\\\\[$CReset\\\\]\
- \`bracket-colors withtimeout 0.5 gss || printf \\\"\\\\[%s\\\\][???]\\\" \\\"$CErr\\\"\`\\\\[$CReset\\\\]\
+ \`bracketcolors withtimeout 0.5 gss || printf \\\"\\\\[%s\\\\][???]\\\" \\\"$CErr\\\"\`\\\\[$CReset\\\\]\
 \\\\n\\\\[$CSide\\\\]\\\\\$\\\\[$CReset\\\\] \""
 
 
@@ -54,9 +54,9 @@ echoAlias ........ 'cd ../../../../../../..'
 
 
 ## Utility
-bracket-colors() {
+bracketcolors() {
     if [ "$#" -lt 1 ]; then
-        printf 'Usage: bracket-colors cmd [args...]\n' 1>&2
+        printf 'Usage: bracketcolors cmd [args...]\n' 1>&2
         return 1
     fi
 
