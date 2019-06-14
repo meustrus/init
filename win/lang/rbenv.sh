@@ -10,8 +10,3 @@ fi
 mkdir -p "$RBENV_ROOT/shims" "$RBENV_ROOT/versions"
 . install-var RBENV_ROOT "$RBENV_ROOT"
 . install-path "$RBENV_ROOT/bin" "$RBENV_ROOT/shims"
-
-for batfile in "$RBENV_ROOT"/bin/*.bat "$RBENV_ROOT"/shims/*.bat; do
-    name=$(basename "$batfile" '.bat')
-    printf '%s\n' '#!/bin/sh' "cmd //c call '$batfile' \$*" > "$BENCH/bin/$name"
-done
