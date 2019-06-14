@@ -24,12 +24,12 @@ for NewPath in "$@"; do
         NewPath=$(cd "$(dirname "$NewPath")" && pwd)/$(basename "$NewPath")
         PATH="$NewPath:$PATH" export PATH
 
-        NewWinPath=`winpath "$NewPath"`
+        NewWinPath=`cygpath --windows "$NewPath"`
         if path_missing "$NewWinPath"; then
             NewPaths=${NewPaths:+$NewPaths;}$NewWinPath
         fi
     else
-        printf 'ERROR: Tried to install-path with an empty argument\n'
+        printf 'ERROR: Tried to install-path with an empty argument\n' 1>&2
     fi
 done
 
