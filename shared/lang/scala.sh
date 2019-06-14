@@ -10,5 +10,5 @@ if [ -x "$(command -v sbt)" ]; then
     # echo addSbtPlugin("io.get-coursier" % "sbt-coursier" % "1.0.3") >> "$HOME/sbt/1.0/plugins/plugins.sbt"
     # echo addSbtPlugin("org.ensime" % "sbt-ensime" % "2.5.1") >> "$HOME/sbt/1.0/plugins/plugins.sbt"
 else
-    printf 'ERROR: Scala not installed!\n' 1>&2
+    printf 'ERROR: SBT not installed!\n' 1>&2
 fi

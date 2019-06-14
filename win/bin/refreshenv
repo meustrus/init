@@ -1,0 +1,33 @@
+#!/bin/sh
+
+. "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
+
+EnvBat=$(mktemp).bat
+wscript "$INIT_REPO/win/bin/copyenv.vbs" "$EnvBat"
+
+while IFS="" read -r line; do
+    if test -n "$line"; then
+        VarName=$(printf '%s' "$line" \
+            | sed -n -e 's/^SET \([A-Za-z0-9_]\+\)=.*$/\1/p' \
+            | tr -d '\r' \
+        )
+        VarValue=$(printf '%s' "$line" \
+            | sed -n -e 's/^SET [A-Za-z0-9_]\+=\(.*\)$/\1/p' \
+            | tr -d '\r' \
+        )
+        VarValue=$(cmd //D //C "echo $(printf '%s' "$VarValue" | sed -e 's/&/^&/g')")
+        case "$VarName" in
+            PATH) VarValue=$(cygpath --path --unix "$VarValue") ;;
+            TMP)  VarValue=$TMP ;;
+        esac
+        VarValue=$(printf '%s' "$VarValue" \
+            | sed -e 's/\(["\\$`]\)/\\\1/g' \
+            # | sed -e 's/%\([A-Za-z0-9_]\+\)%/$\1/g' \
+        )
+        eval "$VarName=\"$VarValue\" export $VarName"
+    fi
+done < "$EnvBat"
+
+if test -f ~/.profile; then
+    . ~/.profile
+fi
