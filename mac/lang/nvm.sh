@@ -6,7 +6,7 @@
 
 brew-install nvm
 
-. $(brew --prefix nvm)/nvm.sh
+. "$(brew --prefix nvm)/nvm.sh"
 
 append "# NVM\n. \$(brew --prefix nvm)/nvm.sh" "$HOME/.profile"
 append "# NVM\n. \$(brew --prefix nvm)/nvm.sh" "$HOME/.bash_profile"
