@@ -5,6 +5,7 @@
 . source-impl "bench.sh"
 
 . source-impl "cli/shell.sh"
+. source-impl "cli/direnv.sh"
 . source-impl "cli/git.sh"
 . source-impl "cli/ssh.sh"
 . source-impl "cli/spacemacs.sh"

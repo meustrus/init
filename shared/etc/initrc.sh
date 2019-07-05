@@ -29,11 +29,17 @@ cprint() {
 }
 
 ## Prompt
-PROMPT_COMMAND="PS1=\"\\\\n\\\\[$CInfo\\\\]\\\\s \${debian_chroot:+(\$debian_chroot) }\
+INITRC_PROMPT_COMMAND="PS1=\"\\\\n\\\\[$CInfo\\\\]\\\\s \${debian_chroot:+(\$debian_chroot) }\
 \\\\[$CGood\\\\]\\\\u\\\\[$CSide\\\\]@\\\\[$CEnv\\\\]\\\\h\\\\[$CReset\\\\]\
  \\\\[$CSide\\\\]:\\\\[$CReset\\\\] \\\\[$CHelp\\\\]\\\\w\\\\[$CReset\\\\]\
  \`bracketcolors withtimeout 0.5 gss || printf \\\"\\\\[%s\\\\][???]\\\" \\\"$CErr\\\"\`\\\\[$CReset\\\\]\
 \\\\n\\\\[$CSide\\\\]\\\\\$\\\\[$CReset\\\\] \""
+case "$PROMPT_COMMAND" in
+    *"$INITRC_PROMPT_COMMAND"*) ;;
+    *)
+        PROMPT_COMMAND=$(printf '%s\n' "$PROMPT_COMMAND" "$INITRC_PROMPT_COMMAND")
+    ;;
+esac
 
 
 ## Setup
