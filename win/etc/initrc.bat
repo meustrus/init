@@ -4,8 +4,6 @@
 :: [TODO - ANSICON]
 
 :: Prompt
-FOR /F %%A IN ('hostname') DO SET HOSTNAME=%%A
-
 SET ISADMIN=NO
 SET PROMPTCHAR=$$
 NET SESSION >nul 2>&1
@@ -15,7 +13,7 @@ IF %errorLevel% == 0 (
 )
 
 :: [TODO - Git]
-PROMPT $_cmd$S%USERNAME%@%HOSTNAME%$S$P$_%PROMPTCHAR%$S
+PROMPT $_cmd$S%USERNAME%@%COMPUTERNAME%$S$P$_%PROMPTCHAR%$S
 
 
 :: Navigation
