@@ -28,7 +28,10 @@ if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
         --install-extension          rebornix.ruby \
         --install-extension       itryapitsin.sbt \
         --install-extension         scalameta.metals \
+        --install-extension              mtxr.sqltools \
         --install-extension       craigthomas.supersharp \
+        --install-extension             mauve.terraform \
+        --install-extension          karb0f0s.vbscript \
         --install-extension          stayfool.vscode-asciidoc \
         --install-extension vscode-icons-team.vscode-icons \
         --install-extension           vscjava.vscode-java-pack \
