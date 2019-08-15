@@ -18,7 +18,7 @@ PROMPT $_cmd$S%USERNAME%@%COMPUTERNAME%$S$P$_%PROMPTCHAR%$S
 
 :: Navigation
 DOSKEY ls=echo ls -F -A %%* 1^>^&2 ^& ls -F -A $*
-DOSKEY cdb=echo cd ^^^"^^%%BENCH^^%%^^^" 1^>^&2 ^& cd ^"%%BENCH%%^"
+DOSKEY cdb=echo cd/D ^^^"^^%%BENCH^^%%^^^" 1^>^&2 ^& cd/D ^"%%BENCH%%^"
 DOSKEY ..=echo cd .. ^& cd ..
 DOSKEY ...=echo cd ../.. ^& cd ../..
 DOSKEY ....=echo cd ../../.. ^& cd ../../..
