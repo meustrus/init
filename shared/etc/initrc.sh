@@ -146,6 +146,18 @@ echoAlias grt 'git rev-parse --show-toplevel'
 echoAlias gst 'git status $*'
 echoAlias gun 'printf "To redo this commit, run: git reset --soft " ; git rev-parse HEAD ; git reset --soft "HEAD~$1"'
 
+gurl() {
+    url=`git config --get remote.origin.url`
+
+    if printf '%s\n' "$url" | grep -q '^git@'; then
+        url=`printf '%s\n' "$url" | sed 's!^git@\([^:]\{0,\}\):\(.\{0,\}\)$!https://\1/\2!'`
+    fi
+
+    url=`printf '%s\n' "$url" | sed 's!\.git$!!'`
+
+    echo "$url/tree/`git rev-parse --abbrev-ref HEAD`"
+}
+
 gss() {
     if [ -n "$*" ]; then
         while [ -n "$*" ]; do
