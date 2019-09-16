@@ -23,6 +23,7 @@
     120
   ],
   "editor.suggestOnTriggerCharacters": false,
+  "editor.suggestSelection": "first",
   "editor.tabCompletion": "on",
   "editor.wordBasedSuggestions": false,
   "emmet.showExpandedAbbreviation": "never",
@@ -76,10 +77,16 @@
   "[ruby]": {
     "editor.tabSize": 2
   },
+  "[terraform]": {
+    "editor.tabSize": 2
+  },
   "[sbt]": {
     "editor.tabSize": 2
   },
   "[scala]": {
+    "editor.tabSize": 2
+  },
+  "[sql]": {
     "editor.tabSize": 2
   },
   "[xml]": {
