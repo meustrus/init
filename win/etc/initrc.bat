@@ -39,9 +39,9 @@ DOSKEY reload=echo refreshenv ^^^& call ^^^"^^%%BENCH^^%%\autoexec.bat^^^" 1^>^&
 
 DOSKEY gam=git commit --amend --no-edit $* ^& git status
 DOSKEY gas=git add --no-ignore-removal $* ^& git status
-DOSKEY chk=echo awk "/^[ \t]*[^ \t*]+[ \t]+[^ \t]+[ \t]+\[gone\]/ {print $^1}"
 DOSKEY gbg=git branch -v ^| awk "/^[ \t]*[^ \t*]+[ \t]+[^ \t]+[ \t]+\[gone\]/ {print $"1}
 DOSKEY gbp=git branch -v ^| awk "/^[ \t]*[^ \t*]+[ \t]+[^ \t]+[ \t]+\[gone\]/ {print $"1} ^| xargs git branch -d
+DOSKEY gci=git ls-files --others --ignored --exclude-standard --directory ^| head -c -1 ^| tr '\n' '\0' ^| xargs -0 -r rm -r
 DOSKEY  gd=git diff --break-rewrites --color $*
 DOSKEY gds=git diff --break-rewrites --color --staged $*
 DOSKEY gdx=git diff --break-rewrites --color --name-only --diff-filter=U $*
