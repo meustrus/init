@@ -15,6 +15,7 @@ if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
 
     yes 0 | code \
         --install-extension            ryu1kn.annotator \
+        --install-extension      adamhartford.vscode-base64 \
         --install-extension         jetmartin.bats \
         --install-extension        aaron-bond.better-comments \
         --install-extension         marlon407.code-groovy \
