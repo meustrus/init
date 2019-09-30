@@ -22,6 +22,7 @@ if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
         --install-extension         ms-vscode.csharp \
         --install-extension       alexkrechik.cucumberautocomplete \
         --install-extension      editorconfig.editorconfig \
+        --install-extension            sohibe.java-generate-setters-getters \
         --install-extension          eriklynd.json-tools \
         --install-extension  christian-kohler.npm-intellisense \
         --install-extension         ms-python.python \
@@ -29,12 +30,15 @@ if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
         --install-extension       mechatroner.rainbow-csv \
         --install-extension          rebornix.ruby \
         --install-extension       itryapitsin.sbt \
+        --install-extension            yzhang.markdown-all-in-one \
         --install-extension         scalameta.metals \
         --install-extension              mtxr.sqltools \
         --install-extension       craigthomas.supersharp \
         --install-extension             mauve.terraform \
+        --install-extension           flesler.url-encode \
         --install-extension          karb0f0s.vbscript \
         --install-extension          stayfool.vscode-asciidoc \
+        --install-extension         slevesque.vscode-hexdump \
         --install-extension vscode-icons-team.vscode-icons \
         --install-extension           vscjava.vscode-java-pack \
         --install-extension         ms-vscode.wordcount \
