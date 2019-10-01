@@ -148,7 +148,9 @@ echoAlias gst 'git status $*'
 echoAlias gun 'printf "To redo this commit, run: git reset --soft " ; git rev-parse HEAD ; git reset --soft "HEAD~$1"'
 
 gurl() {
-    url=`git config --get remote.origin.url`
+    branch=`git name-rev --name-only HEAD`
+    remote=`git config branch."$branch".remote`
+    url=`git config --get remote."$remote".url`
 
     if printf '%s\n' "$url" | grep -q '^git@'; then
         url=`printf '%s\n' "$url" | sed 's!^git@\([^:]\{0,\}\):\(.\{0,\}\)$!https://\1/\2!'`
@@ -156,7 +158,7 @@ gurl() {
 
     url=`printf '%s\n' "$url" | sed 's!\.git$!!'`
 
-    echo "$url/tree/`git rev-parse --abbrev-ref HEAD`"
+    printf "%s/tree/%s\n" "$url" "`git rev-parse --abbrev-ref HEAD`"
 }
 
 gss() {
