@@ -150,14 +150,7 @@ echoAlias gun 'printf "To redo this commit, run: git reset --soft " ; git rev-pa
 gurl() {
     branch=`git name-rev --name-only HEAD`
     remote=`git config branch."$branch".remote`
-    url=`git config --get remote."$remote".url`
-
-    if printf '%s\n' "$url" | grep -q '^git@'; then
-        url=`printf '%s\n' "$url" | sed 's!^git@\([^:]\{0,\}\):\(.\{0,\}\)$!https://\1/\2!'`
-    fi
-
-    url=`printf '%s\n' "$url" | sed 's!\.git$!!'`
-
+    url=`git config remote."$remote".url | sed 's!^git@\([^:]\{0,\}\):\(.\{0,\}\)$!https://\1/\2!' | sed 's!\.git$!!'`
     printf "%s/tree/%s\n" "$url" "`git rev-parse --abbrev-ref HEAD`"
 }
 
