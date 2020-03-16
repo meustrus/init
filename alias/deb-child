@@ -76,6 +76,7 @@ setupopendns() {
     sudo systemctl status resolvconf.service
 
     while test "$answer" != 'n'; do
+        answer=
         while test "$answer" != 'y' && test "$answer" != 'n'; do
             printf '%s' 'Attempt to start resolvconf? (y/n) '
             read -n1 answer
