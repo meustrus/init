@@ -89,10 +89,10 @@ setupopendns() {
         fi
     done
 
-    sudo printf '%s\n' \
+    printf '%s\n' \
         'nameserver 208.67.222.222' \
         'nameserver 208.67.220.220' \
-        >> /etc/resolvconf/resolv.conf.d/head
+        | sudo tee -a /etc/resolvconf/resolv.conf.d/head
 
 }
 
