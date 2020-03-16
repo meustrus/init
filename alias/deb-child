@@ -1,0 +1,97 @@
+#!/bin/sh
+
+init() {
+    sudo apt install git
+
+    git config --global user.email meustrus@gmail.com
+
+    mkdir -p ~/bench/repo
+    cd ~/bench/repo
+    git clone https://github.com/meustrus/init.git
+    cd init
+
+    INIT_CLI_SHELL=ON \
+    INIT_CLI_GIT=ON \
+    INIT_CLI_SSH=ON \
+    INIT_CLI_SPACEMACS=ON \
+    INIT_CLI_TMUX=ON \
+    INIT_LANG_PYTHON=ON \
+    INIT_LANG_JAVA=ON \
+    INIT_GUI_VLC=ON \
+    INIT_GUI_VSCODE=ON \
+    INIT_GUI_SMERGE=ON \
+    INIT_GUI_LIBREOFFICE=ON \
+    INIT_SRV_SYNCTHING=ON \
+    ./init bash deb/init.sh
+
+    sudo apt remove firefox-esr
+
+    sudo apt install kolourpaint4 gimp scratch clementine gnustep-gui-runtime
+}
+
+
+setupmc() {
+    URL=https://launcher.mojang.com/download/Minecraft.deb &&
+    TEMP_DEB="$(mktemp).deb" &&
+    wget -O "$TEMP_DEB" "$URL" &&
+    sudo apt install "$TEMP_DEB" &&
+    rm -f "$TEMP_DEB"
+}
+
+# wireless install for AC600
+setupac600() {
+    sudo apt-get install dkms
+
+    sudo git clone https://github.com/xtknight/mt7610u-linksys-ae6000-wifi-fixes.git /usr/src/mt7610u_sta-1.0
+    sudo dkms add mt7610u_sta/1.0
+    sudo dkms build mt7610u_sta/1.0
+    sudo dkms install mt7610u_sta/1.0
+
+    printf '%s\n' \
+        'Run "sudo shutdown -r now", then:' \
+        '\tRun "/sbin/iwconfig"' \
+        '\tFind interface, then enter it in the Wicd GUI' \
+        ;
+}
+
+
+
+localsetupssh() {
+    # from local, not remote
+    cat ~/.ssh/id_ed25519.pub | ssh $HOST "cat >> ~/.ssh/authorized_keys"
+    # then, from remote, set "PasswordAuthentication no" in /etc/ssh/sshd_config
+}
+
+
+setupmediasync() {
+    printf '%s\n' 'Password should be "media"'
+    sudo adduser media
+    sudo systemctl enable syncthing@media.service
+}
+
+
+setupopendns() {
+    sudo apt update
+    sudo apt install resolvconf
+    sudo systemctl status resolvconf.service
+
+    while test "$answer" != 'n'; do
+        while test "$answer" != 'y' && test "$answer" != 'n'; do
+            printf '%s' 'Attempt to start resolvconf? (y/n) '
+            read -n1 answer
+        done
+
+        if test "$answer" == 'y'; then
+            sudo systemctl start resolvconf.service
+            sudo systemctl enable resolvconf.service
+            sudo systemctl status resolvconf.service
+        fi
+    done
+
+    sudo printf '%s\n' \
+        'nameserver 208.67.222.222' \
+        'nameserver 208.67.220.220' \
+        >> /etc/resolvconf/resolv.conf.d/head
+
+}
+
