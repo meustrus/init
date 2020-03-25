@@ -30,6 +30,26 @@ init() {
 }
 
 
+setupautoupdate() {
+    sudo apt install unattended-upgrades apt-listchanges
+    printf '%s\n' \
+        '// Enable the update/upgrade script (0=disable)' \
+        'APT::Periodic::Enable "1";' \
+        '// Do "apt-get update" automatically every n-days (0=disable)' \
+        'APT::Periodic::UpdatePackage-Lists "1";' \
+        '// Do "apt-get upgrade --download-only" every n-days (0=disable)' \
+        'APT::Periodic::Download-Upgradeable-Packages "1";' \
+        '// Run the "unattended-upgrade" security upgrade script' \
+        '// every n-days (0=disabled)' \
+        '// Requires the package "unattended-upgrades" and will write' \
+        '// a log in /var/log/unattended-upgrades' \
+        'APT::Periodic::Unattended-Upgrade "1";' \
+        '// Do "apt-get autoclean" every n-days (0=disable)' \
+        'APT::Periodic::AutocleanInterval "7";' \
+        | sudo tee /etc/apt/apt.conf.d/02periodic > /dev/null
+}
+
+
 setupmc() {
     URL=https://launcher.mojang.com/download/Minecraft.deb &&
     TEMP_DEB="$(mktemp).deb" &&
