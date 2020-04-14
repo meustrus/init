@@ -46,6 +46,7 @@ if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
         --install-extension         slevesque.vscode-hexdump \
         --install-extension vscode-icons-team.vscode-icons \
         --install-extension           vscjava.vscode-java-pack \
+        --install-extension            zxh404.vscode-proto3 \
         --install-extension         ms-vscode.wordcount \
         --install-extension    DotJoshJohnson.xml \
         ;
