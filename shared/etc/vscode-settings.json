@@ -25,6 +25,10 @@
   "explorer.confirmDragAndDrop": false,
   "explorer.openEditors.visible": 0,
   "extensions.ignoreRecommendations": true,
+  "go.lintTool": "golangci-lint",
+  "go.lintFlags": [
+    "--fast"
+  ],
   "java.completion.importOrder": [
     "",
     "javax",
@@ -46,6 +50,11 @@
   "workbench.startupEditor": "none",
   "window.zoomLevel": 1,
   "[csharp]": {
+    "editor.tabSize": 4
+  },
+  "[go]": {
+    "editor.formatOnSave": false,
+    "editor.insertSpaces": false,
     "editor.tabSize": 4
   },
   "[groovy]": {
