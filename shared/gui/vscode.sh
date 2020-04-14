@@ -21,6 +21,7 @@ if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
         --install-extension         ms-vscode.csharp \
         --install-extension       alexkrechik.cucumberautocomplete \
         --install-extension      editorconfig.editorconfig \
+        --install-extension             npxms.hide-gitignored \
         --install-extension            sohibe.java-generate-setters-getters \
         --install-extension          eriklynd.json-tools \
         --install-extension            yzhang.markdown-all-in-one \
