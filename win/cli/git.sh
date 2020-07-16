@@ -4,5 +4,5 @@
 
 . source-shared "cli/git.sh"
 
-git config --global core.autocrlf true
+git config --global core.autocrlf input
 git config --global core.fscache true
