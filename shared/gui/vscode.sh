@@ -17,11 +17,15 @@ if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
         --install-extension            ryu1kn.annotator \
         --install-extension         jetmartin.bats \
         --install-extension        aaron-bond.better-comments \
+        --install-extension           wmaurer.change-case \
         --install-extension         marlon407.code-groovy \
         --install-extension         ms-vscode.csharp \
         --install-extension       alexkrechik.cucumberautocomplete \
         --install-extension      editorconfig.editorconfig \
         --install-extension          mhutchie.git-graph \
+        --install-extension           eamodio.gitlens \
+        --install-extension            golang.go \
+        --install-extension         ms-vscode.hexeditor \
         --install-extension             npxms.hide-gitignored \
         --install-extension            sohibe.java-generate-setters-getters \
         --install-extension          eriklynd.json-tools \
@@ -35,10 +39,12 @@ if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
         --install-extension             humao.rest-client \
         --install-extension          rebornix.ruby \
         --install-extension       itryapitsin.sbt \
+        --install-extension               ban.spellright \
         --install-extension              mtxr.sqltools \
+        --install-extension              mtxr.sqltools-driver-sqlite \
         --install-extension       craigthomas.supersharp \
         --install-extension              jock.svg \
-        --install-extension             mauve.terraform \
+        --install-extension         hashicorp.terraform \
         --install-extension           flesler.url-encode \
         --install-extension          karb0f0s.vbscript \
         --install-extension          stayfool.vscode-asciidoc \

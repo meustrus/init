@@ -1,12 +1,14 @@
 {
   "breadcrumbs.enabled": true,
+  "diffEditor.renderSideBySide": false,
   "editor.acceptSuggestionOnCommitCharacter": false,
   "editor.acceptSuggestionOnEnter": "off",
   "editor.autoClosingBrackets": "never",
-  "editor.autoIndent": true,
+  "editor.autoIndent": "brackets",
   "editor.dragAndDrop": false,
   "editor.fontFamily": "Source Code Pro, Consolas, monospace",
   "editor.formatOnPaste": false,
+  "editor.formatOnSave": false,
   "editor.formatOnType": true,
   "editor.renderFinalNewline": true,
   "editor.renderWhitespace": "boundary",
@@ -25,10 +27,8 @@
   "explorer.confirmDragAndDrop": false,
   "explorer.openEditors.visible": 0,
   "extensions.ignoreRecommendations": true,
-  "go.lintTool": "golangci-lint",
-  "go.lintFlags": [
-    "--fast"
-  ],
+  "gitlens.codeLens.enabled": false,
+  "go.toolsManagement.autoUpdate": true,
   "java.completion.importOrder": [
     "",
     "javax",
@@ -40,15 +40,20 @@
   "java.errors.incompleteClasspath.severity": "ignore",
   "java.format.settings.profile": "onap-java-formatter",
   "java.format.settings.url": "https://gerrit.onap.org/r/gitweb?p=aai/aai-common.git;a=blob_plain;f=onap-java-formatter.xml;hb=refs/heads/master",
+  "java.semanticHighlighting.enabled": true,
+  "redhat.telemetry.enabled": false,
+  "spellright.notificationClass": "information",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.scrollback": 10000,
   "vsicons.dontShowNewVersionMessage": true,
+  "window.title": "${rootName}${separator}${dirty}${activeEditorShort}${separator}${appName}",
   "workbench.editor.enablePreviewFromQuickOpen": false,
+  "workbench.editor.revealIfOpen": true,
+  "workbench.editor.untitled.hint": "hidden",
   "workbench.iconTheme": "vscode-icons",
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
-  "window.zoomLevel": 1,
   "[csharp]": {
     "editor.tabSize": 4
   },
@@ -85,7 +90,8 @@
     "editor.tabSize": 2
   },
   "[terraform]": {
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "editor.wordWrap": "on"
   },
   "[sbt]": {
     "editor.tabSize": 2
