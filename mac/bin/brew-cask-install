@@ -3,4 +3,4 @@
 . "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
 ARGS=$([ "$INIT_FORUSER" != "ALL" ] && printf '--appdir="%s"' "$HOME/Applications")
-brew cask list "$1" >/dev/null 2>&1 || brew cask install $ARGS "$1"
+brew list --cask "$1" >/dev/null 2>&1 || brew install --cask $ARGS "$1"

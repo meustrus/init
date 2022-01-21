@@ -19,7 +19,7 @@ if ! [ -x "$(command -v brew)" ]; then
 fi
 
 brew update
-brew tap caskroom/cask
-brew tap caskroom/versions
+brew tap homebrew/cask
+brew tap homebrew/cask-versions
 
 # sudo launchctl config user path "/usr/local/bin:$PATH"

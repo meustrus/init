@@ -10,4 +10,4 @@ if printf '%s' "$INIT_SSHCOPY" | grep -q GITHUB 2>/dev/null; then
     open "https://github.com/settings/keys"
     read -p "Press any key to continue..." -n 1 -s
     printf "\n\n"
-}
+fi
