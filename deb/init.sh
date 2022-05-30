@@ -6,4 +6,4 @@ sudo apt update
 sudo DEBIAN_FRONTEND=noninteractive apt-get -yq upgrade
 apt-install curl gawk
 
-. source-shared "init.sh"
+. "$INIT_REPO/shared/init.sh"

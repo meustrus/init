@@ -4,4 +4,4 @@
 
 brew-install tmux
 
-. source-shared "cli/tmux.sh"
+. "$INIT_REPO/shared/cli/tmux.sh"

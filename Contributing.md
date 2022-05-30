@@ -10,16 +10,16 @@ With few exceptions, every init script must be enabled with environment variable
 
 Basically, when you call into `init.sh`, it uses `get-impl-path` to find the appropriate implementation for your system. `get-impl-path` will check the OS, and if there is a version of the specific init script for that OS, that script will be executed. Otherwise, the `shared` version will be executed.
 
-Several scripts exist on `$PATH` (after the standard file header) to simplify using `get-impl-path`:
+Several scripts exist on `$PATH` (after the standard file header) to ~~simplify~~ using `get-impl-path`:
 
     # Execute the "bin/script" script with args "arg1" and "arg2"
     script "arg1" "arg2"
     # Source the "cli/script.sh" script
-    . source-impl "cli/script.sh"
+    . `get-impl-path "cli/script.sh"`
     # Copy the "etc/resource" file to "$BENCH/resource"
     copy-impl "etc/resource" "$BENCH/resource"
     # Call the shared implementation (used from OS-specific implementations)
-    . source-shared cli/myself.sh
+    . "$INIT_REPO/shared/cli/myself.sh"
 
 ## Standard file header
 

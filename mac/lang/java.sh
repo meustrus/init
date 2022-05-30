@@ -5,4 +5,4 @@
 brew-cask-install java8
 brew-cask-install maven
 
-. source-shared "lang/java.sh"
+. "$INIT_REPO/shared/lang/java.sh"

@@ -5,4 +5,4 @@
 brew-install scala
 brew-install sbt
 
-. source-shared "lang/scala.sh"
+. "$INIT_REPO/shared/lang/scala.sh"

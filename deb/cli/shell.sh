@@ -2,6 +2,6 @@
 
 . "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
-. source-shared "cli/shell.sh"
+. "$INIT_REPO/shared/cli/shell.sh"
 
 apt-install jq

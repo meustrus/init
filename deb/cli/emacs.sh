@@ -4,4 +4,4 @@
 
 apt-install emacs
 
-. source-shared "cli/emacs.sh"
+. "$INIT_REPO/shared/cli/emacs.sh"

@@ -5,4 +5,4 @@
 apt-install default-jdk
 apt-install maven
 
-. source-shared "lang/java.sh"
+. "$INIT_REPO/shared/lang/java.sh"

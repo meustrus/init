@@ -3,7 +3,7 @@
 . "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
 test -x "$(command -v code)" || choco install vscode -y
-. source-shared "gui/vscode.sh"
+. "$INIT_REPO/shared/gui/vscode.sh"
 
 cat "$APPDATA/Code/User/settings.json" \
     | jq ".[\"terminal.integrated.automationShell.windows\"] = \"C:\\\\Windows\\\\System32\\\\cmd.exe\"" \

@@ -2,4 +2,4 @@
 
 . "${INIT_REPO:-$(dirname "$0")}/vars.sh"
 
-APPDATA="$HOME/.config" . source-shared "update.sh"
+APPDATA="$HOME/.config" . "$INIT_REPO/shared/update.sh"

@@ -6,4 +6,4 @@ choco install emacs64 -y
 mkdir -p "$HOME/.emacs.d/server"
 takeown //f $(cygpath --windows "$HOME/.emacs.d/server")
 
-. source-shared "cli/emacs.sh"
+. "$INIT_REPO/shared/cli/emacs.sh"

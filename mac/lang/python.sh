@@ -4,4 +4,4 @@
 
 brew-install python@2
 
-. source-shared "lang/python.sh"
+. "$INIT_REPO/shared/lang/python.sh"

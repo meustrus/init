@@ -11,4 +11,4 @@ fi
 
 apt-install libgl1-mesa-glx libasound2 libgtk2.0-0 libxss1 code
 
-APPDATA="$HOME/.config" . source-shared "gui/vscode.sh"
+APPDATA="$HOME/.config" . "$INIT_REPO/shared/gui/vscode.sh"

@@ -2,6 +2,6 @@
 
 . "${INIT_REPO:-$(dirname "$0")/..}/vars.sh"
 
-. source-impl "brew.sh"
-. source-shared "init.sh"
-. source-impl "gui/caffeine.sh"
+. `get-impl-path "brew.sh"`
+. "$INIT_REPO/shared/init.sh"
+. `get-impl-path "gui/caffeine.sh"`

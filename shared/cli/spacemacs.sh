@@ -5,7 +5,7 @@
 SPACEMACSD="$HOME/.emacs.d/spacemacs"
 SPACEMACS_REPO='https://github.com/syl20bnr/spacemacs'
 
-INIT_CLI_EMACS=ON . source-impl "cli/emacs.sh"
+INIT_CLI_EMACS=ON . `get-impl-path "cli/emacs.sh"`
 
 if ! ( SPACEMACSD_REMOTE=$(git -C "$SPACEMACSD" remote get-url origin 2>/dev/null) && test "$SPACEMACSD_REMOTE" = "$SPACEMACS_REPO" ); then
     if test -d "$SPACEMACSD"; then

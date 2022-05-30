@@ -5,4 +5,4 @@
 printf "Skipping tmux on Windows\n"
 
 # choco install tmux -y
-# . source-shared "cli/tmux.sh"
+# . "$INIT_REPO/shared/cli/tmux.sh"

@@ -4,4 +4,4 @@
 
 apt-install python2.7 python-pip
 
-. source-shared "lang/python.sh"
+. "$INIT_REPO/shared/lang/python.sh"

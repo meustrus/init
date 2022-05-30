@@ -2,27 +2,27 @@
 
 . "${INIT_REPO:-$(dirname "$0")/..}/vars.sh"
 
-. source-impl "bench.sh"
+. `get-impl-path "bench.sh"`
 
-. source-impl "cli/shell.sh"
-. source-impl "cli/direnv.sh"
-. source-impl "cli/git.sh"
-. source-impl "cli/ssh.sh"
-. source-impl "cli/spacemacs.sh"
-. source-impl "cli/tmux.sh"
+. `get-impl-path "cli/shell.sh"`
+. `get-impl-path "cli/direnv.sh"`
+. `get-impl-path "cli/git.sh"`
+. `get-impl-path "cli/ssh.sh"`
+. `get-impl-path "cli/spacemacs.sh"`
+. `get-impl-path "cli/tmux.sh"`
 
-. source-impl "lang/python.sh"
-. source-impl "lang/java.sh"
-. source-impl "lang/nodejs.sh"
-. source-impl "lang/ruby.sh"
-. source-impl "lang/scala.sh"
+. `get-impl-path "lang/python.sh"`
+. `get-impl-path "lang/java.sh"`
+. `get-impl-path "lang/nodejs.sh"`
+. `get-impl-path "lang/ruby.sh"`
+. `get-impl-path "lang/scala.sh"`
 
-. source-impl "gui/multiclipboard.sh"
-. source-impl "gui/chrome.sh"
-. source-impl "gui/firefox.sh"
-. source-impl "gui/vlc.sh"
-. source-impl "gui/vscode.sh"
-. source-impl "gui/smerge.sh"
-. source-impl "gui/libreoffice.sh"
+. `get-impl-path "gui/multiclipboard.sh"`
+. `get-impl-path "gui/chrome.sh"`
+. `get-impl-path "gui/firefox.sh"`
+. `get-impl-path "gui/vlc.sh"`
+. `get-impl-path "gui/vscode.sh"`
+. `get-impl-path "gui/smerge.sh"`
+. `get-impl-path "gui/libreoffice.sh"`
 
-. source-impl "srv/syncthing.sh"
+. `get-impl-path "srv/syncthing.sh"`

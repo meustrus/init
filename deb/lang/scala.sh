@@ -9,4 +9,4 @@ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89
 sudo apt-get update
 apt-install sbt
 
-. source-shared "lang/scala.sh"
+. "$INIT_REPO/shared/lang/scala.sh"

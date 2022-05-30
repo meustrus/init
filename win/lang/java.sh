@@ -5,4 +5,4 @@
 choco install jdk8 -y
 choco install maven -y
 
-. source-shared "lang/java.sh"
+. "$INIT_REPO/shared/lang/java.sh"

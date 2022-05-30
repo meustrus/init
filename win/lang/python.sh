@@ -4,4 +4,4 @@
 
 choco install python2 -y --package-parameters="/InstallDir:$BENCH\\lib\\python2"
 
-. source-shared "lang/python.sh"
+. "$INIT_REPO/shared/lang/python.sh"

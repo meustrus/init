@@ -5,5 +5,5 @@
 if test -n "$1"; then
     $*
 else
-    . source-impl "init.sh"
+    . `get-impl-path "init.sh"`
 fi
