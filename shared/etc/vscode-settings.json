@@ -10,7 +10,8 @@
   "editor.formatOnPaste": false,
   "editor.formatOnSave": false,
   "editor.formatOnType": true,
-  "editor.renderFinalNewline": true,
+  "editor.guides.bracketPairs": true,
+  "editor.renderFinalNewline": "on",
   "editor.renderWhitespace": "boundary",
   "editor.rulers": [
     72,
@@ -32,8 +33,13 @@
     "**/.metals": true,
     "**/.ammonite": true
   },
+  "gitlens.advanced.messages": {
+    "suppressRebaseSwitchToTextWarning": true
+  },
   "gitlens.codeLens.enabled": false,
+  "gitlens.showWelcomeOnInstall": false,
   "go.toolsManagement.autoUpdate": true,
+  "haskell.manageHLS": "GHCup",
   "java.completion.importOrder": [
     "",
     "javax",
@@ -54,6 +60,7 @@
   "terminal.integrated.scrollback": 10000,
   "vsicons.dontShowNewVersionMessage": true,
   "window.title": "${rootName}${separator}${dirty}${activeEditorShort}${separator}${appName}",
+  "window.zoomLevel": 1,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.editor.revealIfOpen": true,
   "workbench.editor.untitled.hint": "hidden",
@@ -90,7 +97,8 @@
     "editor.wordWrap": "on"
   },
   "[python]": {
-    "editor.tabSize": 4
+    "editor.tabSize": 4,
+    "editor.formatOnType": true
   },
   "[ruby]": {
     "editor.tabSize": 2
