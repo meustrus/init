@@ -62,3 +62,5 @@ pc.stdout.log
 # Scala Metals
 .bloop
 .metals
+.bsp
+metals.sbt

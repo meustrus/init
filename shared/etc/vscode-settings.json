@@ -27,6 +27,11 @@
   "explorer.confirmDragAndDrop": false,
   "explorer.openEditors.visible": 0,
   "extensions.ignoreRecommendations": true,
+  "files.watcherExclude": {
+    "**/.bloop": true,
+    "**/.metals": true,
+    "**/.ammonite": true
+  },
   "gitlens.codeLens.enabled": false,
   "go.toolsManagement.autoUpdate": true,
   "java.completion.importOrder": [
@@ -41,6 +46,7 @@
   "java.format.settings.profile": "onap-java-formatter",
   "java.format.settings.url": "https://gerrit.onap.org/r/gitweb?p=aai/aai-common.git;a=blob_plain;f=onap-java-formatter.xml;hb=refs/heads/master",
   "java.semanticHighlighting.enabled": true,
+  "metals.superMethodLensesEnabled": false,
   "redhat.telemetry.enabled": false,
   "spellright.notificationClass": "information",
   "terminal.integrated.cursorBlinking": true,
