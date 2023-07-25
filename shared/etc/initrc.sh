@@ -4,23 +4,23 @@
 COLORS=`tput colors 2>/dev/null`
 CEsc=`printf '\033'`
 if test -n "$COLORS" && test "$COLORS" -ge 8; then
-    CReset="$CEsc[0m" export CReset
+    export CReset="${CEsc}[0m"
 
-    CGood="$CReset$CEsc[1m$CEsc[36m"    export CGood # Bright Cyan
-    CInfo="$CReset$CEsc[34m"            export CInfo # Blue
-    CWarn="$CReset$CEsc[1m$CEsc[33m"    export CWarn # Bright Yellow
-    CErr="$CReset$CEsc[1m$CEsc[31m"     export CErr  # Bright Red
-    CEnv="$CReset$CEsc[1m$CEsc[35m"     export CEnv  # Bright Magenta
-    CSide="$CReset$CEsc[1m$CEsc[30m"    export CSide # Bright Black (Gray)
-    CHelp="$CReset$CEsc[32m"            export CHelp # Green
+    export CGood="${CReset}${CEsc}[1m${CEsc}[36m"  # Bright Cyan
+    export CInfo="${CReset}${CEsc}[34m"            # Blue
+    export CWarn="${CReset}${CEsc}[1m${CEsc}[33m"  # Bright Yellow
+    export CErr="${CReset}${CEsc}[1m${CEsc}[31m"   # Bright Red
+    export CEnv="${CReset}${CEsc}[1m${CEsc}[35m"   # Bright Magenta
+    export CSide="${CReset}${CEsc}[1m${CEsc}[30m"  # Bright Black (Gray)
+    export CHelp="${CReset}${CEsc}[32m"            # Green
 
     if test "$COLORS" -ge 256; then
-        CGood="$CReset$CEsc[38;5;87m"   export CGood # Light Cyan
-        CInfo="$CReset$CEsc[38;5;28m"   export CInfo # Dark Green
-        CWarn="$CReset$CEsc[38;5;11m"   export CWarn # Light Yellow
-        CErr="$CReset$CEsc[38;5;202m"   export CErr  # Orange
-        CEnv="$CReset$CEsc[38;5;13m"    export CEnv  # Light Magenta
-        CSide="$CReset$CEsc[38;5;238m"  export CSide # Bright Black (Gray)
+        export CGood="${CReset}${CEsc}[38;5;87m"   # Light Cyan
+        export CInfo="${CReset}${CEsc}[38;5;28m"   # Dark Green
+        export CWarn="${CReset}${CEsc}[38;5;11m"   # Light Yellow
+        export CErr="${CReset}${CEsc}[38;5;202m"   # Orange
+        export CEnv="${CReset}${CEsc}[38;5;13m"    # Light Magenta
+        export CSide="${CReset}${CEsc}[38;5;238m"  # Bright Black (Gray)
     fi
 fi
 cprint() {
@@ -29,22 +29,23 @@ cprint() {
 }
 
 ## Prompt
-INITRC_PROMPT_COMMAND="PS1=\"\\\\n\\\\[$CInfo\\\\]\\\\s \${debian_chroot:+(\$debian_chroot) }\
-\\\\[$CGood\\\\]\\\\u\\\\[$CSide\\\\]@\\\\[$CEnv\\\\]\\\\h\\\\[$CReset\\\\]\
- \\\\[$CSide\\\\]:\\\\[$CReset\\\\] \\\\[$CHelp\\\\]\\\\w\\\\[$CReset\\\\]\
- \`bracketcolors withtimeout 0.5 gss || printf \\\"\\\\[%s\\\\][???]\\\" \\\"$CErr\\\"\`\\\\[$CReset\\\\]\
-\\\\n\\\\[$CSide\\\\]\\\\\$\\\\[$CReset\\\\] \""
+INITRC_PROMPT_COMMAND="\
+    export PS1=\"\\\\n\\\\[${CInfo}\\\\]\\\\s \${debian_chroot:+(\${debian_chroot}) }\" && \
+    export PS1=\"\${PS1}\\\\[${CGood}\\\\]\\\\u\\\\[${CSide}\\\\]@\\\\[${CEnv}\\\\]\\\\h\\\\[${CReset}\\\\]\" && \
+    export PS1=\"\${PS1} \\\\[${CSide}\\\\]:\\\\[${CReset}\\\\] \\\\[${CHelp}\\\\]\\\\w\\\\[${CReset}\\\\]\" && \
+    export PS1=\"\${PS1} \`bracketcolors withtimeout 0.5 gss || printf \\\"\\\\[%s\\\\][???]\\\" \\\"${CErr}\\\"\`\\\\[${CReset}\\\\]\" && \
+    export PS1=\"\${PS1}\\\\n\\\\[${CSide}\\\\]\\\\\$\\\\[${CReset}\\\\] \"\
+"
 case "$PROMPT_COMMAND" in
     *"$INITRC_PROMPT_COMMAND"*) ;;
     *)
-        PROMPT_COMMAND=$(printf '%s\n' "$PROMPT_COMMAND" "$INITRC_PROMPT_COMMAND")
+        export PROMPT_COMMAND=$(printf '%s\n' "$PROMPT_COMMAND" "$INITRC_PROMPT_COMMAND")
     ;;
 esac
 
-
 ## Setup
 echoAlias() { alias $1="echoAndRun '$2'" ; }
-echoAndRun() { local cmd=$1 ; shift ; printf '%s\n' "$cmd" 1>&2 ; eval "$cmd <&0" ; }
+echoAndRun() { local cmd=$1 ; shift ; printf '%s\n' "$cmd" 1>&2 ; eval "${cmd} <&0" ; }
 
 
 ## Navigation
@@ -60,6 +61,8 @@ echoAlias ........ 'cd ../../../../../../..'
 
 
 ## Utility
+export BRACKETCOLORS_START='\['
+export BRACKETCOLORS_END='\]'
 bracketcolors() {
     if [ "$#" -lt 1 ]; then
         printf 'Usage: bracketcolors cmd [args...]\n' 1>&2
@@ -68,26 +71,24 @@ bracketcolors() {
 
     local input
     input=`$*`
-    local status=$?
+    local captured_status=$?
     if [ -n "$input" ]; then
         local bracketstate=out
-        while IFS='' read -r -n1 -d '' char; do
-            if [ "$char" == "$CEsc" ]; then
-                [ "$bracketstate" == "out" ] && printf '\[' || true
+        while IFS='' getopts ':' opt "-$input"; do
+            if [ "${OPTARG:-:}" = "$CEsc" ]; then
+                [ "$bracketstate" = "out" ] && printf '%s' "$BRACKETCOLORS_START" || true
                 bracketstate=in
-            elif [ "$bracketstate" == "end" ]; then
-                printf '\]'
+            elif [ "$bracketstate" = "end" ]; then
+                printf '%s' "$BRACKETCOLORS_END"
                 bracketstate=out
-            elif [ "$bracketstate" == "in" ] && [ "$char" == "m" ]; then
+            elif [ "$bracketstate" = "in" ] && [ "${OPTARG:-:}" = "m" ]; then
                 bracketstate=end
             fi
-            printf '%s' "$char"
-        done << EOF
-$input
-EOF
-        [ "$bracketstate" == "end" ] && printf '\\]' || true
+            printf '%s' "${OPTARG:-:}"
+        done
+        [ "$bracketstate" = "end" ] && printf '%s' "$BRACKETCOLORS_END" || true
     fi
-    return $status
+    return $captured_status
 }
 withtimeout() {
     if [ "$#" -lt 2 ]; then
@@ -120,7 +121,7 @@ echoAlias killall 'test -n "$1" && ps -A | grep "$1" | cut -d" " -f1 | xargs kil
 echoAlias npm-unlink 'npm rm --global $*'
 echoAlias find-symlinks 'find -L . -xtype l -ls'
 echoAlias reload '. ~/.bashrc'
-echoAlias strip-colors 'sed "s/\\x1B\\[[0-9\\;]\\+[A-Za-z]//g" $*'
+echoAlias strip-colors 'sed "s/\\x1B\\[[0-9\\;]\\{1,\\}[A-Za-z]//g" $*'
 echoAlias escape-colors 'sed "s/\\x1B/\\\\033/g" $*'
 
 
@@ -219,16 +220,16 @@ EOF
     [ "$behind" -ne "0" ] || [ "$conflicts" -ne "0" ] && color=$CErr
 
     local info=$branch
-    [ "$ahead" -ne "0" ] && info="$info+$ahead"
-    [ ! -z "$remote" ] && info="$info ${gone:+$CErr!}-> $remote$color"
-    [ "$behind" -ne "0" ] && info="$info+${behind# }"
+    [ "$ahead" -ne "0" ] && info="${info}+${ahead}"
+    [ ! -z "$remote" ] && info="${info} ${gone:+${CErr}!}-> ${remote}${color}"
+    [ "$behind" -ne "0" ] && info="${info}+${behind# }"
 
     local extra=
-    [ "$staged" -ne "0" ] && extra="$extra $CInfo*$staged$color"
-    [ "$changed" -ne "0" ] && extra="$extra $CWarn!$changed$color"
-    [ "$untracked" -ne "0" ] && extra="$extra $CWarn+$untracked$color"
-    [ "$deleted" -ne "0" ] && extra="$extra $CWarn-$deleted$color"
-    [ "$conflicts" -ne "0" ] && extra="$extra ${CErr}X$conflicts$color"
+    [ "$staged" -ne "0" ] && extra="${extra} ${CInfo}*${staged}${color}"
+    [ "$changed" -ne "0" ] && extra="${extra} ${CWarn}!${changed}${color}"
+    [ "$untracked" -ne "0" ] && extra="${extra} ${CWarn}+${untracked}${color}"
+    [ "$deleted" -ne "0" ] && extra="${extra} ${CWarn}-${deleted}${color}"
+    [ "$conflicts" -ne "0" ] && extra="${extra} ${CErr}X${conflicts}${color}"
 
-    printf '%s\n' "${color}[ $info${extra:+ |$extra} ]$CReset"
+    printf '%s\n' "${color}[ ${info}${extra:+ |${extra}} ]${CReset}"
 }
