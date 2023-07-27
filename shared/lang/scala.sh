@@ -13,7 +13,7 @@ if [ -x "$(command -v sbt)" ]; then
 
     . install-var COURSIER_CREDENTIALS "$HOME/.sbt/.credentials-coursier"
     . install-var SBT_CREDENTIALS "$HOME/.sbt/.credentials"
-    . install-var SBT_OPTS "-Xmx4g -Xms512M"
+    . install-var SBT_OPTS "-Xmx4g -Xms512m -Xss50m"
 else
     printf 'ERROR: SBT not installed!\n' 1>&2
 fi
