@@ -31,7 +31,7 @@ git config --global color.diff-highlight.newHighlight "33 bold 19"
 copy-impl "etc/.gitignore-global" "$BENCH/.gitignore-global"
 git config --global core.excludesfile "$BENCH/.gitignore-global"
 
-curl -o "$BENCH/bin/diff-so-fancy" https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
+curl -L -o "$BENCH/bin/diff-so-fancy" https://github.com/so-fancy/diff-so-fancy/releases/latest/download/diff-so-fancy
 chmod a+x "$BENCH/bin/diff-so-fancy"
 git config --global pager.diff "diff-so-fancy | less --tabs=4 -RFX"
 git config --global pager.show "diff-so-fancy | less --tabs=4 -RFX"
