@@ -74,6 +74,10 @@ echoAlias ........ 'cd ../../../../../../..'
 ## Utility
 export BRACKETCOLORS_START='\['
 export BRACKETCOLORS_END='\]'
+if test -n "$ZSH_VERSION"; then
+    export BRACKETCOLORS_START='%{'
+    export BRACKETCOLORS_END='%}'
+fi
 bracketcolors() {
     if [ "$#" -lt 1 ]; then
         printf 'Usage: bracketcolors cmd [args...]\n' 1>&2
