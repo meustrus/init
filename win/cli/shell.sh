@@ -7,7 +7,7 @@ setx HOME "$HOME"
 . "$INIT_REPO/shared/cli/shell.sh"
 
 # ensure that msys is in *front* of Windows programs in $PATH, but only for Bash consoles (cmd should be unaffected)
-install-env "PATH=\"/usr/bin:\$PATH\" export PATH"
+install-env "export PATH=\"/usr/bin:\$PATH\""
 PATH="/usr/bin:$PATH" export PATH
 
 choco install jq -y

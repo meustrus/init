@@ -10,4 +10,4 @@ brew-install nvm
 
 append "# NVM\n. \$(brew --prefix nvm)/nvm.sh" "$HOME/.profile"
 append "# NVM\n. \$(brew --prefix nvm)/nvm.sh" "$HOME/.bash_profile"
-append "# NVM\n. \$(brew --prefix nvm)/nvm.sh" "$HOME/.zshenv"
+append "# NVM\n. \$(brew --prefix nvm)/nvm.sh" "$HOME/.zshrc"

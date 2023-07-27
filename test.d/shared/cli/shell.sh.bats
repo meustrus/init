@@ -26,7 +26,7 @@ teardown() {
   assert_equal "$(cat "$HOME/.profile")" "$expected_loadrc"
   assert_equal "$(cat "$HOME/.bash_profile")" "$expected_loadrc"
   assert_equal "$(cat "$HOME/.bashrc")" "$expected_loadrc"
-  assert_equal "$(cat "$HOME/.zshenv")" "$expected_loadrc"
+  assert_equal "$(cat "$HOME/.zshrc")" "$expected_loadrc"
 }
 
 @test 'shared/shell.sh multiple times installs shellrc.d directory only once' {
@@ -43,7 +43,7 @@ teardown() {
   assert_equal "$(cat "$HOME/.profile")" "$expected_loadrc"
   assert_equal "$(cat "$HOME/.bash_profile")" "$expected_loadrc"
   assert_equal "$(cat "$HOME/.bashrc")" "$expected_loadrc"
-  assert_equal "$(cat "$HOME/.zshenv")" "$expected_loadrc"
+  assert_equal "$(cat "$HOME/.zshrc")" "$expected_loadrc"
 }
 
 @test 'shellmock forwarding' {

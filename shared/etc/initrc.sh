@@ -46,12 +46,14 @@ esac
 if test -n "$ZSH_VERSION"; then
     eval_prompt_command() {
         export PROMPT=$'\n'"%{${CInfo}%}%N ${debian_chroot:+(${debian_chroot}) }"
-        export PROMPT="${PROMPT}%{${CGood}%}%n%{${CSide}%}@%{${CEnv}%}%m%{${CReset}%}"
-        export PROMPT="${PROMPT}%{${CSide}%}:%{${CReset}%} %{${CHelp}%}%~%{${CReset}%}"
+        export PROMPT="${PROMPT}%{${CGood}%}%n%{${CSide}%}@%{${CEnv}%}%m%{${CReset}%} "
+        export PROMPT="${PROMPT}%{${CSide}%}:%{${CReset}%} %{${CHelp}%}%~%{${CReset}%} "
         export PROMPT="${PROMPT}`bracketcolors withtimeout 0.5 gss || printf \"%%{%s%%}[???]\" \"${CErr}\"`%{${CReset}%}"
         export PROMPT="${PROMPT}"$'\n'"%{${CSide}%}%#%{${CReset}%} "
     }
-    add-zsh-hook precmd eval_prompt_command
+    typeset -a precmd_functions
+    # append the function to our array of precmd functions
+    precmd_functions+=(eval_prompt_command)
 fi
 
 ## Setup

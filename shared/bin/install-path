@@ -15,4 +15,4 @@ for NewPath in "$@"; do
     fi
 done
 
-install-env "PATH=\"$NewPaths:\$PATH\" export PATH"
+install-env "export PATH=\"$NewPaths:\$PATH\""

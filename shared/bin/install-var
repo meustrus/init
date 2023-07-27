@@ -2,5 +2,5 @@
 
 . "${INIT_REPO:-$(dirname "$0")/../..}/vars.sh"
 
-install-env "$1=\"$2\" export $1"
-eval "$1=\"$2\" export $1"
+install-env "export $1=\"$2\""
+eval "export $1=\"$2\""

@@ -7,7 +7,7 @@ if ! test -f "$BENCH/shellrc.d/env.sh"; then
         '#!/bin/sh' \
         '' \
         'test -n "$ENV_SH_LOADED" && return' \
-        'ENV_SH_LOADED=true export ENV_SH_LOADED' \
+        'export ENV_SH_LOADED=true' \
         '' \
         > "$BENCH/shellrc.d/env.sh"
 fi
