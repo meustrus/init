@@ -10,7 +10,7 @@ if [ "$INIT_FORUSER" = "ALL" ] && ! [ -x "$(command -v brew)" ]; then
     append "$loadbrew" "$HOME/.profile"
     append "$loadbrew" "$HOME/.bash_profile"
     append "$loadbrew" "$HOME/.bashrc"
-    append "$loadbrew" "$HOME/.zshrc"
+    append "$loadbrew" "$HOME/.zshenv"
 fi
 
 #if ! [ -x "$(command -v brew)" ]; then

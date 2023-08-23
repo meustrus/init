@@ -10,3 +10,5 @@ append "$loadrc" "$HOME/.profile"
 append "$loadrc" "$HOME/.bash_profile"
 append "$loadrc" "$HOME/.bashrc"
 append "$loadrc" "$HOME/.zshrc"
+
+append ". \"$BENCH\"/shellrc.d/env.sh" "$HOME/.zshenv"
