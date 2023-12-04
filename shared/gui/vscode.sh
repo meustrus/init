@@ -41,7 +41,7 @@ if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
         --install-extension            ms-python.python \
         --install-extension          mechatroner.rainbow-csv \
         --install-extension                humao.rest-client \
-        --install-extension             rebornix.ruby \
+        --install-extension              Shopify.ruby-lsp \
         --install-extension          itryapitsin.sbt \
         --install-extension           scala-lang.scala \
         --install-extension                  ban.spellright \
