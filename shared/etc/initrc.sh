@@ -135,7 +135,7 @@ withtimeout() {
 }
 
 if ! test -x killall ; then
-    echoAlias killall 'test -n "$1" && ps -A | grep "$1" | cut -d" " -f1 | xargs kill'
+    echoAlias killall 'test -n "$1" && ps -A | grep "$1" | cut -d" " -f1 | xargs -I{} kill {}'
 fi
 
 echoAlias npm-unlink 'npm rm --global $*'
@@ -150,7 +150,7 @@ echoAlias escape-colors 'sed "s/\\x1B/\\\\033/g" $*'
 echoAlias gam 'git commit --amend --no-edit $* ; git status'
 echoAlias gas 'git add --no-ignore-removal $* ; git status'
 echoAlias gbg 'git branch -v | awk "/^[ \t]*[^ \t*]+[ \t]+[^ \t]+[ \t]+\[gone\]/ {print \$1}"'
-echoAlias gbp 'git branch -v | awk "/^[ \t]*[^ \t*]+[ \t]+[^ \t]+[ \t]+\[gone\]/ {print \$1}" | xargs git branch -d'
+echoAlias gbp 'git branch -v | awk "/^[ \t]*[^ \t*]+[ \t]+[^ \t]+[ \t]+\[gone\]/ {print \$1}" | xargs -I{} git branch -d {}'
 echoAlias gci 'git ls-files --others --ignored --exclude-standard --directory | awk "{system(\"rm -r \\\"\" \$0 \"\\\"\")}"'
 echoAlias gd  'git diff $*'
 echoAlias gds 'git diff --staged $*'
@@ -159,7 +159,7 @@ echoAlias gf  'git fetch --tags $* ; git status'
 echoAlias gff 'git merge --ff-only $* ; git status'
 echoAlias gl  'git log --all --graph --decorate --date=relative $*'
 echoAlias gla 'git log --all --graph --decorate --date=relative --author-date-order $*'
-echoAlias glo 'git fsck --connectivity-only | grep "^dangling commit" | cut -d " " -f 3 | xargs -n1 git log -1 --date=relative'
+echoAlias glo 'git fsck --connectivity-only | grep "^dangling commit" | cut -d " " -f 3 | xargs -I{} -n1 git log -1 --date=relative {}'
 echoAlias gr  'git rebase $* ; git status'
 echoAlias gra 'git rebase --abort'
 echoAlias grc 'git rebase --continue'
