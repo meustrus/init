@@ -12,6 +12,10 @@ if ! test -f "$BENCH/shellrc.d/env.sh"; then
         > "$BENCH/shellrc.d/env.sh"
 fi
 
+# restrict access to env.sh in user home
+test "${BENCH#$HOME}" != "$BENCH" &&
+    chmod 600 "$BENCH/shellrc.d/env.sh"
+
 # ensure env.sh ends in a newline
 test -n "$(tail -c1 "$BENCH/shellrc.d/env.sh")" &&
     printf '\n' >> "$BENCH/shellrc.d/env.sh"
