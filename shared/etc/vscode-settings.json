@@ -45,7 +45,7 @@
   "java.format.settings.url": "https://gerrit.onap.org/r/gitweb?p=aai/aai-common.git;a=blob_plain;f=onap-java-formatter.xml;hb=refs/heads/master",
   "metals.superMethodLensesEnabled": false,
   "prettier.enable": false,
-  "python-envs.workspaceSearchPaths": [],
+  "python.terminal.activateEnvironment": false,
   "redhat.telemetry.enabled": false,
   "spellright.notificationClass": "information",
   "terminal.integrated.cursorBlinking": true,
