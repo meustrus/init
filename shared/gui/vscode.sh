@@ -4,7 +4,7 @@
 
 if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
     mkdir -p "$APPDATA/Code/User/"
-    copy-impl "etc/vscode-settings.json" "$APPDATA/Code/User/settings.json"
+    copy-impl "etc/vscode-settings.json5" "$APPDATA/Code/User/settings.json"
     copy-impl "etc/vscode-keybindings.json" "$APPDATA/Code/User/keybindings.json"
 
     git config --global core.editor "code --wait --new-window"
@@ -17,17 +17,21 @@ if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
         --install-extension               ryu1kn.annotator \
         --install-extension            jetmartin.bats \
         --install-extension           aaron-bond.better-comments \
+        --install-extension       blueglassblock.better-json5 \
         --install-extension              wmaurer.change-case \
         --install-extension            marlon407.code-groovy \
         --install-extension          alexkrechik.cucumberautocomplete \
+        --install-extension              repreng.csv \
         --install-extension           mitchdenny.ecdc \
         --install-extension         editorconfig.editorconfig \
         --install-extension             mhutchie.git-graph \
         --install-extension              eamodio.gitlens \
         --install-extension               golang.go \
+        --install-extension                  qiu.graphviz-language-support-and-preivew \
         --install-extension              haskell.haskell \
         --install-extension            ms-vscode.hexeditor \
         --install-extension                npxms.hide-gitignored \
+        --install-extension            ms-python.isort \
         --install-extension               redhat.java \
         --install-extension               sohibe.java-generate-setters-getters \
         --install-extension             eriklynd.json-tools \
@@ -35,16 +39,22 @@ if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
         --install-extension VisualStudioExptTeam.intellicode-api-usage-examples \
         --install-extension               yzhang.markdown-all-in-one \
         --install-extension            scalameta.metals \
+        --install-extension             bbenoist.nix \
         --install-extension     christian-kohler.npm-intellisense \
         --install-extension              DrMerfy.overtype \
-        --install-extension            ms-python.isort \
+        --install-extension               esbenp.prettier-vscode \
+        --install-extension              ventura.prom \
         --install-extension            ms-python.python \
+        --install-extension                 2gua.rainbow-brackets \
         --install-extension          mechatroner.rainbow-csv \
         --install-extension                humao.rest-client \
         --install-extension              Shopify.ruby-lsp \
+        --install-extension            rust-lang.rust-analyzer \
         --install-extension          itryapitsin.sbt \
         --install-extension           scala-lang.scala \
+        --install-extension      disneystreaming.smithy \
         --install-extension                  ban.spellright \
+        --install-extension                qwtel.sqlite-viewer \
         --install-extension                 mtxr.sqltools \
         --install-extension                 mtxr.sqltools-driver-sqlite \
         --install-extension          craigthomas.supersharp \
@@ -56,6 +66,7 @@ if [ -x "$(command -v code)" ] && [ -d "$APPDATA" ]; then
         --install-extension             stayfool.vscode-asciidoc \
         --install-extension         adamhartford.vscode-base64 \
         --install-extension              aeschli.vscode-css-formatter \
+        --install-extension             dbaeumer.vscode-eslint \
         --install-extension    vscode-icons-team.vscode-icons \
         --install-extension              vscjava.vscode-java-pack \
         --install-extension               zxh404.vscode-proto3 \

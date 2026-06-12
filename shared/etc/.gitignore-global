@@ -64,3 +64,6 @@ pc.stdout.log
 .metals
 .bsp
 metals.sbt
+
+# direnv
+.envrc
